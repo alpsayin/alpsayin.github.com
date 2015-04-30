@@ -1,0 +1,490 @@
+--17:47:25-- `text2k.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.12:21/measurements/soundmodem/text2k.txt
+Connecting to 10.0.0.12:21... connectedReceive-Error: read() failed. Read '' so far. (errno: No route to host (113))
+Receive-Error: Connection broke down.
+Waiting 10 seconds... Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodem
+==> TYPE A ... done.
+==> SIZE text2k.txt ... failed.
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text2k.txt ... done.
+Length: 2,048
+    0K 
+Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+17:49:38 (text2k.txt) - `76.75B/s' [2048]
+
+Waiting 10 seconds... FINISHED --17:50:05--
+Transfered 2,304 bytes in 1 file at 14.40B/s
+Transmission of 1 file failed.
+Command exited with non-zero status 2
+
+command=wput text2k.txt ftp://alpsayin:noseArt_628@10.0.0.12/measurements/soundmodem/text2k.txt -v -a wput2k.log
+elapsed 2:39.98
+exit status 2
+
+--17:50:15-- `text2k.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.12:21/measurements/soundmodem/text2k.txt
+Connecting to 10.0.0.12:21... connectedError: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+Waiting 10 seconds... Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodem
+==> TYPE A ... done.
+==> SIZE text2k.txt ... done (2304 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text2k.txt ... done.
+Length: 2,048
+    0K 
+Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+17:53:23 (text2k.txt) - `76.78B/s' [2048]
+
+Waiting 10 seconds... FINISHED --17:53:34--
+Transfered 2,304 bytes in 1 file at 11.60B/s
+Transmission of 1 file failed.
+Command exited with non-zero status 2
+
+command=wput text2k.txt ftp://alpsayin:noseArt_628@10.0.0.12/measurements/soundmodem/text2k.txt -v -a wput2k.log
+elapsed 3:18.66
+exit status 2
+
+--17:53:44-- `text2k.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.12:21/measurements/soundmodem/text2k.txt
+Connecting to 10.0.0.12:21... connectedError: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+Waiting 10 seconds... Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodem
+==> TYPE A ... done.
+==> SIZE text2k.txt ... done (2304 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text2k.txt ... done.
+Length: 2,048
+    0K 
+Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+17:56:16 (text2k.txt) - `76.74B/s' [2048]
+
+Waiting 10 seconds... FINISHED --17:56:26--
+Transfered 2,304 bytes in 1 file at 14.23B/s
+Transmission of 1 file failed.
+Command exited with non-zero status 2
+
+command=wput text2k.txt ftp://alpsayin:noseArt_628@10.0.0.12/measurements/soundmodem/text2k.txt -v -a wput2k.log
+elapsed 2:41.95
+exit status 2
+
+--17:56:36-- `text2k.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.12:21/measurements/soundmodem/text2k.txt
+Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodem
+==> TYPE A ... done.
+==> SIZE text2k.txt ... done (2304 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text2k.txt ... Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+[not done, but should be allright]
+Length: 2,048
+    0K 
+Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+17:59:01 (text2k.txt) - `76.77B/s' [2048]
+
+Waiting 10 seconds... FINISHED --17:59:11--
+Transfered 2,304 bytes in 1 file at 14.87B/s
+Transmission of 1 file failed.
+Command exited with non-zero status 2
+
+command=wput text2k.txt ftp://alpsayin:noseArt_628@10.0.0.12/measurements/soundmodem/text2k.txt -v -a wput2k.log
+elapsed 2:34.99
+exit status 2
+
+--17:59:21-- `text2k.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.12:21/measurements/soundmodem/text2k.txt
+Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodem
+==> TYPE A ... done.
+==> SIZE text2k.txt ... done (2304 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text2k.txt ... done.
+Length: 2,048
+    0K 
+Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+18:01:11 (text2k.txt) - `76.78B/s' [2048]
+
+Waiting 10 seconds... FINISHED --18:01:26--
+Transfered 2,304 bytes in 1 file at 18.44B/s
+Transmission of 1 file failed.
+Command exited with non-zero status 2
+
+command=wput text2k.txt ftp://alpsayin:noseArt_628@10.0.0.12/measurements/soundmodem/text2k.txt -v -a wput2k.log
+elapsed 2:04.93
+exit status 2
+
+--18:01:36-- `text2k.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.12:21/measurements/soundmodem/text2k.txt
+Connecting to 10.0.0.12:21... connectedError: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+Waiting 10 seconds... Connecting to 10.0.0.12:21... connectedError: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+Waiting 10 seconds... Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodem
+==> TYPE A ... Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+failed.
+Waiting 10 seconds... Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodemError: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+Waiting 10 seconds... Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+Waiting 10 seconds... Connecting to 10.0.0.12:21... connectedError: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+Waiting 10 seconds... Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodem
+==> TYPE A ... done.
+==> SIZE text2k.txt ... done (2304 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text2k.txt ... Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+[not done, but should be allright]
+Length: 2,048
+    0K 
+Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+18:10:56 (text2k.txt) - `56.45B/s' [2048]
+
+Waiting 10 seconds... FINISHED --18:11:06--
+Transfered 2,304 bytes in 1 file at  4.04B/s
+Transmission of 1 file failed.
+Command exited with non-zero status 2
+
+command=wput text2k.txt ftp://alpsayin:noseArt_628@10.0.0.12/measurements/soundmodem/text2k.txt -v -a wput2k.log
+elapsed 9:30.90
+exit status 2
+
+--18:11:16-- `text2k.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.12:21/measurements/soundmodem/text2k.txt
+Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodem
+==> TYPE A ... done.
+==> SIZE text2k.txt ... done (2304 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text2k.txt ... done.
+Length: 2,048
+    0K 
+Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+18:13:06 (text2k.txt) - `76.76B/s' [2048]
+
+Waiting 10 seconds... FINISHED --18:13:21--
+Transfered 2,304 bytes in 1 file at 18.45B/s
+Transmission of 1 file failed.
+Command exited with non-zero status 2
+
+command=wput text2k.txt ftp://alpsayin:noseArt_628@10.0.0.12/measurements/soundmodem/text2k.txt -v -a wput2k.log
+elapsed 2:04.85
+exit status 2
+
+--18:13:31-- `text2k.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.12:21/measurements/soundmodem/text2k.txt
+Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodem
+==> TYPE A ... done.
+==> SIZE text2k.txt ... done (2304 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text2k.txt ... done.
+Length: 2,048
+    0K 
+Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+18:15:04 (text2k.txt) - `76.73B/s' [2048]
+
+Waiting 10 seconds... FINISHED --18:15:15--
+Transfered 2,304 bytes in 1 file at 22.28B/s
+Transmission of 1 file failed.
+Command exited with non-zero status 2
+
+command=wput text2k.txt ftp://alpsayin:noseArt_628@10.0.0.12/measurements/soundmodem/text2k.txt -v -a wput2k.log
+elapsed 1:43.39
+exit status 2
+
+--18:15:25-- `text2k.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.12:21/measurements/soundmodem/text2k.txt
+Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodem
+==> TYPE A ... done.
+==> SIZE text2k.txt ... done (2304 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text2k.txt ... done.
+Length: 2,048
+    0K 
+Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+18:17:17 (text2k.txt) - `76.77B/s' [2048]
+
+Waiting 10 seconds... FINISHED --18:17:27--
+Transfered 2,304 bytes in 1 file at 18.84B/s
+Transmission of 1 file failed.
+Command exited with non-zero status 2
+
+command=wput text2k.txt ftp://alpsayin:noseArt_628@10.0.0.12/measurements/soundmodem/text2k.txt -v -a wput2k.log
+elapsed 2:02.31
+exit status 2
+
+--18:17:37-- `text2k.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.12:21/measurements/soundmodem/text2k.txt
+Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodem
+==> TYPE A ... done.
+==> SIZE text2k.txt ... done (2304 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text2k.txt ... Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+[not done, but should be allright]
+Length: 2,048
+    0K 
+Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+18:19:57 (text2k.txt) - `76.78B/s' [2048]
+
+Waiting 10 seconds... FINISHED --18:20:07--
+Transfered 2,304 bytes in 1 file at 15.34B/s
+Transmission of 1 file failed.
+Command exited with non-zero status 2
+
+command=wput text2k.txt ftp://alpsayin:noseArt_628@10.0.0.12/measurements/soundmodem/text2k.txt -v -a wput2k.log
+elapsed 2:30.23
+exit status 2
+
+--18:20:17-- `text2k.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.12:21/measurements/soundmodem/text2k.txt
+Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodem
+==> TYPE A ... done.
+==> SIZE text2k.txt ... done (2304 bytes)
+==> PASV ... Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+Waiting 10 seconds... Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodem
+==> TYPE A ... done.
+==> SIZE text2k.txt ... done (2304 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text2k.txt ... done.
+Length: 2,048
+    0K 
+Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+18:23:47 (text2k.txt) - `76.76B/s' [2048]
+
+Waiting 10 seconds... FINISHED --18:23:57--
+Transfered 2,304 bytes in 1 file at 10.49B/s
+Transmission of 1 file failed.
+Command exited with non-zero status 2
+
+command=wput text2k.txt ftp://alpsayin:noseArt_628@10.0.0.12/measurements/soundmodem/text2k.txt -v -a wput2k.log
+elapsed 3:39.54
+exit status 2
+
+--18:24:07-- `text2k.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.12:21/measurements/soundmodem/text2k.txt
+Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodem
+==> TYPE A ... done.
+==> SIZE text2k.txt ... done (2304 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text2k.txt ... done.
+Length: 2,048
+    0K 
+Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+18:25:51 (text2k.txt) - `76.78B/s' [2048]
+
+Waiting 10 seconds... FINISHED --18:26:04--
+Transfered 2,304 bytes in 1 file at 19.70B/s
+Transmission of 1 file failed.
+Command exited with non-zero status 2
+
+command=wput text2k.txt ftp://alpsayin:noseArt_628@10.0.0.12/measurements/soundmodem/text2k.txt -v -a wput2k.log
+elapsed 1:56.93
+exit status 2
+
+--18:26:14-- `text2k.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.12:21/measurements/soundmodem/text2k.txt
+Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodem
+==> TYPE A ... done.
+==> SIZE text2k.txt ... done (2304 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text2k.txt ... done.
+Length: 2,048
+    0K 
+Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+18:28:04 (text2k.txt) - `76.75B/s' [2048]
+
+Waiting 10 seconds... FINISHED --18:28:14--
+Transfered 2,304 bytes in 1 file at 19.14B/s
+Transmission of 1 file failed.
+Command exited with non-zero status 2
+
+command=wput text2k.txt ftp://alpsayin:noseArt_628@10.0.0.12/measurements/soundmodem/text2k.txt -v -a wput2k.log
+elapsed 2:00.40
+exit status 2
+
+--18:28:24-- `text2k.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.12:21/measurements/soundmodem/text2k.txt
+Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodem
+==> TYPE A ... done.
+==> SIZE text2k.txt ... done (2304 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text2k.txt ... Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+[not done, but should be allright]
+Length: 2,048
+    0K 
+Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+18:30:39 (text2k.txt) - `72.69B/s' [2048]
+
+Waiting 10 seconds... FINISHED --18:31:02--
+Transfered 2,304 bytes in 1 file at 14.64B/s
+Transmission of 1 file failed.
+Command exited with non-zero status 2
+
+command=wput text2k.txt ftp://alpsayin:noseArt_628@10.0.0.12/measurements/soundmodem/text2k.txt -v -a wput2k.log
+elapsed 2:37.42
+exit status 2
+
+--18:31:12-- `text2k.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.12:21/measurements/soundmodem/text2k.txt
+Connecting to 10.0.0.12:21... connectedError: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+Waiting 10 seconds... Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodem
+==> TYPE A ... done.
+==> SIZE text2k.txt ... done (2304 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text2k.txt ... Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+[not done, but should be allright]
+Length: 2,048
+    0K 
+Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+18:34:17 (text2k.txt) - `56.84B/s' [2048]
+
+Waiting 10 seconds... Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+FINISHED --18:34:57--
+Transfered 2,304 bytes in 1 file at 10.20B/s
+Transmission of 1 file failed.
+Command exited with non-zero status 2
+
+command=wput text2k.txt ftp://alpsayin:noseArt_628@10.0.0.12/measurements/soundmodem/text2k.txt -v -a wput2k.log
+elapsed 3:45.89
+exit status 2
+
+--18:35:08-- `text2k.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.12:21/measurements/soundmodem/text2k.txt
+Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodem
+==> TYPE A ... done.
+==> SIZE text2k.txt ... done (2304 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text2k.txt ... done.
+Length: 2,048
+    0K 
+Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+18:37:04 (text2k.txt) - `76.79B/s' [2048]
+
+Waiting 10 seconds... Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+FINISHED --18:37:44--
+Transfered 2,304 bytes in 1 file at 14.69B/s
+Transmission of 1 file failed.
+Command exited with non-zero status 2
+
+command=wput text2k.txt ftp://alpsayin:noseArt_628@10.0.0.12/measurements/soundmodem/text2k.txt -v -a wput2k.log
+elapsed 2:36.82
+exit status 2
+

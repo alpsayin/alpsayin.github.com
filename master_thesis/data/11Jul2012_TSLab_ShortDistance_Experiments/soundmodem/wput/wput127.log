@@ -1,0 +1,441 @@
+--16:58:34-- `text127.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.12:21/measurements/soundmodem/text127.txt
+Connecting to 10.0.0.12:21... connectedReceive-Error: read() failed. Read '' so far. (errno: No route to host (113))
+Receive-Error: Connection broke down.
+Waiting 10 seconds... Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodem
+==> TYPE A ... done.
+==> SIZE text127.txt ... done (142 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text127.txt ... done.
+Length: 127
+    0K 
+17:00:13 (text127.txt) - `15.14B/s' [127]
+
+# You have transferred 127 bytes in 1 files.
+# Total traffic for this session was 662 bytes in 1 transfers.
+# Thank you for using the FTP service on sayin-macbookpro.
+FINISHED --17:00:19--
+Transfered 142 bytes in 1 file at  1.35B/s
+
+command=wput text127.txt ftp://alpsayin:noseArt_628@10.0.0.12/measurements/soundmodem/text127.txt -v -a wput127.log
+elapsed 1:45.53
+exit status 0
+
+--17:00:29-- `text127.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.12:21/measurements/soundmodem/text127.txt
+Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+Waiting 10 seconds... Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodem
+==> TYPE A ... done.
+==> SIZE text127.txt ... done (142 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text127.txt ... Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+[not done, but should be allright]
+Length: 127
+    0K 
+17:04:22 (text127.txt) - ` 7.84B/s' [127]
+
+# You have transferred 127 bytes in 1 files.
+# Total traffic for this session was 663 bytes in 1 transfers.
+# Thank you for using the FTP service on sayin-macbookpro.
+FINISHED --17:04:29--
+Transfered 142 bytes in 1 file at  0.59B/s
+
+command=wput text127.txt ftp://alpsayin:noseArt_628@10.0.0.12/measurements/soundmodem/text127.txt -v -a wput127.log
+elapsed 3:59.85
+exit status 0
+
+--17:04:39-- `text127.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.12:21/measurements/soundmodem/text127.txt
+Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+failed (sayin-macbookpro FTP server (Version wu-2.6.2(1) Wed Sep 30 08:44:57 UTC 2009) ready.).
+
+Logging in as alpsayin ... Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+Waiting 10 seconds... Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+Connecting to 10.0.0.12:21... connectedError: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+Waiting 10 seconds... Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodem
+==> TYPE A ... done.
+==> SIZE text127.txt ... done (142 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text127.txt ... done.
+Length: 127
+    0K 
+Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+17:09:26 (text127.txt) - ` 4.73B/s' [127]
+
+Waiting 10 seconds... FINISHED --17:09:36--
+Transfered 142 bytes in 1 file at  0.48B/s
+Transmission of 1 file failed.
+Command exited with non-zero status 2
+
+command=wput text127.txt ftp://alpsayin:noseArt_628@10.0.0.12/measurements/soundmodem/text127.txt -v -a wput127.log
+elapsed 4:56.81
+exit status 2
+
+--17:09:46-- `text127.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.12:21/measurements/soundmodem/text127.txt
+Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodem
+==> TYPE A ... done.
+==> SIZE text127.txt ... done (142 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text127.txt ... done.
+Length: 127
+    0K 
+17:11:33 (text127.txt) - `14.87B/s' [127]
+
+# You have transferred 127 bytes in 1 files.
+# Total traffic for this session was 661 bytes in 1 transfers.
+# Thank you for using the FTP service on sayin-macbookpro.
+FINISHED --17:11:40--
+Transfered 142 bytes in 1 file at  1.25B/s
+
+command=wput text127.txt ftp://alpsayin:noseArt_628@10.0.0.12/measurements/soundmodem/text127.txt -v -a wput127.log
+elapsed 1:53.60
+exit status 0
+
+--17:11:50-- `text127.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.12:21/measurements/soundmodem/text127.txt
+Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodem
+==> TYPE A ... done.
+==> SIZE text127.txt ... done (142 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text127.txt ... done.
+Length: 127
+    0K 
+17:13:21 (text127.txt) - `10.71B/s' [127]
+
+# You have transferred 127 bytes in 1 files.
+# Total traffic for this session was 662 bytes in 1 transfers.
+# Thank you for using the FTP service on sayin-macbookpro.
+FINISHED --17:13:30--
+Transfered 142 bytes in 1 file at  1.41B/s
+
+command=wput text127.txt ftp://alpsayin:noseArt_628@10.0.0.12/measurements/soundmodem/text127.txt -v -a wput127.log
+elapsed 1:40.63
+exit status 0
+
+--17:13:40-- `text127.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.12:21/measurements/soundmodem/text127.txt
+Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodem
+==> TYPE A ... done.
+==> SIZE text127.txt ... done (142 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text127.txt ... done.
+Length: 127
+    0K 
+17:15:17 (text127.txt) - `13.80B/s' [127]
+
+# You have transferred 127 bytes in 1 files.
+# Total traffic for this session was 662 bytes in 1 transfers.
+# Thank you for using the FTP service on sayin-macbookpro.
+FINISHED --17:15:27--
+Transfered 142 bytes in 1 file at  1.34B/s
+
+command=wput text127.txt ftp://alpsayin:noseArt_628@10.0.0.12/measurements/soundmodem/text127.txt -v -a wput127.log
+elapsed 1:46.31
+exit status 0
+
+--17:15:37-- `text127.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.12:21/measurements/soundmodem/text127.txt
+Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodem
+==> TYPE A ... done.
+==> SIZE text127.txt ... done (142 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text127.txt ... done.
+Length: 127
+    0K 
+17:17:49 (text127.txt) - `20.58B/s' [127]
+
+# You have transferred 127 bytes in 1 files.
+# Total traffic for this session was 663 bytes in 1 transfers.
+# Thank you for using the FTP service on sayin-macbookpro.
+FINISHED --17:17:57--
+Transfered 142 bytes in 1 file at  1.01B/s
+
+command=wput text127.txt ftp://alpsayin:noseArt_628@10.0.0.12/measurements/soundmodem/text127.txt -v -a wput127.log
+elapsed 2:20.70
+exit status 0
+
+--17:18:07-- `text127.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.12:21/measurements/soundmodem/text127.txt
+Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodem
+==> TYPE A ... done.
+==> SIZE text127.txt ... done (142 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text127.txt ... done.
+Length: 127
+    0K 
+17:19:37 (text127.txt) - `17.32B/s' [127]
+
+# You have transferred 127 bytes in 1 files.
+# Total traffic for this session was 662 bytes in 1 transfers.
+# Thank you for using the FTP service on sayin-macbookpro.
+FINISHED --17:19:49--
+Transfered 142 bytes in 1 file at  1.39B/s
+
+command=wput text127.txt ftp://alpsayin:noseArt_628@10.0.0.12/measurements/soundmodem/text127.txt -v -a wput127.log
+elapsed 1:41.80
+exit status 0
+
+--17:19:59-- `text127.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.12:21/measurements/soundmodem/text127.txt
+Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodem
+==> TYPE A ... done.
+==> SIZE text127.txt ... done (142 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text127.txt ... done.
+Length: 127
+    0K 
+17:21:31 (text127.txt) - `22.38B/s' [127]
+
+# You have transferred 127 bytes in 1 files.
+# Total traffic for this session was 661 bytes in 1 transfers.
+# Thank you for using the FTP service on sayin-macbookpro.
+FINISHED --17:21:38--
+Transfered 142 bytes in 1 file at  1.44B/s
+
+command=wput text127.txt ftp://alpsayin:noseArt_628@10.0.0.12/measurements/soundmodem/text127.txt -v -a wput127.log
+elapsed 1:38.68
+exit status 0
+
+--17:21:48-- `text127.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.12:21/measurements/soundmodem/text127.txt
+Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodem
+==> TYPE A ... done.
+==> SIZE text127.txt ... done (142 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text127.txt ... done.
+Length: 127
+    0K 
+17:23:38 (text127.txt) - `14.65B/s' [127]
+
+# You have transferred 127 bytes in 1 files.
+# Total traffic for this session was 662 bytes in 1 transfers.
+# Thank you for using the FTP service on sayin-macbookpro.
+FINISHED --17:23:46--
+Transfered 142 bytes in 1 file at  1.20B/s
+
+command=wput text127.txt ftp://alpsayin:noseArt_628@10.0.0.12/measurements/soundmodem/text127.txt -v -a wput127.log
+elapsed 1:58.58
+exit status 0
+
+--17:23:56-- `text127.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.12:21/measurements/soundmodem/text127.txt
+Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodem
+==> TYPE A ... done.
+==> SIZE text127.txt ... done (142 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text127.txt ... done.
+Length: 127
+    0K 
+17:25:43 (text127.txt) - `17.09B/s' [127]
+
+# You have transferred 127 bytes in 1 files.
+# Total traffic for this session was 662 bytes in 1 transfers.
+# Thank you for using the FTP service on sayin-macbookpro.
+FINISHED --17:25:53--
+Transfered 142 bytes in 1 file at  1.22B/s
+
+command=wput text127.txt ftp://alpsayin:noseArt_628@10.0.0.12/measurements/soundmodem/text127.txt -v -a wput127.log
+elapsed 1:56.60
+exit status 0
+
+--17:26:03-- `text127.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.12:21/measurements/soundmodem/text127.txt
+Connecting to 10.0.0.12:21... connectedError: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+Waiting 10 seconds... Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodem
+==> TYPE A ... done.
+==> SIZE text127.txt ... done (142 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text127.txt ... done.
+Length: 127
+    0K 
+17:28:18 (text127.txt) - `11.77B/s' [127]
+
+# You have transferred 127 bytes in 1 files.
+# Total traffic for this session was 661 bytes in 1 transfers.
+# Thank you for using the FTP service on sayin-macbookpro.
+FINISHED --17:28:27--
+Transfered 142 bytes in 1 file at  0.98B/s
+
+command=wput text127.txt ftp://alpsayin:noseArt_628@10.0.0.12/measurements/soundmodem/text127.txt -v -a wput127.log
+elapsed 2:24.22
+exit status 0
+
+--17:28:37-- `text127.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.12:21/measurements/soundmodem/text127.txt
+Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodem
+==> TYPE A ... done.
+==> SIZE text127.txt ... done (142 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text127.txt ... done.
+Length: 127
+    0K 
+17:30:05 (text127.txt) - `16.04B/s' [127]
+
+# You have transferred 127 bytes in 1 files.
+# Total traffic for this session was 662 bytes in 1 transfers.
+# Thank you for using the FTP service on sayin-macbookpro.
+FINISHED --17:30:15--
+Transfered 142 bytes in 1 file at  1.46B/s
+
+command=wput text127.txt ftp://alpsayin:noseArt_628@10.0.0.12/measurements/soundmodem/text127.txt -v -a wput127.log
+elapsed 1:37.56
+exit status 0
+
+--17:30:25-- `text127.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.12:21/measurements/soundmodem/text127.txt
+Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodem
+==> TYPE A ... done.
+==> SIZE text127.txt ... done (142 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text127.txt ... done.
+Length: 127
+    0K 
+17:31:52 (text127.txt) - `18.67B/s' [127]
+
+# You have transferred 127 bytes in 1 files.
+# Total traffic for this session was 662 bytes in 1 transfers.
+# Thank you for using the FTP service on sayin-macbookpro.
+FINISHED --17:32:00--
+Transfered 142 bytes in 1 file at  1.49B/s
+
+command=wput text127.txt ftp://alpsayin:noseArt_628@10.0.0.12/measurements/soundmodem/text127.txt -v -a wput127.log
+elapsed 1:35.26
+exit status 0
+
+--17:32:10-- `text127.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.12:21/measurements/soundmodem/text127.txt
+Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodem
+==> TYPE A ... done.
+==> SIZE text127.txt ... done (142 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text127.txt ... done.
+Length: 127
+    0K 
+17:33:48 (text127.txt) - `23.96B/s' [127]
+
+# You have transferred 127 bytes in 1 files.
+# Total traffic for this session was 661 bytes in 1 transfers.
+# Thank you for using the FTP service on sayin-macbookpro.
+FINISHED --17:34:09--
+Transfered 142 bytes in 1 file at  1.20B/s
+
+command=wput text127.txt ftp://alpsayin:noseArt_628@10.0.0.12/measurements/soundmodem/text127.txt -v -a wput127.log
+elapsed 1:58.56
+exit status 0
+
+--17:34:19-- `text127.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.12:21/measurements/soundmodem/text127.txt
+Connecting to 10.0.0.12:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodem
+==> TYPE A ... done.
+==> SIZE text127.txt ... done (142 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text127.txt ... done.
+Length: 127
+    0K 
+17:35:32 (text127.txt) - `19.87B/s' [127]
+
+# You have transferred 127 bytes in 1 files.
+# Total traffic for this session was 663 bytes in 1 transfers.
+# Thank you for using the FTP service on sayin-macbookpro.
+FINISHED --17:35:39--
+Transfered 142 bytes in 1 file at  1.76B/s
+
+command=wput text127.txt ftp://alpsayin:noseArt_628@10.0.0.12/measurements/soundmodem/text127.txt -v -a wput127.log
+elapsed 1:20.63
+exit status 0
+

@@ -1,0 +1,529 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1187
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0\fs24 \cf0 [9/19/12 3:29:00 PM] Xiaohang Chen: Hi, I'm Xiaohang Chen from WSN 2012 team. Xiaohang Chen\
+[9/19/12 3:29:00 PM] Alp Say\uc0\u305 n: Alp Say\u305 n has shared contact details with Xiaohang Chen.\
+[9/19/12 3:32:39 PM] Alp Say\uc0\u305 n: hey\
+[9/19/12 3:42:57 PM] Xiaohang Chen: hey. Bjorn just brought Alix boards to us\
+[9/19/12 3:43:13 PM] Alp Say\uc0\u305 n: good\
+[9/19/12 3:44:14 PM] Xiaohang Chen: he will give us Radiometrix as long as your radiometrix works\
+[9/19/12 3:44:30 PM] Xiaohang Chen: He seems not sure if it works well for i\
+[9/19/12 3:44:33 PM] Xiaohang Chen: for u\
+[9/19/12 3:44:53 PM] Alp Say\uc0\u305 n: what do you mean?\
+[9/19/12 3:44:58 PM] Alp Say\uc0\u305 n: works well for me?!\
+[9/19/12 3:45:02 PM] Xiaohang Chen: yeah\
+[9/19/12 3:45:21 PM] Alp Say\uc0\u305 n: do you mean, if i'm okay with it?!\
+[9/19/12 3:45:47 PM] Alp Say\uc0\u305 n: or do you mean technically if they work/\
+[9/19/12 3:45:55 PM] Xiaohang Chen: latter\
+[9/19/12 3:46:19 PM] Alp Say\uc0\u305 n: well yes they were working when I left them to bjorn\
+[9/19/12 3:46:44 PM] Xiaohang Chen: He said we have to ask u where they are\
+[9/19/12 3:47:33 PM] Alp Say\uc0\u305 n: uhm they are in the red box that I left to bjorn\
+[9/19/12 3:47:48 PM] Alp Say\uc0\u305 n: I obviously didn't take them back to Turkey :)\
+[9/19/12 3:47:58 PM] Xiaohang Chen: aha of course\
+[9/19/12 3:48:08 PM] Xiaohang Chen: Ok I ll contact him later\
+[9/19/12 3:48:32 PM] Alp Say\uc0\u305 n: things like this happen a lot\
+[9/19/12 3:48:44 PM] Alp Say\uc0\u305 n: it's funny to observe some things dont change\
+[9/19/12 3:48:52 PM] Alp Say\uc0\u305 n: :)\
+[9/19/12 3:49:09 PM] Xiaohang Chen: :D\
+[9/19/12 3:49:19 PM] Alp Say\uc0\u305 n: so from what i understand\
+[9/19/12 3:49:41 PM] Alp Say\uc0\u305 n: you are going to try to implement an application above my crappy ip stack\
+[9/19/12 3:49:57 PM] Alp Say\uc0\u305 n: and you actually have nothing to do with tftp/\
+[9/19/12 3:50:04 PM] Alp Say\uc0\u305 n: am i going right?\
+[9/19/12 3:50:24 PM] Alp Say\uc0\u305 n: (and there is the android business, but that's i think not my concern)\
+[9/19/12 3:54:07 PM] Xiaohang Chen: maybe that's the situation. We are gonna build DTN layer above so we do not need tftp\
+[9/19/12 3:58:22 PM] Alp Say\uc0\u305 n: and which band are you going to go forward with\
+[9/19/12 3:58:31 PM] Alp Say\uc0\u305 n: 144 Mhz band or 433 Mhz band\
+[9/19/12 3:58:39 PM] Alp Say\uc0\u305 n: ?\
+[9/19/12 3:58:43 PM] Alp Say\uc0\u305 n: bim2a or uhx1\
+[9/19/12 4:00:00 PM] Xiaohang Chen: sorry for the delay. uhx1\
+[9/19/12 4:00:09 PM] Xiaohang Chen: so 144MHZ\
+[9/19/12 4:00:12 PM] Alp Say\uc0\u305 n: no problem, i am also working\
+[9/19/12 4:00:26 PM] Alp Say\uc0\u305 n: okkay then\
+[9/19/12 4:00:32 PM] Alp Say\uc0\u305 n: i assume you've read its datasheet\
+[9/19/12 4:00:39 PM] Xiaohang Chen: yes\
+[9/19/12 4:00:56 PM] Xiaohang Chen: I've read it already\
+[9/19/12 4:01:24 PM] Xiaohang Chen: only the parameters part\
+[9/19/12 4:01:33 PM] Alp Say\uc0\u305 n: ?\
+[9/19/12 4:02:19 PM] Xiaohang Chen: do u think i have to go through the whole sheet?\
+[9/19/12 4:02:34 PM] Alp Say\uc0\u305 n: in my opinion, it's better if you do\
+[9/19/12 4:02:38 PM] Alp Say\uc0\u305 n: it's not so long\
+[9/19/12 4:03:08 PM] Alp Say\uc0\u305 n: but in the end you should remember a few things about that device\
+[9/19/12 4:03:23 PM] Alp Say\uc0\u305 n: it's half duplex\
+[9/19/12 4:03:37 PM] Alp Say\uc0\u305 n: it's slow (2400 bps)\
+[9/19/12 4:04:04 PM] Alp Say\uc0\u305 n: but it's easy to use\
+[9/19/12 4:04:20 PM] Xiaohang Chen: and the range is large\
+[9/19/12 4:04:29 PM] Alp Say\uc0\u305 n: well according to my experiements\
+[9/19/12 4:04:35 PM] Alp Say\uc0\u305 n: yeah! it is :)\
+[9/19/12 4:04:40 PM] Xiaohang Chen: good1\
+[9/19/12 4:04:45 PM] Alp Say\uc0\u305 n: at least 2.1 km with 10 mW\
+[9/19/12 4:04:58 PM] Alp Say\uc0\u305 n: and that thing can go up to 500 mW\
+[9/19/12 4:05:19 PM] Xiaohang Chen: 2.1km?double of what it says in the sheet\
+[9/19/12 4:05:49 PM] Alp Say\uc0\u305 n: doesn't the sheet says 5km+\
+[9/19/12 4:05:52 PM] Alp Say\uc0\u305 n: let me check\
+[9/19/12 4:06:15 PM] Alp Say\uc0\u305 n: sry, you are right\
+[9/19/12 4:06:57 PM] Xiaohang Chen: :)\
+[9/19/12 4:07:07 PM] Alp Say\uc0\u305 n: anyways i can only trust to my experiments, when it comes to radio communications, only thing i trust is actual data\
+[9/19/12 4:07:31 PM] Xiaohang Chen: yes of course\
+[9/19/12 4:07:52 PM] Alp Say\uc0\u305 n: and if there is obstruction in the radio path, that range decays really fast\
+[9/19/12 4:08:48 PM] Alp Say\uc0\u305 n: but a highly placed antenna should solve the problem\
+[9/19/12 4:10:09 PM] Xiaohang Chen: um, the distance is large enough for our goals\
+[9/19/12 4:10:24 PM] Alp Say\uc0\u305 n: okay then\
+[9/19/12 4:10:37 PM] Alp Say\uc0\u305 n: let me tell you a little about the source if you are available\
+[9/19/12 4:10:54 PM] Alp Say\uc0\u305 n: https://github.com/alpsayin/radiotftp\
+[9/19/12 4:11:19 PM] Alp Say\uc0\u305 n: i'll tell you what each source code does, and then i can tell how main works\
+[9/19/12 4:11:31 PM] Alp Say\uc0\u305 n: *only then i can tell....\
+[9/19/12 4:11:37 PM] Xiaohang Chen: Yes please. appreciate it\
+[9/19/12 4:12:02 PM] Alp Say\uc0\u305 n: i'll start from the least important to most important\
+[9/19/12 4:12:16 PM] Alp Say\uc0\u305 n: so let's open printAsciiHex.c\
+[9/19/12 4:12:25 PM] Alp Say\uc0\u305 n: has only one function\
+[9/19/12 4:12:41 PM] Alp Say\uc0\u305 n: which is to print a buffer in a format like below\
+[9/19/12 4:14:03 PM] Xiaohang Chen: ok. I saw your comment: initialize the repository\
+[9/19/12 4:14:22 PM] Alp Say\uc0\u305 n: well the codes were migrated\
+[9/19/12 4:14:28 PM] Alp Say\uc0\u305 n: so the commit messages wont help you\
+[9/19/12 4:14:32 PM] Alp Say\uc0\u305 n: i'm sry :(\
+[9/19/12 4:14:52 PM] Xiaohang Chen: no no that's ok\
+[9/19/12 4:14:57 PM] Xiaohang Chen: plz go on\
+[9/19/12 4:14:58 PM] Alp Say\uc0\u305 n: 416c 7020 5361 7969 6e0a                   	Alp Sayin.\
+[9/19/12 4:15:01 PM] Alp Say\uc0\u305 n: the output is like this\
+[9/19/12 4:15:05 PM] Alp Say\uc0\u305 n: you give it a string\
+[9/19/12 4:15:12 PM] Alp Say\uc0\u305 n: and it prints the hex and ascii of that string\
+[9/19/12 4:15:15 PM] Alp Say\uc0\u305 n: simple\
+[9/19/12 4:15:37 PM] Alp Say\uc0\u305 n: another less important file util.c\
+[9/19/12 4:15:54 PM] Alp Say\uc0\u305 n: it has all sorts of printing functions\
+[9/19/12 4:16:22 PM] Alp Say\uc0\u305 n: and one line reading function\
+[9/19/12 4:16:45 PM] Alp Say\uc0\u305 n: again, simple\
+[9/19/12 4:17:14 PM] Xiaohang Chen: ok\
+[9/19/12 4:17:25 PM] Alp Say\uc0\u305 n: yet other less important files, lock.c and devtag-allinone.c\
+[9/19/12 4:17:40 PM] Alp Say\uc0\u305 n: these are files that i got from robert\
+[9/19/12 4:17:54 PM] Alp Say\uc0\u305 n: (robert olsson, you probably met him too)\
+[9/19/12 4:18:15 PM] Xiaohang Chen: yeah I know, one of our experts\
+[9/19/12 4:18:28 PM] Alp Say\uc0\u305 n: lock.c has function to create a lockfile, which is then used to override serial port locks, or to put in serial port locks\
+[9/19/12 4:18:41 PM] Alp Say\uc0\u305 n: i still don't exactly what it does or how it does\
+[9/19/12 4:18:44 PM] Alp Say\uc0\u305 n: but i just use it\
+[9/19/12 4:18:50 PM] Alp Say\uc0\u305 n: devtag-allinone.c\
+[9/19/12 4:19:27 PM] Alp Say\uc0\u305 n: that is from jens laas's devtag library\
+[9/19/12 4:19:45 PM] Alp Say\uc0\u305 n: which is used to get ids of usb devices and tag them\
+[9/19/12 4:20:11 PM] Alp Say\uc0\u305 n: so that if multiple usb serial ports are connected you can differentiate them by using their ids\
+[9/19/12 4:20:13 PM] Alp Say\uc0\u305 n: BUT\
+[9/19/12 4:20:38 PM] Alp Say\uc0\u305 n: i only use the devtag_get function\
+[9/19/12 4:21:04 PM] Alp Say\uc0\u305 n: which simply brings the device with the same name (usually)\
+[9/19/12 4:21:16 PM] Alp Say\uc0\u305 n: again i don't know how it does and how it works\
+[9/19/12 4:21:35 PM] Alp Say\uc0\u305 n: robert was using it in the same way i did in his sensd software\
+[9/19/12 4:21:42 PM] Alp Say\uc0\u305 n: so i just took it\
+[9/19/12 4:22:25 PM] Alp Say\uc0\u305 n: (beginning of my development was based on robert's sensd, i started by modifying it, then at some point i started from zero again, but kept those parts)\
+[9/19/12 4:22:47 PM] Alp Say\uc0\u305 n: the files until now\
+[9/19/12 4:22:51 PM] Alp Say\uc0\u305 n: as you can understand\
+[9/19/12 4:22:58 PM] Alp Say\uc0\u305 n: have almost nothing to do with the stack\
+[9/19/12 4:23:57 PM] Xiaohang Chen: ok\
+[9/19/12 4:24:17 PM] Xiaohang Chen: I think I m on the way. Even though I am a freshman\
+[9/19/12 4:24:26 PM] Xiaohang Chen: for C programing...\
+[9/19/12 4:25:42 PM] Alp Say\uc0\u305 n: what do you know well?\
+[9/19/12 4:25:45 PM] Alp Say\uc0\u305 n: java i assume?\
+[9/19/12 4:27:11 PM] Xiaohang Chen: unfortunately, I don't know any programming language well. For C I just have basic knowledge\
+[9/19/12 4:28:23 PM] Alp Say\uc0\u305 n: hmm\
+[9/19/12 4:28:36 PM] Alp Say\uc0\u305 n: i hope you can get used to it quickly\
+[9/19/12 4:28:43 PM] Alp Say\uc0\u305 n: it's a nasty language\
+[9/19/12 4:28:55 PM] Alp Say\uc0\u305 n: you also ask me if you happen to have programming questions\
+[9/19/12 4:29:17 PM] Alp Say\uc0\u305 n: you can* also...\
+[9/19/12 4:30:19 PM] Xiaohang Chen: ok, I will get into it soon\
+[9/19/12 4:30:51 PM] Alp Say\uc0\u305 n: and i know there are a lot of courses, docs, and tutorials online\
+[9/19/12 4:30:55 PM] Alp Say\uc0\u305 n: but as an addition\
+[9/19/12 4:31:09 PM] Alp Say\uc0\u305 n: i can suggest my home university's course slides\
+[9/19/12 4:31:12 PM] Alp Say\uc0\u305 n: http://www.cs.bilkent.edu.tr/~saksoy/courses/cs201/\
+[9/19/12 4:31:46 PM] Alp Say\uc0\u305 n: moving on with the source files\
+[9/19/12 4:32:26 PM] Alp Say\uc0\u305 n: the rest is all tied up to the ip stack\
+[9/19/12 4:32:44 PM] Alp Say\uc0\u305 n: but most of them are mainly just have fuctions to encode or decode\
+[9/19/12 4:32:58 PM] Alp Say\uc0\u305 n: let's start with the manchester encoding\
+[9/19/12 4:33:02 PM] Alp Say\uc0\u305 n: which is in manchester.c\
+[9/19/12 4:33:17 PM] Xiaohang Chen: ok I ve opened it\
+[9/19/12 4:33:27 PM] Alp Say\uc0\u305 n: first: do you know what manchester encoding is?\
+[9/19/12 4:33:45 PM] Xiaohang Chen: a bi-phase coding?\
+[9/19/12 4:33:53 PM] Alp Say\uc0\u305 n: yes\
+[9/19/12 4:34:20 PM] Alp Say\uc0\u305 n: don't mind the arrays. they're just simple lookup tables to speed up the conversion\
+[9/19/12 4:34:26 PM] Alp Say\uc0\u305 n: there is three functions\
+[9/19/12 4:34:30 PM] Alp Say\uc0\u305 n: one of them is for encoding\
+[9/19/12 4:34:34 PM] Alp Say\uc0\u305 n: one for decoding\
+[9/19/12 4:34:44 PM] Alp Say\uc0\u305 n: and the other checks if a character is manchester encoding\
+[9/19/12 4:34:47 PM] Alp Say\uc0\u305 n: encoded*\
+[9/19/12 4:34:57 PM] Alp Say\uc0\u305 n: uhx1 is a good radio\
+[9/19/12 4:35:00 PM] Alp Say\uc0\u305 n: BUT\
+[9/19/12 4:35:16 PM] Alp Say\uc0\u305 n: you still have to feed a balanced signal to it\
+[9/19/12 4:35:44 PM] Alp Say\uc0\u305 n: and the best way to do it, if you can't do any modulation (FM for example)\
+[9/19/12 4:35:55 PM] Alp Say\uc0\u305 n: to do manchester encoding\
+[9/19/12 4:36:12 PM] Alp Say\uc0\u305 n: so every bit you have becomes a tuple of 1 and 0\
+[9/19/12 4:36:37 PM] Alp Say\uc0\u305 n: so your signal is always balanced and the worst case unbalanced signal 0110 or 1001\
+[9/19/12 4:36:43 PM] Alp Say\uc0\u305 n: signal is*\
+[9/19/12 4:37:03 PM] Alp Say\uc0\u305 n: pbviously you lose half you speed\
+[9/19/12 4:37:11 PM] Alp Say\uc0\u305 n: but this is necessary\
+[9/19/12 4:37:22 PM] Alp Say\uc0\u305 n: so this is the lowest level\
+[9/19/12 4:37:44 PM] Alp Say\uc0\u305 n: every packet we receive or send is decoded or encoded respectively\
+[9/19/12 4:38:00 PM] Alp Say\uc0\u305 n: this source file only gives you the functions to do it\
+[9/19/12 4:38:09 PM] Alp Say\uc0\u305 n: where we do it, is not important right now\
+[9/19/12 4:38:38 PM] Alp Say\uc0\u305 n: most of the source is organized like this\
+[9/19/12 4:38:45 PM] Alp Say\uc0\u305 n: every file has some tools in it\
+[9/19/12 4:39:06 PM] Alp Say\uc0\u305 n: and the main file (radiotftp.c) uses them in order to do some actual stuff\
+[9/19/12 4:39:24 PM] Alp Say\uc0\u305 n: any quesitons?\
+[9/19/12 4:41:13 PM] Xiaohang Chen: so far I understand in the source files you specify each layer\
+[9/19/12 4:41:31 PM] Alp Say\uc0\u305 n: only the functions to handle things in each layer\
+[9/19/12 4:41:50 PM] Alp Say\uc0\u305 n: layers themselves are in the main file\
+[9/19/12 4:42:14 PM] Xiaohang Chen: if we want to build DTN above IP, we should ignore the tftp right?\
+[9/19/12 4:42:29 PM] Alp Say\uc0\u305 n: if you mean tftp.c yes\
+[9/19/12 4:42:46 PM] Alp Say\uc0\u305 n: but, like i said in my email, you can use it as an example\
+[9/19/12 4:42:50 PM] Alp Say\uc0\u305 n: i'll come to that\
+[9/19/12 4:42:58 PM] Alp Say\uc0\u305 n: afte manchester there is ax25.c\
+[9/19/12 4:43:33 PM] Alp Say\uc0\u305 n: you can think of the ax.25 as if it was ethernet layer\
+[9/19/12 4:43:41 PM] Alp Say\uc0\u305 n: it is actually much more complicated than that\
+[9/19/12 4:43:59 PM] Alp Say\uc0\u305 n: but we use a very simple version of it\
+[9/19/12 4:44:21 PM] Alp Say\uc0\u305 n: there are again many functions inside it\
+[9/19/12 4:44:25 PM] Alp Say\uc0\u305 n: the most important are\
+[9/19/12 4:44:34 PM] Alp Say\uc0\u305 n: ac25_create_ui_packet\
+[9/19/12 4:44:39 PM] Alp Say\uc0\u305 n: and\
+[9/19/12 4:44:45 PM] Alp Say\uc0\u305 n: ax25_open_ui_packet\
+[9/19/12 4:45:00 PM] Alp Say\uc0\u305 n: as can be understood from their names\
+[9/19/12 4:45:12 PM] Alp Say\uc0\u305 n: they try to decode a buffer according to ax.25 format\
+[9/19/12 4:45:46 PM] Alp Say\uc0\u305 n: on success you get the sender, recipient, the payload and the payload length\
+[9/19/12 4:46:04 PM] Alp Say\uc0\u305 n: on fail you get a huge zero :)\
+[9/19/12 4:46:18 PM] Alp Say\uc0\u305 n: fail means your message was probably corrupted\
+[9/19/12 4:46:24 PM] Alp Say\uc0\u305 n: because ax.25 has a checksum inside it\
+[9/19/12 4:47:26 PM] Xiaohang Chen: sounds interesting :)\
+[9/19/12 4:48:44 PM] Alp Say\uc0\u305 n: note: ax.25 addresses are called callsigns\
+[9/19/12 4:48:58 PM] Alp Say\uc0\u305 n: because they're actually callsigns that radio amateurs use\
+[9/19/12 4:49:07 PM] Alp Say\uc0\u305 n: for example Bjorn's callsign is\
+[9/19/12 4:49:08 PM] Alp Say\uc0\u305 n: SA0BXI\
+[9/19/12 4:49:31 PM] Xiaohang Chen: ok I ll remeber that\
+[9/19/12 4:49:56 PM] Alp Say\uc0\u305 n: they're made up of 6 characters and a number from 0 to 15\
+[9/19/12 4:50:13 PM] Alp Say\uc0\u305 n: to keep things simple\
+[9/19/12 4:50:23 PM] Alp Say\uc0\u305 n: i used seven characters\
+[9/19/12 4:50:37 PM] Alp Say\uc0\u305 n: anyways that'a detail\
+[9/19/12 4:50:51 PM] Alp Say\uc0\u305 n: next is udp_ip.c\
+[9/19/12 4:51:00 PM] Alp Say\uc0\u305 n: first things first\
+[9/19/12 4:51:26 PM] Alp Say\uc0\u305 n: I chose ipv6 as the network layer\
+[9/19/12 4:51:31 PM] Alp Say\uc0\u305 n: because\
+[9/19/12 4:51:49 PM] Alp Say\uc0\u305 n: when compared to ipv4 it had checksum for udp\
+[9/19/12 4:52:04 PM] Alp Say\uc0\u305 n: and the header size was almost the same\
+[9/19/12 4:52:44 PM] Alp Say\uc0\u305 n: and if i dont remember wrong, robert's network layer addresses are also something with 6 bytes\
+[9/19/12 4:52:53 PM] Alp Say\uc0\u305 n: so compatibility is a nice thing\
+[9/19/12 4:53:14 PM] Alp Say\uc0\u305 n: also\
+[9/19/12 4:53:55 PM] Alp Say\uc0\u305 n: i put the udp_ip into same file to simplify things for myself\
+[9/19/12 4:54:11 PM] Alp Say\uc0\u305 n: except the udp next most common transport layer is tcp\
+[9/19/12 4:54:22 PM] Alp Say\uc0\u305 n: and in my opinion you either use udp or tcp\
+[9/19/12 4:54:31 PM] Alp Say\uc0\u305 n: and since tcp is actually implemented over udp\
+[9/19/12 4:54:39 PM] Alp Say\uc0\u305 n: i just put them together\
+[9/19/12 4:56:01 PM] Alp Say\uc0\u305 n: anyways\
+[9/19/12 4:56:03 PM] Alp Say\uc0\u305 n: in the udp_ip.c\
+[9/19/12 4:56:13 PM] Alp Say\uc0\u305 n: you will see that like in ax25.c\
+[9/19/12 4:56:16 PM] Alp Say\uc0\u305 n: we have some functions\
+[9/19/12 4:56:22 PM] Alp Say\uc0\u305 n: again the most important are\
+[9/19/12 4:56:27 PM] Alp Say\uc0\u305 n: udp_open_packet\
+[9/19/12 4:56:37 PM] Alp Say\uc0\u305 n: and\
+[9/19/12 4:56:40 PM] Alp Say\uc0\u305 n: udp_create_packet\
+[9/19/12 4:57:13 PM] Alp Say\uc0\u305 n: i think you got the idea\
+[9/19/12 4:57:19 PM] Xiaohang Chen: yeah\
+[9/19/12 4:57:32 PM] Alp Say\uc0\u305 n: again i have the tools to create a udp packet or open a udp packet\
+[9/19/12 4:57:36 PM] Alp Say\uc0\u305 n: so when i want to send some data\
+[9/19/12 4:57:41 PM] Alp Say\uc0\u305 n: o create a udp packet\
+[9/19/12 4:57:51 PM] Alp Say\uc0\u305 n: then i put the udp packet inside a ax25 frame\
+[9/19/12 4:57:55 PM] Alp Say\uc0\u305 n: then i manchester encode it\
+[9/19/12 4:58:04 PM] Alp Say\uc0\u305 n: and feed it to the serial port which goes to uhx1\
+[9/19/12 4:58:12 PM] Alp Say\uc0\u305 n: then the other uhx1 takes the signal\
+[9/19/12 4:58:22 PM] Alp Say\uc0\u305 n: manchester decodes it to get ax25 frame\
+[9/19/12 4:58:33 PM] Alp Say\uc0\u305 n: and then opens the ax25 frame to get udp/ip packet\
+[9/19/12 4:58:44 PM] Alp Say\uc0\u305 n: then it opens that packet to get the actual data\
+[9/19/12 4:59:00 PM] Alp Say\uc0\u305 n: nice thing is udp has ports so you can run many services\
+[9/19/12 4:59:21 PM] Alp Say\uc0\u305 n: by the way\
+[9/19/12 4:59:32 PM] Alp Say\uc0\u305 n: i forgot another unimportant file\
+[9/19/12 4:59:41 PM] Alp Say\uc0\u305 n: datacollection.c\
+[9/19/12 4:59:52 PM] Alp Say\uc0\u305 n: it has functions to register events\
+[9/19/12 5:00:08 PM] Alp Say\uc0\u305 n: i used these functions for my experiments\
+[9/19/12 5:00:19 PM] Alp Say\uc0\u305 n: to observe how much time it takes to send or receive stuff etc.\
+[9/19/12 5:01:21 PM] Alp Say\uc0\u305 n: now open the main file\
+[9/19/12 5:01:26 PM] Alp Say\uc0\u305 n: which is radiotftp.c\
+[9/19/12 5:01:30 PM] Alp Say\uc0\u305 n: it is a huge file\
+[9/19/12 5:01:43 PM] Alp Say\uc0\u305 n: but i'll only go over the important parts\
+[9/19/12 5:01:55 PM] Xiaohang Chen: ok\
+[9/19/12 5:02:06 PM] Alp Say\uc0\u305 n: line number 810\
+[9/19/12 5:02:17 PM] Alp Say\uc0\u305 n: you'll see if sync passed\
+[9/19/12 5:02:29 PM] Alp Say\uc0\u305 n: and under that line 813\
+[9/19/12 5:02:30 PM] Xiaohang Chen: yeah i see it\
+[9/19/12 5:02:41 PM] Alp Say\uc0\u305 n: you'll see an if saying if it is the end of file\
+[9/19/12 5:02:53 PM] Alp Say\uc0\u305 n: what that means is if is the end of a transmission\
+[9/19/12 5:03:06 PM] Alp Say\uc0\u305 n: that's where magic starts\
+[9/19/12 5:03:13 PM] Alp Say\uc0\u305 n: you have received a transmission\
+[9/19/12 5:03:25 PM] Alp Say\uc0\u305 n: and it's inside the "buf" variable\
+[9/19/12 5:03:45 PM] Alp Say\uc0\u305 n: line 817 you try to manchester decode it\
+[9/19/12 5:03:57 PM] Alp Say\uc0\u305 n: the result is always true so we dont check it\
+[9/19/12 5:04:19 PM] Alp Say\uc0\u305 n: line 819 you try to open ax25 frame\
+[9/19/12 5:04:37 PM] Alp Say\uc0\u305 n: note that the line 821 is not compiled\
+[9/19/12 5:04:49 PM] Xiaohang Chen: I like "where magic starts", haha :D\
+[9/19/12 5:05:22 PM] Alp Say\uc0\u305 n: line 823 you check if you successfully opened an ax25 frame\
+[9/19/12 5:05:35 PM] Alp Say\uc0\u305 n: if so\
+[9/19/12 5:05:46 PM] Alp Say\uc0\u305 n: at line 827 you try to open udp packet\
+[9/19/12 5:06:09 PM] Alp Say\uc0\u305 n: again note that line 829 is not compiled (commented out)\
+[9/19/12 5:06:26 PM] Alp Say\uc0\u305 n: line 831 if you were able to open the udp packet sucessfully\
+[9/19/12 5:06:36 PM] Alp Say\uc0\u305 n: you send the packet to the udp_packet_multiplexer\
+[9/19/12 5:06:46 PM] Alp Say\uc0\u305 n: else cases are not important\
+[9/19/12 5:07:04 PM] Alp Say\uc0\u305 n: they discard what has been received and go on\
+[9/19/12 5:07:16 PM] Alp Say\uc0\u305 n: so\
+[9/19/12 5:07:22 PM] Alp Say\uc0\u305 n: let's go to the udp_packet_multiplexer\
+[9/19/12 5:07:34 PM] Alp Say\uc0\u305 n: line 354\
+[9/19/12 5:07:57 PM] Alp Say\uc0\u305 n: between lines 364 and 368\
+[9/19/12 5:08:03 PM] Alp Say\uc0\u305 n: i try to make an address match\
+[9/19/12 5:08:16 PM] Alp Say\uc0\u305 n: first i compare it with my local address\
+[9/19/12 5:08:51 PM] Alp Say\uc0\u305 n: i compare the recipient IP in the udp packet with my local ip\
+[9/19/12 5:08:57 PM] Alp Say\uc0\u305 n: if that's not a match\
+[9/19/12 5:09:12 PM] Alp Say\uc0\u305 n: i copare the receipient ip with the broadcast ip which is ff:ff:ff:ff:ff:ff\
+[9/19/12 5:09:22 PM] Alp Say\uc0\u305 n: line 370\
+[9/19/12 5:09:25 PM] Alp Say\uc0\u305 n: if not different\
+[9/19/12 5:09:35 PM] Alp Say\uc0\u305 n: meaning the packet is actually intended for me\
+[9/19/12 5:09:46 PM] Alp Say\uc0\u305 n: i start checking the ports\
+[9/19/12 5:09:57 PM] Alp Say\uc0\u305 n: this is what i meant by application ports are hardcoded\
+[9/19/12 5:10:06 PM] Alp Say\uc0\u305 n: so for example 69 is the TFTP negotiation port\
+[9/19/12 5:10:30 PM] Alp Say\uc0\u305 n: but according to the tftp manual, transfer port is defined at negotiation\
+[9/19/12 5:10:36 PM] Alp Say\uc0\u305 n: so you can't really hardcode it\
+[9/19/12 5:10:56 PM] Alp Say\uc0\u305 n: but you can compare the recipient port with any number or a function output\
+[9/19/12 5:11:08 PM] Alp Say\uc0\u305 n: so i check it agains the tftp_transfer_src_port() function\
+[9/19/12 5:11:15 PM] Alp Say\uc0\u305 n: if that's a match\
+[9/19/12 5:11:28 PM] Alp Say\uc0\u305 n: voila, packet gois to tftp_transfer function\
+[9/19/12 5:11:37 PM] Alp Say\uc0\u305 n: if it was packet for 69\
+[9/19/12 5:11:46 PM] Alp Say\uc0\u305 n: packet goes to tftp_negotiate function\
+[9/19/12 5:11:55 PM] Alp Say\uc0\u305 n: and if port is HELLO_WORLD_PORT\
+[9/19/12 5:12:08 PM] Alp Say\uc0\u305 n: apparently it is 12345\
+[9/19/12 5:12:21 PM] Alp Say\uc0\u305 n: the packet doesn't go anywhere\
+[9/19/12 5:12:29 PM] Alp Say\uc0\u305 n: but a new neighbour message is printed\
+[9/19/12 5:12:42 PM] Alp Say\uc0\u305 n: and if the packet is destined for another port\
+[9/19/12 5:12:54 PM] Alp Say\uc0\u305 n: i print a message saying packet received for unassigned port\
+[9/19/12 5:13:01 PM] Alp Say\uc0\u305 n: (that's good for debugging)\
+[9/19/12 5:13:11 PM] Alp Say\uc0\u305 n: line 396\
+[9/19/12 5:13:21 PM] Alp Say\uc0\u305 n: the else of if( not different) on line 370\
+[9/19/12 5:13:28 PM] Alp Say\uc0\u305 n: so the ip packet wasn't for m\
+[9/19/12 5:13:29 PM] Alp Say\uc0\u305 n: e\
+[9/19/12 5:13:32 PM] Alp Say\uc0\u305 n: what do i do\
+[9/19/12 5:13:42 PM] Alp Say\uc0\u305 n: well currently i don't do anything\
+[9/19/12 5:13:55 PM] Alp Say\uc0\u305 n: but i could some stuff\
+[9/19/12 5:14:07 PM] Alp Say\uc0\u305 n: since i don't do anyhing\
+[9/19/12 5:14:14 PM] Alp Say\uc0\u305 n: this actually means there is no routing\
+[9/19/12 5:14:34 PM] Alp Say\uc0\u305 n: bjorn and robert asked me to make it compatible for mesh or multi-hop networks\
+[9/19/12 5:14:54 PM] Alp Say\uc0\u305 n: so this else clause is actually a place where you implement some routing algorithm\
+[9/19/12 5:15:17 PM] Alp Say\uc0\u305 n: most easy thing for a constant network would be to set up static routing\
+[9/19/12 5:15:42 PM] Alp Say\uc0\u305 n: i.e. hardcoding the possible situations and actions\
+[9/19/12 5:16:15 PM] Alp Say\uc0\u305 n: but i didn't need any routing, so i just left this place blank\
+[9/19/12 5:16:20 PM] Alp Say\uc0\u305 n: and the thing is actually\
+[9/19/12 5:16:25 PM] Alp Say\uc0\u305 n: if you are not going to route anything\
+[9/19/12 5:16:35 PM] Alp Say\uc0\u305 n: the ip layer becomes sort of unnecessary\
+[9/19/12 5:16:57 PM] Alp Say\uc0\u305 n: but still, i followed OSI layer\
+[9/19/12 5:16:59 PM] Alp Say\uc0\u305 n: s\
+[9/19/12 5:17:15 PM] Alp Say\uc0\u305 n: and thought of the future compatibility\
+[9/19/12 5:17:23 PM] Alp Say\uc0\u305 n: anyways\
+[9/19/12 5:17:27 PM] Alp Say\uc0\u305 n: moving on\
+[9/19/12 5:17:36 PM] Alp Say\uc0\u305 n: another very important function in main file is\
+[9/19/12 5:17:46 PM] Alp Say\uc0\u305 n: queueSerialData\
+[9/19/12 5:17:49 PM] Alp Say\uc0\u305 n: line 195\
+[9/19/12 5:17:54 PM] Xiaohang Chen: yes?\
+[9/19/12 5:18:12 PM] Alp Say\uc0\u305 n: this is the function that takes your application data\
+[9/19/12 5:18:18 PM] Alp Say\uc0\u305 n: and constructs an IP packet\
+[9/19/12 5:18:21 PM] Alp Say\uc0\u305 n: then an AX.25 frame\
+[9/19/12 5:18:27 PM] Alp Say\uc0\u305 n: then manchester encodes it\
+[9/19/12 5:18:36 PM] Alp Say\uc0\u305 n: and puts it into the transmission queue\
+[9/19/12 5:19:13 PM] Alp Say\uc0\u305 n: i told you that my queue size was one\
+[9/19/12 5:19:18 PM] Alp Say\uc0\u305 n: so at line 201\
+[9/19/12 5:19:31 PM] Alp Say\uc0\u305 n: you see that if queue_flag is something else than zero\
+[9/19/12 5:19:45 PM] Alp Say\uc0\u305 n: i dont queue the packet (drop it) and leave the function\
+[9/19/12 5:19:54 PM] Alp Say\uc0\u305 n: but for the tftp case this shouldn't really happen\
+[9/19/12 5:19:58 PM] Alp Say\uc0\u305 n: and even if it does\
+[9/19/12 5:20:04 PM] Alp Say\uc0\u305 n: tftp can recover itself\
+[9/19/12 5:20:25 PM] Alp Say\uc0\u305 n: udp never promises the transmission of packets\
+[9/19/12 5:20:34 PM] Alp Say\uc0\u305 n: and so dont i :)\
+[9/19/12 5:20:52 PM] Alp Say\uc0\u305 n: if my queue is full i discard the packet\
+[9/19/12 5:21:08 PM] Alp Say\uc0\u305 n: line 225\
+[9/19/12 5:21:14 PM] Alp Say\uc0\u305 n: you 'll see me creating the udp packet\
+[9/19/12 5:21:25 PM] Alp Say\uc0\u305 n: and on line 234\
+[9/19/12 5:21:31 PM] Alp Say\uc0\u305 n: you'll see me creating the ax.25 frame\
+[9/19/12 5:21:34 PM] Alp Say\uc0\u305 n: and at line 240\
+[9/19/12 5:21:40 PM] Alp Say\uc0\u305 n: you'll see me manchester encoding it\
+[9/19/12 5:21:53 PM] Alp Say\uc0\u305 n: and finally at line 248\
+[9/19/12 5:22:07 PM] Alp Say\uc0\u305 n: you'll see me copying the manchester buffer into transmit buffer\
+[9/19/12 5:22:16 PM] Alp Say\uc0\u305 n: transmit_buffer is my queue\
+[9/19/12 5:22:39 PM] Alp Say\uc0\u305 n: after all this is set, i set the queue flag\
+[9/19/12 5:22:53 PM] Alp Say\uc0\u305 n: to notify the program about a pending packet to be transmitted\
+[9/19/12 5:23:00 PM] Alp Say\uc0\u305 n: so this was the second magic\
+[9/19/12 5:23:18 PM] Alp Say\uc0\u305 n: how does the transmission actually occur?\
+[9/19/12 5:23:30 PM] Alp Say\uc0\u305 n: well on line 261 there is another function transmitSerialData\
+[9/19/12 5:23:33 PM] Alp Say\uc0\u305 n: if it is called\
+[9/19/12 5:23:45 PM] Alp Say\uc0\u305 n: it writes everything inside the transmit_buffer to serial port\
+[9/19/12 5:24:33 PM] Alp Say\uc0\u305 n: exactly at line 297\
+[9/19/12 5:24:40 PM] Alp Say\uc0\u305 n: you are now seeing it as commented\
+[9/19/12 5:24:45 PM] Alp Say\uc0\u305 n: but dont mind it\
+[9/19/12 5:24:59 PM] Alp Say\uc0\u305 n: apparently i implemented some error injection and forgot it there\
+[9/19/12 5:25:14 PM] Alp Say\uc0\u305 n: about the #if 0 and #if 1\
+[9/19/12 5:25:22 PM] Alp Say\uc0\u305 n: those are precompiler directives\
+[9/19/12 5:25:38 PM] Alp Say\uc0\u305 n: like the name suggests they are directives to be followed before compiling starts\
+[9/19/12 5:25:47 PM] Alp Say\uc0\u305 n: so if you see a #if 0\
+[9/19/12 5:26:10 PM] Alp Say\uc0\u305 n: it means do not compile until the #endif\
+[9/19/12 5:26:43 PM] Alp Say\uc0\u305 n: so line 297 is not compiled but instead lines between 299-319 are compiled\
+[9/19/12 5:26:48 PM] Alp Say\uc0\u305 n: if that was a #if 1\
+[9/19/12 5:27:08 PM] Alp Say\uc0\u305 n: line 297 was going to be compiled and the lines between 299-317 was going to be compiled\
+[9/19/12 5:27:23 PM] Alp Say\uc0\u305 n: so it's a simple switch for switching between codes\
+[9/19/12 5:27:46 PM] Alp Say\uc0\u305 n: coming to the final part\
+[9/19/12 5:27:51 PM] Alp Say\uc0\u305 n: at line 752\
+[9/19/12 5:28:02 PM] Alp Say\uc0\u305 n: you'll see a while(1)\
+[9/19/12 5:28:11 PM] Alp Say\uc0\u305 n: this means loop forever\
+[9/19/12 5:28:22 PM] Xiaohang Chen: yeah\
+[9/19/12 5:28:34 PM] Alp Say\uc0\u305 n: when the main program reaches there, it means i've finished setting up\
+[9/19/12 5:28:43 PM] Alp Say\uc0\u305 n: and i'm constantly checking some stuff or waiting\
+[9/19/12 5:28:50 PM] Alp Say\uc0\u305 n: the things i'm checking are\
+[9/19/12 5:28:53 PM] Alp Say\uc0\u305 n: timer_flag\
+[9/19/12 5:29:00 PM] Alp Say\uc0\u305 n: if it is set to 1\
+[9/19/12 5:29:07 PM] Alp Say\uc0\u305 n: i go into idle_timer_handler\
+[9/19/12 5:29:12 PM] Alp Say\uc0\u305 n: and tftp_timer_handker\
+[9/19/12 5:29:19 PM] Alp Say\uc0\u305 n: i wait for idle flag\
+[9/19/12 5:29:24 PM] Alp Say\uc0\u305 n: but obviously it doesnt do much\
+[9/19/12 5:29:29 PM] Alp Say\uc0\u305 n: i wait for the queue flah\
+[9/19/12 5:29:30 PM] Alp Say\uc0\u305 n: g\
+[9/19/12 5:29:50 PM] Alp Say\uc0\u305 n: remember this was the flag that we set, when we have a pending packet waiting to be transmitted\
+[9/19/12 5:30:08 PM] Alp Say\uc0\u305 n: and then if some conditions are fulfilled\
+[9/19/12 5:30:19 PM] Alp Say\uc0\u305 n: eventually it calls the transmitSerialData function\
+[9/19/12 5:30:38 PM] Alp Say\uc0\u305 n: those conditions are about reception\
+[9/19/12 5:30:55 PM] Alp Say\uc0\u305 n: basically i'm not trying to send any packets, if i am in the middle of receiving packets.\
+[9/19/12 5:31:09 PM] Alp Say\uc0\u305 n: i.e. collision avoidance\
+[9/19/12 5:31:20 PM] Alp Say\uc0\u305 n: and then at line 788\
+[9/19/12 5:31:30 PM] Alp Say\uc0\u305 n: there is the read function and a serialPortFd variable\
+[9/19/12 5:31:36 PM] Alp Say\uc0\u305 n: as you might guess\
+[9/19/12 5:32:00 PM] Alp Say\uc0\u305 n: that is the check to see there is any data available at the serial port(i.e. uhx1)\
+[9/19/12 5:32:48 PM] Alp Say\uc0\u305 n: and when you go a little lower in the code you'll see thateventually i come to the part where i open the packets\
+[9/19/12 5:33:01 PM] Alp Say\uc0\u305 n: so it's all a big loop\
+[9/19/12 5:33:10 PM] Alp Say\uc0\u305 n: going forever and ever waiting for a packet to be received\
+[9/19/12 5:33:46 PM] Alp Say\uc0\u305 n: unless you specified a message to be sent in the beginning of the program\
+[9/19/12 5:33:58 PM] Alp Say\uc0\u305 n: the program only responds to external events\
+[9/19/12 5:34:16 PM] Alp Say\uc0\u305 n: it doesn't send out messages or do anything periodically or anything else\
+[9/19/12 5:34:33 PM] Alp Say\uc0\u305 n: you can even assume this thing as a very very simple operating system\
+[9/19/12 5:34:58 PM] Alp Say\uc0\u305 n: and a dumb one\
+[9/19/12 5:35:03 PM] Alp Say\uc0\u305 n: very dumb\
+[9/19/12 5:35:18 PM] Alp Say\uc0\u305 n: the rest of the code is usually about\
+[9/19/12 5:35:31 PM] Alp Say\uc0\u305 n: opening files, parsing parameters and handling the serial port\
+[9/19/12 5:35:50 PM] Alp Say\uc0\u305 n: i will sperate those parts at some time to clean this 1000 lines of mess\
+[9/19/12 5:35:56 PM] Alp Say\uc0\u305 n: but for now, this is it :)\
+[9/19/12 5:36:22 PM] Alp Say\uc0\u305 n: now there is two more files\
+[9/19/12 5:36:25 PM] Alp Say\uc0\u305 n: one is timers.c\
+[9/19/12 5:36:29 PM] Alp Say\uc0\u305 n: the other is tftp.c\
+[9/19/12 5:36:43 PM] Alp Say\uc0\u305 n: the timers.c is an abstraction\
+[9/19/12 5:36:51 PM] Alp Say\uc0\u305 n: it gives me three functions\
+[9/19/12 5:36:54 PM] Alp Say\uc0\u305 n: initalize timers\
+[9/19/12 5:37:05 PM] Alp Say\uc0\u305 n: which doesn't really do much\
+[9/19/12 5:37:10 PM] Alp Say\uc0\u305 n: and the rest is\
+[9/19/12 5:37:15 PM] Alp Say\uc0\u305 n: timers_create_timer\
+[9/19/12 5:37:22 PM] Alp Say\uc0\u305 n: and timers_cancel_timer\
+[9/19/12 5:37:27 PM] Alp Say\uc0\u305 n: as you might understand\
+[9/19/12 5:37:39 PM] Alp Say\uc0\u305 n: these functions set up an alarm\
+[9/19/12 5:38:04 PM] Alp Say\uc0\u305 n: currently they use posix interval timer\
+[9/19/12 5:38:13 PM] Alp Say\uc0\u305 n: which only provides a single interval timer\
+[9/19/12 5:38:29 PM] Alp Say\uc0\u305 n: but it is in the programmer's hands to convert this single timer into many timers\
+[9/19/12 5:38:32 PM] Alp Say\uc0\u305 n: BUT\
+[9/19/12 5:38:44 PM] Alp Say\uc0\u305 n: i only needed one, so again i didn't really bother :)\
+[9/19/12 5:38:57 PM] Alp Say\uc0\u305 n: the important thing is\
+[9/19/12 5:39:02 PM] Alp Say\uc0\u305 n: every other file in this project\
+[9/19/12 5:39:06 PM] Alp Say\uc0\u305 n: uses these timer functions\
+[9/19/12 5:39:19 PM] Alp Say\uc0\u305 n: and not the posix timer functions\
+[9/19/12 5:39:25 PM] Alp Say\uc0\u305 n: which is a good thing\
+[9/19/12 5:39:36 PM] Alp Say\uc0\u305 n: because like i said if you want to change the timer system somehow\
+[9/19/12 5:39:45 PM] Alp Say\uc0\u305 n: all you have to do is to play with this file\
+[9/19/12 5:39:50 PM] Alp Say\uc0\u305 n: and make sure it works\
+[9/19/12 5:39:59 PM] Alp Say\uc0\u305 n: every other thing will keep working\
+[9/19/12 5:40:22 PM] Alp Say\uc0\u305 n: aaaaand\
+[9/19/12 5:40:25 PM] Alp Say\uc0\u305 n: finally there the tftp.c\
+[9/19/12 5:40:28 PM] Alp Say\uc0\u305 n: the application layer\
+[9/19/12 5:40:54 PM] Alp Say\uc0\u305 n: there is only 4 functions that i need to explain\
+[9/19/12 5:41:08 PM] Alp Say\uc0\u305 n: to make you understand how to write applications to my crappy ip stack\
+[9/19/12 5:41:20 PM] Alp Say\uc0\u305 n: first one is tftp_initialize\
+[9/19/12 5:41:32 PM] Alp Say\uc0\u305 n: almost every application needs some sort of initialization code\
+[9/19/12 5:42:01 PM] Alp Say\uc0\u305 n: you write this function\
+[9/19/12 5:42:06 PM] Alp Say\uc0\u305 n: and in the main file\
+[9/19/12 5:42:17 PM] Alp Say\uc0\u305 n: you call this function before going into the while loop\
+[9/19/12 5:42:35 PM] Alp Say\uc0\u305 n: line 350\
+[9/19/12 5:42:40 PM] Alp Say\uc0\u305 n: you'll see some weird thing\
+[9/19/12 5:42:51 PM] Alp Say\uc0\u305 n: PACKET_HANDLER_FUNCTION(tftp_negotiate)\
+[9/19/12 5:42:55 PM] Alp Say\uc0\u305 n: this actually means\
+[9/19/12 5:43:30 PM] Alp Say\uc0\u305 n: uint8_t tftp_negotiate(uint8_t* src, uint16_t src_port, uint8_t* dst, uint16_t dst_port, uint8_t* payload, uint16_t len)\
+[9/19/12 5:43:54 PM] Alp Say\uc0\u305 n: that line creates a packet handler function that i defined in Headers/udp_ip.h line 51\
+[9/19/12 5:44:23 PM] Alp Say\uc0\u305 n: that's the function that you call when there is a port match, and you want to send the packet to a function\
+[9/19/12 5:44:35 PM] Alp Say\uc0\u305 n: i didn't have to define this PACKET_HANDLER_FUNCTION\
+[9/19/12 5:44:40 PM] Alp Say\uc0\u305 n: but it was a shorthand\
+[9/19/12 5:44:47 PM] Alp Say\uc0\u305 n: and everyone like shorthands :)\
+[9/19/12 5:45:14 PM] Alp Say\uc0\u305 n: ignore the inside of the function\
+[9/19/12 5:45:20 PM] Alp Say\uc0\u305 n: but basically it reads the payload\
+[9/19/12 5:45:26 PM] Alp Say\uc0\u305 n: and does magical tftp stuff\
+[9/19/12 5:45:31 PM] Alp Say\uc0\u305 n: inside the function\
+[9/19/12 5:45:39 PM] Alp Say\uc0\u305 n: there is nothing related to ip or ax.25 or anything else\
+[9/19/12 5:45:53 PM] Alp Say\uc0\u305 n: well just a little bit of ip\
+[9/19/12 5:46:01 PM] Alp Say\uc0\u305 n: and that's just to check who sent the message\
+[9/19/12 5:46:25 PM] Alp Say\uc0\u305 n: at line 551 you'll see another handler function\
+[9/19/12 5:46:28 PM] Alp Say\uc0\u305 n: tftp_transfer\
+[9/19/12 5:46:34 PM] Alp Say\uc0\u305 n: well as can be understood from the name\
+[9/19/12 5:46:44 PM] Alp Say\uc0\u305 n: this one handles the transfer packets\
+[9/19/12 5:46:59 PM] Alp Say\uc0\u305 n: again there is nothing related to ax.25 manchester or ip\
+[9/19/12 5:47:05 PM] Alp Say\uc0\u305 n: just the tftp protocol stuff\
+[9/19/12 5:48:16 PM] Alp Say\uc0\u305 n: and you have the tools to do whatever you want\
+[9/19/12 5:48:18 PM] Alp Say\uc0\u305 n: for example\
+[9/19/12 5:48:24 PM] Alp Say\uc0\u305 n: line 635\
+[9/19/12 5:48:32 PM] Alp Say\uc0\u305 n: i call a tftp_sendAck function\
+[9/19/12 5:48:44 PM] Alp Say\uc0\u305 n: apparently this function sends an acknowledgement packet\
+[9/19/12 5:48:47 PM] Alp Say\uc0\u305 n: i'll explain how\
+[9/19/12 5:49:01 PM] Alp Say\uc0\u305 n: and then at line 636 i create a timer for tftp_read_timerout\
+[9/19/12 5:49:20 PM] Alp Say\uc0\u305 n: looks good enough for me\
+[9/19/12 5:49:28 PM] Alp Say\uc0\u305 n: let's cehck the tftp_sendAck\
+[9/19/12 5:49:40 PM] Alp Say\uc0\u305 n: that's at line 320\
+[9/19/12 5:49:55 PM] Alp Say\uc0\u305 n: i have a lastMessage structure where i create my tftp message\
+[9/19/12 5:50:09 PM] Alp Say\uc0\u305 n: it doesn't really matter\
+[9/19/12 5:50:12 PM] Alp Say\uc0\u305 n: what matters is\
+[9/19/12 5:50:24 PM] Alp Say\uc0\u305 n: between lines 336 and 340\
+[9/19/12 5:50:32 PM] Alp Say\uc0\u305 n: i fill some bytes into a buffer\
+[9/19/12 5:50:39 PM] Alp Say\uc0\u305 n: that's my ip payload\
+[9/19/12 5:51:05 PM] Alp Say\uc0\u305 n: rest of the lines are related to tftp protocol\
+[9/19/12 5:51:08 PM] Alp Say\uc0\u305 n: doesn't really matter\
+[9/19/12 5:51:25 PM] Alp Say\uc0\u305 n: but in the end at line 346\
+[9/19/12 5:51:31 PM] Alp Say\uc0\u305 n: i call the mainDataQueuer function\
+[9/19/12 5:51:33 PM] Alp Say\uc0\u305 n: with\
+[9/19/12 5:51:34 PM] Alp Say\uc0\u305 n: my ip\
+[9/19/12 5:51:49 PM] Alp Say\uc0\u305 n: my source port\
+[9/19/12 5:51:52 PM] Alp Say\uc0\u305 n: destination ip\
+[9/19/12 5:51:55 PM] Alp Say\uc0\u305 n: destination port\
+[9/19/12 5:52:07 PM] Alp Say\uc0\u305 n: the payload (buffer that we filled)\
+[9/19/12 5:52:11 PM] Alp Say\uc0\u305 n: and the length of the payload\
+[9/19/12 5:52:23 PM] Alp Say\uc0\u305 n: well everything looks good\
+[9/19/12 5:52:29 PM] Alp Say\uc0\u305 n: but what is the mainDataQueuer function\
+[9/19/12 5:52:46 PM] Alp Say\uc0\u305 n: it is a function pointer\
+[9/19/12 5:53:07 PM] Alp Say\uc0\u305 n: note: function pointers are variables where you can save functions inside them\
+[9/19/12 5:53:26 PM] Alp Say\uc0\u305 n: let's go to tftp_initialize function\
+[9/19/12 5:53:52 PM] Alp Say\uc0\u305 n: onl line 37 you'll see that mainDataQueuer variable is initialized to something callaed dataQueuer which comes as a parameter\
+[9/19/12 5:54:19 PM] Alp Say\uc0\u305 n: remember that when i told you tftp_initialize function is called before the main loop to initialize the application\
+[9/19/12 5:54:36 PM] Alp Say\uc0\u305 n: now let's go back to the radiotftp.c\
+[9/19/12 5:54:46 PM] Alp Say\uc0\u305 n: and let's go to line 662\
+[9/19/12 5:55:07 PM] Alp Say\uc0\u305 n: the dataqueuer variable is set to another function's return value\
+[9/19/12 5:55:32 PM] Alp Say\uc0\u305 n: (note: just thing of the function pointer as integer)\
+[9/19/12 5:55:47 PM] Alp Say\uc0\u305 n: udp_get_data_queuer_fptr()\
+[9/19/12 5:56:06 PM] Alp Say\uc0\u305 n: the return value of that fcuntion is something in the udp_ip.c\
+[9/19/12 5:56:16 PM] Alp Say\uc0\u305 n: i'm not going to go in there it keeps wandering aroung\
+[9/19/12 5:56:38 PM] Alp Say\uc0\u305 n: in the end you'll see that dataQueuer function is actually the queueSerialData function in radiotftp.c\
+[9/19/12 5:56:56 PM] Alp Say\uc0\u305 n: so coming back to tftp.c and tftp_sendAck function\
+[9/19/12 5:57:02 PM] Alp Say\uc0\u305 n: what i actually do is to:\
+[9/19/12 5:57:04 PM] Alp Say\uc0\u305 n: create my payload\
+[9/19/12 5:57:15 PM] Alp Say\uc0\u305 n: define my ip, my port and destination ip and port\
+[9/19/12 5:57:40 PM] Alp Say\uc0\u305 n: and send it to queueSerialData function\
+[9/19/12 5:58:05 PM] Alp Say\uc0\u305 n: the last 5 minutes were more complex than the others i know\
+[9/19/12 5:58:11 PM] Alp Say\uc0\u305 n: any questions?\
+[9/19/12 5:59:43 PM] Xiaohang Chen: Im sorry but i have to say i failed to follow you 1 hour ago. But I will make the chat content a log and go through it tomorrow\
+[9/19/12 6:00:05 PM] Alp Say\uc0\u305 n: that was going to be my suggestion that you save this conversation as some text file\
+[9/19/12 6:00:10 PM] Alp Say\uc0\u305 n: and go over it again\
+[9/19/12 6:00:19 PM] Alp Say\uc0\u305 n: sorry :/\
+[9/19/12 6:00:30 PM] Alp Say\uc0\u305 n: i went too fast i guess/\
+[9/19/12 6:00:54 PM] Xiaohang Chen: aha\
+[9/19/12 6:01:42 PM] Xiaohang Chen: I appreciate it very much and all my teammates think u r a really nice guy\
+[9/19/12 6:02:06 PM] Alp Say\uc0\u305 n: thanks\
+[9/19/12 6:02:21 PM] Xiaohang Chen: Thank you so much for such detailed help\
+[9/19/12 6:02:23 PM] Alp Say\uc0\u305 n: i wrote that crappy thing i should cover my own mess right? :D\
+[9/19/12 6:03:49 PM] Xiaohang Chen: aha. I would say you've really done a perfect work\
+[9/19/12 6:05:25 PM] Xiaohang Chen: so if I have further questions, I will contact u. Hope today's talking won't bother u too much. It lasts for 2 hours and a half!\
+[9/19/12 6:07:10 PM] Alp Say\uc0\u305 n: no it's okay\
+[9/19/12 6:07:19 PM] Alp Say\uc0\u305 n: who knows i may even use this in my thesis}
