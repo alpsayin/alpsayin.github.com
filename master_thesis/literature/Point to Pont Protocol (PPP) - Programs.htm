@@ -1,0 +1,3558 @@
+
+<!-- saved from url=(0041)http://www.vijaymukhi.com/vmis/pppprg.htm -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Point to Pont Protocol (PPP) - Programs
+</title>
+<link type="text/css" rel="stylesheet" href="data:text/css,"></head><body bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800000" alink="#FF0000">
+<h2 align="center">Point to Pont Protocol (PPP)<br>Programs</h2>
+<hr size="2" color="black">
+<p>               
+</p><center><font size="4"><b>Serial Communication</b></font><br><font size="2">Under Windows95</font></center>
+<b><u>dial.c</u></b>
+<blockquote><pre>
+#include &lt;windows.h&gt;
+#include &lt;stdio.h&gt;
+void abcchar(unsigned char a)
+{
+	FILE * fp;
+	fp=fopen("c:\\z.txt","a+");
+	fprintf(fp,"%x..%d..%c\n",a,a,a);
+	fclose(fp);
+}
+HDC  hdc ;
+HANDLE  handle ;
+HWND  hwnd ;
+int  column, row, xwidth, yheight ;
+long threadid, bytesrecd, byteswritten;
+long _stdcall wndcallback(HWND wnd,unsigned int umsg,unsigned int wparam,long lparam);
+DCB dcb;
+WNDCLASS wndclass;
+MSG msg;
+
+char writestr[200];char ctemp;
+
+long _stdcall commcallback()
+{
+unsigned char readstr[2];
+while (1)
+{ 	  ReadFile(handle,readstr,1,&amp;bytesrecd,0);
+      abcchar(readstr[0]);
+	  if (readstr[0] == 13 )
+			column = 0 ;
+	  if (readstr[0] == 10)
+			row++;
+	  if (readstr[0] == 0x08)
+		   column -- ;
+	  if (readstr[0] != 0x0a &amp;&amp; readstr[0] != 0x0d)
+	  {
+		TextOut(hdc,column*xwidth,row*yheight,readstr,1);
+		if (column &lt; 79)
+			column++ ;
+		else
+		{
+			column = 0;
+			row++;
+		}
+	  }
+}
+return 1;
+}
+
+
+int _stdcall WinMain( HINSTANCE hinstance, HINSTANCE hprevinstance,LPSTR lpszcmdline, int ncmdshow )
+{
+wndclass.lpfnWndProc=wndcallback;
+wndclass.hInstance=hinstance;
+wndclass.hbrBackground=GetStockObject(WHITE_BRUSH); ;
+wndclass.lpszClassName="wclass";
+RegisterClass(&amp;wndclass);
+hwnd=CreateWindow("wclass","hi",WS_OVERLAPPEDWINDOW,0,0,0,0,0,0,hinstance,0);
+xwidth = 8;
+yheight = 19;
+ShowWindow( hwnd, 3 ) ;
+hdc=GetDC(hwnd);
+
+handle= CreateFile( "COM1", GENERIC_READ | GENERIC_WRITE,1,NULL,	
+	OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL );
+
+dcb.DCBlength = sizeof( DCB ) ;
+GetCommState( handle, &amp;dcb ) ;
+dcb.BaudRate = 14400 ;
+SetCommState( handle, &amp;dcb ) ;
+CreateThread(0,0,(LPTHREAD_START_ROUTINE) commcallback,0,0, &amp;threadid );
+strcpy(writestr,"atdt2659385\r");
+WriteFile(handle,writestr,strlen(writestr),&amp;byteswritten,0) ;
+while (GetMessage( &amp;msg, 0, 0, 0 ))
+   {
+       TranslateMessage( &amp;msg ) ;
+       DispatchMessage( &amp;msg ) ;
+   }
+   return 0 ;
+}
+
+
+long _stdcall wndcallback(HWND wnd,unsigned int  umsg,unsigned int wparam,long lparam)
+{
+   if(umsg == WM_CHAR)
+   {
+         ctemp = wparam ;
+         WriteFile(handle,&amp;ctemp,1,&amp;byteswritten,0) ;
+   }
+    if(umsg == WM_DESTROY)
+	{
+		 ReleaseDC(wnd,hdc);
+		 PostQuitMessage( 0 ) ;
+	}
+         return( DefWindowProc( wnd, umsg, wparam, lparam ) ) ;
+}  
+</pre></blockquote>
+<p>
+The first thing we'll talk about is serial communication  for which  you will have to understand Windows programming.  We can't really do Internet programming without knowing how to send bytes to the modem. Before executing the program make sure that you have the same system setting as us.  We have the modem connected to COM1  and are working in the C:&gt; drive.  This is to make sure that you don't end up with some weird error and blame us for it.
+</p><p>
+To start with we have a function called <i>abcchar</i>. All that <i>abcchar</i> does is get a char (a number from 0 to 255) and write it to disk, in hex, decimal as well as a character.  In this function we open a file to write the specified bytes.   As always remember to close the file that you open.  We won't be explaining the <i>WinMain</i> to you because there really is nothing of consequence that we will be doing in <i>WinMain</i>.  
+</p><p>
+In all Windows programming, there is present a function called <i>CreateFile</i>.  Since Microsoft has this irritating habit of trying to stuff everything into one measly function, <i>CreateFile</i> has become amazingly complicated.  In our case, our modem is connected to COM1, therefore in <i>CreateFile</i> the first parameter is COM1.  It is interesting to note that we are using the hardware device as a file and are about to carry out operations assuming that it is a simple file on the hard disk  (Do I hear someone scream "UNIX!").  Once the file is open, we read and write to it using <i>GENERIC READ| GENERIC WRITE</i>.  These #defines contain information about reading and writing (obviously!) and because you are not really creating a file (it is a communication port after all)  <i>OPEN EXISTING</i>  implies that you want to open a file that already exists i.e. the hardware port.  The problem with communicating with a modem is that you have to start off by initializing the modem using an initializing string which is different for different makes of modems.  Instead of creating a database of to handle each model of modem on this planet, let us simply use the one provided by Microsoft by calling the <i>GetCommState</i>. You should have no problem if your modem is correctly installed.
+</p><p>
+<i>CreateFile</i> will return a number which will be the handle to the COM port.  The only problem with a handle is that it is one of the most enigmatic things in the life of a programmer.  It only gladdens the heart of the programmer that he does not have to understand handles.  All we have to do is pass on this handle to the structure that looks like DCB.  The only thing we have to do is initialize is the length (a member of the structure) to  the  size of the structure.  This is something that you have to do in all Windows programming.  <i>GetCommState</i> will fill up the structure with the current parameters.  This leaves us with only one parameter that we have to manually configure.  This is the BaudRate or the rate of data transmission from the modem to the ISP's modem.  We set the BaudRate to 14400 bps (higher or lower, depending on which part of the world your in).  To do this we initialize  the member called as baudrate to 14400.  Then we call <i>SetCommState</i> which does the needful.  We can now safely begin writing to the modem.	
+</p><p>
+As we're dealing with the Internet here, we really don't know when the other side's response will reach us, so we have to take netlag into account. We don't want a system where the computer waits endlessly for data from the modem, so we set up a thread at this point. A thread is a function that will be constantly and automatically called, but all the computers resources will not be devoted to running it. The only thing of importance in <i>CreateThread</i>, is the <i>commcallback</i> function.  This is the function which <i>CreateThread</i> will keep running. The last variable is the ID of the thread which we haven't yet given. If you have been following the flow of the program you would have realized that, from this line onwards, we have actually broken up the program into two separate programs. One is <i>WinMain</i> and the other is the thread, <i>commcallback</i>. 
+</p><p>
+Remember that if you are connected to the Internet, you need an IP address to receive data. You also need to be connected to a router which can send this data over the Internet. (Now would be a great time to read our <a href="http://www.vijaymukhi.com/vmis/wsock.htm">WinSock tutorial</a>, if you haven't done so already).  Present technology limitation don't permit us to assign everyone a unique IP address, therefore there has to be a way in which a limited number of IP address can be rotated around. Secondly, everyone cannot afford a router either, so there must be a way to share these resources.
+</p><p>
+Your Internet Service Provider (ISP) has a bank of  IP addresses and a couple of routers, plus loads of modems eagerly awaiting a connection. What you have to do is dial up your ISP and he will assign you an IP address for the duration of the session. The only exception is when you can afford a router and/or have the facility for a fixed IP address.  You will also be allowed to use the router as if it were your own. The protocol that makes all of this possible is called PPP or the Point to Point  Protocol.
+</p><p>
+The first thing we need to know to dial in is the ISP's phone number. In Mumbai, India it's '2659385' with a '/r'   at the end marking the end of the number. We now need to ask our modem to dial a phone number and if you don't know an ISP's number, then this is the end of the line!   In all probability your modem is a Hayes compatible or installed as a 'standard' modem.  Check out from the control panel modem setting.  If it is then it understands the same instruction set.  The dialing is initiated by first copying the phone number into an array <i>writestr</i>.  The prefix <b>atdt</b> is used to tell the modem that the it has to dial the subsequent numbers.  <b>ATDT</b> stands for <b>AT</b>tention  <b>D</b>ial (Touch) <b>T</b>one, but this information is only for  pure techies, ignore it with no danger to life and limb.  However if your phone lines do not support tone dial please feel free to replace the <b>atdt</b> with <b>atdp</b>, for using pulse dialing.
+</p><p>
+The Windows SDK has also given us a <i>WriteFile</i> along with a <i>CreateFile</i> and that's where we're supposed to give the communication handle, the string that we want to write, and it's length (that's why we use strlen). After the operation the function will come back and fill up the variable <i>byteswritten</i>, whose address was given to it as the second last parameter, with the number of bytes sent across. A well written program would check to see that all the bytes got across, but this is by no definition a well written program.  
+</p><p>
+When the modem sees the atdt, it knows that whatever follows is the number to be dialed. If your luck holds then the modem at the other end will respond and you'll hear lots of squeaking and twanging as the two modems set things up. Then the PPP server (or Peer as it is called) on the machine at the ISP's end will send you some information. It should be noted that the system at the other end is not called a server or host, it is called a peer.  This is because during a PPP session both the systems have the same rank. We have used the word server just to allow you to settle down and get used to the ideas floating around.  Now you don't know how long this entire process may take. If the number is engaged then you have to keep retrying and you'll realize the necessity of a <i>commcallback</i> thread. There is also a <i>while(1)</i> which is  an infinite loop. Thus <i>'return 1;</i> ' will  never be called.  
+</p><p>
+In the function <i>commcallback</i>, we're calling <i>ReadFile</i>. In this case <i>ReadFile</i> is blocking because we have specified that we will be reading from the communication handle.  Note that readstr is an array. What we've done is set things up so that one byte is read at a time from the port. bytesrecd tells us how many bytes have been received and this should be 1. The minute <i>ReadFile</i> gets one byte, control will pass to the next line in the program. Now through <i>abcchar</i> , we write that byte to the disk.  
+</p><p>
+Depending upon the Internet Service Provider you are connected to, you may get a lot of information from the other side informing you about the different telephone numbers available, the hunting lines provided etc. It is important to display this on the screen and we do just that through <i>TextOut</i>. 
+</p><p>
+We admit that this program does precious little other than dialing up your ISP and writing all the incoming and outgoing bytes to the disk.  But don't loose heart because we do not have the habit of doing things for fun. This program is the basis of all that we will attempt later. We'll be using a similar program later on when we start sending TCP/IP packets across the Internet. You'll only understand the program's various mutations if you fully grasp this program. Without a through understanding of this program, you're going to feel a wee bit lost later on, so pay attention!
+</p><p>
+It might seem that this program was a dud, because all it end's up doing is increase your phone bill.  But you are sadly mistaken,  you ought to take a look at the output file i.e. the 'z.txt' file.  The contents of the same have been reproduced below
+</p><p>
+<b>z.txt</b></p><p>
+</p><blockquote><pre>61..97..a
+74..116..t
+64..100..d
+74..116..t
+32..50..2
+36..54..6
+35..53..5
+39..57..9
+33..51..3
+38..56..8
+35..53..5
+d..13..
+
+d..13..
+
+a..10..
+
+4e..78..N
+4f..79..O
+20..32.. 
+43..67..C
+41..65..A
+52..82..R
+52..82..R
+49..73..I
+45..69..E
+52..82..R
+d..13..
+
+a..10..
+
+61..97..a
+74..116..t
+64..100..d
+74..116..t
+34..52..4
+33..51..3
+31..49..1
+35..53..5
+38..56..8
+33..51..3
+35..53..5
+d..13..
+
+d..13..
+
+a..10..
+
+43..67..C
+4f..79..O
+4e..78..N
+4e..78..N
+45..69..E
+43..67..C
+54..84..T
+20..32.. 
+31..49..1
+34..52..4
+34..52..4
+30..48..0
+30..48..0
+d..13..
+
+a..10..
+
+d..13..
+
+a..10..
+
+55..85..U
+73..115..s
+65..101..e
+72..114..r
+6e..110..n
+61..97..a
+6d..109..m
+65..101..e
+3a..58..:
+20..32.. 
+76..118..v
+6d..109..m
+75..117..u
+6b..107..k
+68..104..h
+69..105..i
+d..13..
+
+a..10..
+
+50..80..P
+61..97..a
+73..115..s
+73..115..s
+77..119..w
+6f..111..o
+72..114..r
+64..100..d
+3a..58..:
+20..32.. 
+d..13..
+
+a..10..
+
+67..103..g
+69..105..i
+6c..108..l
+76..118..v
+73..115..s
+62..98..b
+34..52..4
+2e..46...
+31..49..1
+32..50..2
+3e..62..&gt;
+70..112..p
+70..112..p
+70..112..p
+d..13..
+
+a..10..
+
+45..69..E
+6e..110..n
+74..116..t
+65..101..e
+72..114..r
+69..105..i
+6e..110..n
+67..103..g
+20..32.. 
+50..80..P
+50..80..P
+50..80..P
+20..32.. 
+6d..109..m
+6f..111..o
+64..100..d
+65..101..e
+2e..46...
+d..13..
+
+a..10..
+
+41..65..A
+73..115..s
+79..121..y
+6e..110..n
+63..99..c
+20..32.. 
+69..105..i
+6e..110..n
+74..116..t
+65..101..e
+72..114..r
+66..102..f
+61..97..a
+63..99..c
+65..101..e
+20..32.. 
+61..97..a
+64..100..d
+64..100..d
+72..114..r
+65..101..e
+73..115..s
+73..115..s
+20..32.. 
+69..105..i
+73..115..s
+20..32.. 
+75..117..u
+6e..110..n
+6e..110..n
+75..117..u
+6d..109..m
+62..98..b
+65..101..e
+72..114..r
+65..101..e
+64..100..d
+20..32.. 
+28..40..(
+45..69..E
+74..116..t
+68..104..h
+65..101..e
+72..114..r
+6e..110..n
+65..101..e
+74..116..t
+30..48..0
+29..41..)
+d..13..
+
+a..10..
+
+59..89..Y
+6f..111..o
+75..117..u
+72..114..r
+20..32.. 
+49..73..I
+50..80..P
+20..32.. 
+61..97..a
+64..100..d
+64..100..d
+72..114..r
+65..101..e
+73..115..s
+73..115..s
+20..32.. 
+69..105..i
+73..115..s
+20..32.. 
+32..50..2
+30..48..0
+32..50..2
+2e..46...
+35..53..5
+34..52..4
+2e..46...
+34..52..4
+2e..46...
+38..56..8
+31..49..1
+2e..46...
+20..32.. 
+4d..77..M
+54..84..T
+55..85..U
+20..32.. 
+69..105..i
+73..115..s
+20..32.. 
+31..49..1
+35..53..5
+30..48..0
+30..48..0
+20..32.. 
+62..98..b
+79..121..y
+74..116..t
+65..101..e
+73..115..s
+d..13..
+
+a..10..
+
+d..13..
+
+a..10..
+
+7e..126..~
+7e..126..~
+ff..255..ÿ
+7d..125..}
+23..35..#
+c0..192..À
+21..33..!
+7d..125..}
+21..33..!
+9f..159..Ÿ
+7d..125..}
+20..32.. 
+7d..125..}
+34..52..4
+7d..125..}
+22..34.."
+7d..125..}
+26..38..&amp;
+7d..125..}
+20..32.. 
+7d..125..}
+2a..42..*
+7d..125..}
+20..32.. 
+7d..125..}
+20..32.. 
+7d..125..}
+25..37..%
+7d..125..}
+26..38..&amp;
+7d..125..}
+30..48..0
+3b..59..;
+6c..108..l
+b7..183..·
+7d..125..}
+27..39..'
+7d..125..}
+22..34.."
+7d..125..}
+28..40..(
+7d..125..}
+22..34.."
+4b..75..K
+59..89..Y
+7e..126..~
+</pre></blockquote>
+<p>
+The first number that we used to connect to VSNL was busy  and hence we had to disconnect.  This is the reason behind the words 'NO CARRIER', it certainly does not imply that the program cannot work in the absence of a particular brand of air-conditioners.  Fortunately the second number that we dialed allowed us to connect to VSNL. As can be seen from the bytes that flowed, we were connected at a speed of 14.4kbps.  This was followed by the usual prompting for the user name and the password. Our user name happens to be 'vmukhi', the bytes that follow would have been heart-breaking for people who would have desired to have our password.  As can be seen (or rather cannot be seen) the password is not 'echoed back' from the ISP's end.  This is a desired quality (don't blame VSNL for this) as this is done to discourage 'shoulder surfing'.  What follows is the one-of-the-kind router prompt (blame VSNL for it)  Since we have typed 'PPP' at the router prompt, this is clearly reflected in the output file.  The transcript of the ensuing message is as follows "Entering PPP mode Async interface address is unnumbered (Ethernet0) your IP address is 202.54.4.81 MTU is 1500 bytes"
+</p><p>
+As can be seen, we have been assigned the IP address 202.54.4.81, the MTU is an acronym for the Maximum Transmittable Unit, a factor which finds it's genesis in the world of Ethernet.  So check out <a href="http://www.vijaymukhi.com/vmis/ethernet.htm">our tutorial</a> on the same.  The MTU is used to define the maximum packet size on the network, which in this case is 1500 bytes.  After these formalities have been completed the first bytes of the PPP frame appear, these have been explained in the subsequent write-up's so start moving to the next program and the output file. 
+</p><p>
+<b><u>LCP1.C</u></b>
+</p><blockquote><pre>#include &lt;windows.h&gt;
+#include &lt;stdio.h&gt;
+void abcchar(unsigned char a)
+{
+	FILE * fp;
+	fp=fopen("c:\\z.txt","a+");
+	fprintf(fp,"%x..%d..%c\n",a,a,a);
+	fclose(fp);
+}
+void abcstr(char *s)
+{
+	FILE * fp;
+	fp=fopen("c:\\z.txt","a+");
+	fprintf(fp,"%s..\n",s);
+	fclose(fp);
+}
+
+HDC  hdc ;
+HANDLE  handle ;
+HWND  hwnd ;
+int  column, row, xwidth, yheight ;
+long threadid, bytesrecd, byteswritten;
+long _stdcall wndcallback(HWND wnd,unsigned int umsg,unsigned int wparam,long lparam);
+DCB dcb;
+WNDCLASS wndclass;
+MSG msg;
+
+char writestr[200];char ctemp;
+
+long _stdcall commcallback()
+{
+unsigned char readstr[2];
+while (1)
+{ 	  ReadFile(handle,readstr,1,&amp;bytesrecd,0);
+  abcchar(readstr[0]);
+	  if (readstr[0] == 0x7e)
+	{
+ 	  if (ctr==0)
+	   {
+		ctr=1;
+		abcstr("First 7e");
+                  }
+	  else if (ctr==1)
+	   {
+		ctr++;
+		abcstr("Second 7e");
+                  }
+	  else if (ctr==2)
+	   {
+		ctr=1;
+		abcstr("Third 7e");
+                  }
+}
+	
+  if (readstr[0] == 13 )
+			column = 0 ;
+	  if (readstr[0] == 10)
+			row++;
+	  if (readstr[0] == 0x08)
+		   column -- ;
+	  if (readstr[0] != 0x0a &amp;&amp; readstr[0] != 0x0d)
+	  {
+		TextOut(hdc,column*xwidth,row*yheight,readstr,1);
+		if (column &lt; 79)
+				column++ ;
+		else
+		{
+			column = 0;
+			row++;
+		}
+	  }
+}
+return 1;
+}
+
+
+int _stdcall WinMain( HINSTANCE hinstance, HINSTANCE hprevinstance,LPSTR lpszcmdline, int ncmdshow )
+{
+wndclass.lpfnWndProc=wndcallback;
+wndclass.hInstance=hinstance;
+wndclass.hbrBackground=GetStockObject(WHITE_BRUSH); ;
+wndclass.lpszClassName="wclass";
+RegisterClass(&amp;wndclass);
+hwnd=CreateWindow("wclass","hi",WS_OVERLAPPEDWINDOW,0,0,0,0,0,0,hinstance,0);
+xwidth = 8;
+yheight = 19;
+ShowWindow( hwnd, 3 ) ;
+hdc=GetDC(hwnd);
+
+handle= CreateFile( "COM1", GENERIC_READ | GENERIC_WRITE,1,NULL,	
+	OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL );
+
+dcb.DCBlength = sizeof( DCB ) ;
+GetCommState( handle, &amp;dcb ) ;
+dcb.BaudRate = 14400 ;
+SetCommState( handle, &amp;dcb ) ;
+CreateThread(0,0,(LPTHREAD_START_ROUTINE) commcallback,0,0, &amp;threadid );
+strcpy(writestr,"atdt2659385\r");
+WriteFile(handle,writestr,strlen(writestr),&amp;byteswritten,0) ;
+while (GetMessage( &amp;msg, 0, 0, 0 ))
+   {
+       TranslateMessage( &amp;msg ) ;
+       DispatchMessage( &amp;msg ) ;
+   }
+   return 0 ;
+}
+
+
+long _stdcall wndcallback(HWND wnd,unsigned int  umsg,unsigned int wparam,long lparam)
+{
+   if(umsg == WM_CHAR)
+   {
+         ctemp = wparam ;
+         WriteFile(handle,&amp;ctemp,1,&amp;byteswritten,0) ;
+   }
+    if(umsg == WM_DESTROY)
+	{
+		 ReleaseDC(wnd,hdc);
+         PostQuitMessage( 0 ) ;
+	}
+         return( DefWindowProc( wnd, umsg, wparam, lparam ) ) ;
+}  
+</pre></blockquote>
+<p>
+The first program was a dream come true as it gave us the powers to connect to our ISP, an ability we thought was bestowed only on the 'Dial-Up Networking' application of Windows95.  At last, or so we thought, no more clicks on the 'Shortcut to VSNL' icon on our desktops.  Now we have the power to write our own dialer application.  But wait, we are not here to make dialer software, we're here to study PPP.  Hence we decided to edit the  z.txt   file on the 'C' drive and everything looks like Greek (or English for our friends from Greece!!!)  So it's high time that we executed the second program and cleared some of  the mess we created.  Remember before executing the second program do delete the 'Z .TXT' file else in the process of clearing the mess we will end up creating a bigger one.
+</p><p>
+If your are the kind  who like to analyze the program before executing it then read on.  The program looks very much like the  dialer program (dial.c).  This is because all the code required for dialing the ISP has to be present.  The dialer program has already been explained in great detail in the earlier chapter and since we do not believe in duplicating our work we will not delve into the details of the same. We will look only at the modifications made to the program.  We find that the only modification made is the addition of the function <i>abcstr(char *s)</i> and an <i>if </i> loop.  It can be seen that the <i>abcstr(char *s)</i> function is a very dumb function whose only job is to insert a string in the file  <i>z.txt</i>'.  Now the question is ' Why this function and what is this string ?'.  To answer this lets get down  to the basics.
+</p><p>
+We know that all PPP packet start with  a <i>0x7e</i>.  This is true except on one occasion.  By some act of God the first PPP packet contains not one but two <i>0x7e</i> (Maybe this is the reason why when you sign up for an Internet connection, VSNL disclaims any responsibilities for acts of  God).  Jokes apart we have still not figured out why this happens.  The standard practice is to ignore the first <i>0x7e</i> and accepting the second <i>0x7e</i> as the actual 'start' of the PPP frame.  It automatically follows that the third <i>0x7e</i> is the nothing but  the end of the PPP frame.
+</p><p>
+Armed with this knowledge lets go back to the function abcstr( char *s ).  This function is used to insert a string in the file  <i>z.txt</i> .  This string is nothing but plain English text like "First 7e", "Second 7e" and so on.  Our motto has always been " Don't complicate life- use simple words" .  Time to press 'Page Down' and see the function reference and understand the program in its fullest.
+</p><p>
+As can be seen the function reference takes place inside the infinite loop <i>while(1)</i>.  The <i>ReadFile</i>  reads the incoming data from the port and copies the same to the <i>readstr</i> which is a string.  Now the function <i>abcchar(unsigned char c)</i> is called.  As explained in the earlier chapter this function is used to store the incoming data in the <i>z.txt</i> .  Now the <i>if </i> statement gets executed.  The purpose of this if loop is to check the incoming data for the presence of the 0x7e byte and also the order of  appearance of the <i>0x7e</i> i.e. first, second or third.  This is done using a simple counter variable <i>ctr</i>.  The counter variable is initially set to 0.  When the first <i>0x7e</i> comes in the value of ctr is zero and hence the first <i>if</i>  loop gets executed and the function   <i>abcstr(char *s)</i> is called with <i>First 7e </i>as the parameter.  So <i>First 7e </i>gets written onto the <i>z.txt </i>file. The counter  <i>ctr</i> gets incremented by one and the <i>if</i> loop quits out.  The second byte is read and the appropriate else if   statements are executed and the counter value is changed.  It is interesting to note that the      <i>abcstr(char *s)</i> function is called with <i>First 7e</i> only once.  This is because, after the counter variable has attained the value of 2 it is reinitialized to 1 and not 0.  This is done to take care of the mysterious 0x7e at the beginning of the first PPP frame. Now time to look at the <i>z.txt </i> file generated by this program.
+</p><p>
+</p><ul>
+<li><a href="http://www.vijaymukhi.com/vmis/zlcp1.htm">z.txt</a>
+</li></ul>
+<p>
+This output file does not look as if it will win the next Miss Universe contest, because it looks as messy and gibberish as the first 'z.txt'.  But now we know where each PPP frame starts  and ends.  The packets have been marked by the insertion of the words 'First 7e' ,'Second 7e' etc.   The first 7e is ignored and every time we encounter a 7e, we will put it to good use.  The second 7e is used to denote the start of the PPP frame whereas the third 7e is used to represent the end of the frame.  This hopefully would allow us to demarcate our poaching zones.  In the subsequent programs these packets will be the 'theaters of war'  as we will shift our focus to them.  Some of us may find this modification inconsequential but they should kindly remember that technology is best understood in this fashion- small steps at a time.  Also this program forms the basis of our next efforts.  In our next program we will make another modification and start our attempts to analyze the incoming data.  So check out the next program. 
+</p><p>
+<b><u>LCP2.C</u></b></p><p>
+</p><blockquote><pre>#include &lt;windows.h&gt;
+#include &lt;stdio.h&gt;
+void abcstr(char *p)
+{
+	FILE *fp;
+	fp=fopen("c:\\z.txt","a+");
+	fprintf(fp,"%s\n",p);
+	fclose(fp);
+}
+
+void abcchar(unsigned char c)
+{
+	FILE *fp;
+	fp=fopen("c:\\z.txt","a+");
+	fprintf(fp,"%c..%x..%d\n",c,c,c);
+	fclose(fp);
+}
+
+HDC  hdc ;
+HANDLE  handle ;
+HWND  hwnd ;
+int  column, row, xwidth, yheight ;
+long threadid;long bytesrecd,byteswritten;
+int ctr=0;int cnt=0;
+long _stdcall wndcallback(HWND wnd,unsigned int umsg,unsigned int wparam,long lparam);
+DCB dcb;WNDCLASS wndclass;MSG msg;
+
+unsigned char writestr[200];char ctemp;
+unsigned char packet[200];
+int packetsize;
+void recdpacket();
+long _stdcall commcallback()
+{
+unsigned char readstr[2] ;
+while (1)
+{ 	  ReadFile(handle,readstr,1,&amp;bytesrecd,0);
+	  if (readstr[0] == 0x7e )
+	 {
+	  if (ctr == 0)
+	  { 
+		  cnt=0;	
+		  ctr=1;
+	  }
+	  else if (ctr == 1)
+	  { 
+		  	ctr++;
+			
+	  }
+  	  else if (ctr == 2)
+	  { 
+		  	ctr = 1;
+			packet[cnt]=readstr[0];
+			cnt++;
+			packetsize=cnt;
+			cnt=0;
+			recdpacket();
+			
+	  }
+     }	 
+
+	  if (ctr ==2 )
+	  {	  packet[cnt]=readstr[0];
+		  cnt++;
+	  }
+
+
+	  if (readstr[0] == 13 )
+			column = 0 ;
+	  if (readstr[0] == 10)
+			row++;
+	  if (readstr[0] == 0x08)
+		   column -- ;
+	  if (readstr[0] != 0x0a &amp;&amp; readstr[0] != 0x0d)
+	  {
+		TextOut(hdc,column*xwidth,row*yheight,readstr,1);
+		if (column &lt; 79)
+				column++ ;
+		else
+		{
+			column = 0;
+			row++;
+		}
+	  }
+}
+return 1;
+}
+
+
+int _stdcall WinMain( HINSTANCE hinstance, HINSTANCE hprevinstance,LPSTR lpszcmdline, int ncmdshow )
+{
+wndclass.lpfnWndProc=wndcallback;
+wndclass.hInstance=hinstance;
+wndclass.hbrBackground=GetStockObject(WHITE_BRUSH) ;
+wndclass.lpszClassName="wclass";
+RegisterClass(&amp;wndclass);
+hwnd=CreateWindow("wclass","hi",WS_OVERLAPPEDWINDOW,0,0,0,0,0,0,hinstance,0);
+xwidth = 8;
+yheight = 19;
+ShowWindow( hwnd, 3 ) ;
+hdc=GetDC(hwnd);
+
+handle= CreateFile( "COM1", GENERIC_READ | GENERIC_WRITE,1,NULL,	
+	OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL );
+
+dcb.DCBlength = sizeof( DCB ) ;
+GetCommState( handle, &amp;dcb ) ;
+dcb.BaudRate = 14400 ;
+SetCommState( handle, &amp;dcb ) ;
+CreateThread(0,0,(LPTHREAD_START_ROUTINE) commcallback,0,0, &amp;threadid );
+strcpy(writestr,"atdt2659385\r");
+WriteFile(handle,writestr,strlen(writestr),&amp;byteswritten,0) ;
+while (GetMessage( &amp;msg, 0, 0, 0 ))
+   {
+       TranslateMessage( &amp;msg ) ;
+       DispatchMessage( &amp;msg ) ;
+   }
+   return 0;
+}
+
+
+long _stdcall wndcallback(HWND wnd,unsigned int umsg,unsigned int wparam,long lparam)
+{
+   if(umsg == WM_CHAR)
+   {
+         ctemp =  wparam;
+         WriteFile(handle,&amp;ctemp,1,&amp;byteswritten,0) ;
+   }
+    if(umsg == WM_DESTROY)
+	{
+		 ReleaseDC(wnd,hdc);
+         PostQuitMessage( 0 ) ;
+	}
+         return( DefWindowProc( wnd, umsg, wparam, lparam ) ) ;
+}  
+
+void recdpacket()
+{
+	int i;
+	sprintf(writestr," In RecdPacket packetsize=%d",packetsize);
+	abcstr(writestr);
+	for(i=0; i&lt;packetsize;i++)
+		abcchar(packet[i]);
+}
+</pre></blockquote>
+<p>
+In the previous program we tried to clear the mess by inserting key words in the opening file (z.txt).  However you'd have to be a Martians to understand the bytes. To put the bits and the bytes to some use, we must have the ability to manipulate them.  It automatically follows that to manipulate them we have to make arrangements for storing  the bits and bytes. In C, one of the best ways of storing data belonging to the same data type are "arrays". We, being the devout followers of the C cult do the same. In this program we will store the incoming data in the form of an array.
+</p><p>
+So much for the background information. Now lets look at the program, the changes over the previous program are minimal. In the earlier program we inserted words like "first 7e" and others into the output file. In this program we do away with these. We will be happy to just count the number of 'sets' of incoming data. Hence forth we will refer to all sets of data between two 0x7e's as "packets". We have used two variables which acts as counters, <i>cnt</i> acts as counter to the number of bytes in the packet. As we simple don't believe that variables doing the same job in different programs should have different names, we retain the variable <i>ctr</i> as the counter for the 0x7e's. Before we go any further lets explain the only other newcomer, recdpacket() which is just a simple function. All it does is, write to the z.txt file the packet size and the incoming data i.e. the packet itself.
+</p><p>
+Its high time we ripped the program apart and understood its functioning. Please spare your hair, because unlike our programs they are hard to get back. After the first 0x7e is ignored the second 0x7e marks the beginning of the packet. The array <i>packet</i> is used to store the incoming data. The stage is set for the grand entry of the third 0x7e. The third 0x7e marks the end of the data packet. The third 0x7e satisfies the second <i>else if</i> condition and triggers off a chain reaction. The cnt value which was being incremented denotes the length of packet. The variable <i>packetsize </i>is initialized to that value. The array <i>packet</i> contains the received data. The function recdpacket is called. This function in turn calls the functions abcstr() and abcchar() which write the packet size and the received data to the z.txt file. 
+</p><p>
+</p><ul>
+<li><a href="http://www.vijaymukhi.com/vmis/zlcp2.htm">z.txt</a>
+</li></ul>
+<p>
+While presenting the contents of the output file generated using the earlier programs we had shown the entire contents of these files.  However adopting a similar approach for the future programs does not make any sense, therefore henceforth we will be showing the data packets minus the preceding dialing details.  The packet sizes are at times 45 bytes long as against 44 on some other occasion.  The bytes 0-31, 7d and 7e have been escaped with 7d .
+</p><p>
+Though this program provides us with the ability to arrange the data into more manageable forms, the actual management of the bits is but one step (or one program) away. So check out the next program, where we leap into the vortex of PPP
+</p><p>
+<u><b>LCP3.C</b></u>
+</p><blockquote><pre>#include &lt;windows.h&gt;
+#include &lt;stdio.h&gt;
+struct packet
+{
+unsigned char data[1000];
+int packetsize;
+};
+
+void abcstr(char *p)
+{
+	FILE *fp;
+	fp=fopen("c:\\z.txt","a+");
+	fprintf(fp,"%s\n",p);
+	fclose(fp);
+}
+void abcchar(unsigned char c)
+{
+	FILE *fp;
+	fp=fopen("c:\\z.txt","a+");
+	fprintf(fp,"%c..%x..%d\n",c,c,c);
+	fclose(fp);
+}
+
+void processpacket();
+long _stdcall wndcallback(HWND wnd,unsigned int umsg,unsigned int wparam,long lparam);
+HDC  hdc ;
+HANDLE  handle ;
+HWND  hwnd ;
+struct packet recdpacket;
+int  column, row, xwidth, yheight ,cnt=0, ctr=0;
+long threadid, bytesrecd,byteswritten;
+DCB dcb;
+WNDCLASS wndclass;
+MSG msg;
+unsigned char writestr[200],ctemp;
+
+long _stdcall commcallback()
+{
+ unsigned char  readstr[2] ; 
+ while (1)
+ { 	  
+	ReadFile(handle,readstr,1,&amp;bytesrecd,0);
+	if (readstr[0] == 0x7e )
+	{
+	  if(ctr == 0)
+	  {
+		  cnt=0;	
+		  ctr=1;
+	  }
+	  else if (ctr == 1)
+	  { 
+		  	ctr++;
+			
+	  }
+  	  else if (ctr == 2)
+	  { 
+		  	ctr = 1;
+			recdpacket.data[cnt]=readstr[0];
+			cnt++;
+			recdpacket.packetsize=cnt;
+			cnt=0;
+			processpacket();
+	  }
+    }	 
+	if (ctr ==2 )
+	{	  
+		recdpacket.data[cnt]=readstr[0];
+		cnt++;
+	}
+    if (readstr[0] == 13 )
+		column = 0 ;
+    if (readstr[0] == 10)
+		row++;
+    if (readstr[0] == 0x08)
+	    column -- ;
+	if (readstr[0] != 0x0a &amp;&amp; readstr[0] != 0x0d)
+	{
+		TextOut(hdc,column*xwidth,row*yheight,readstr,1);
+		if (column &lt; 79)
+				column++ ;
+		else
+		{
+			column = 0;
+			row++;
+		}
+	}
+ }
+ return 1 ;
+}
+
+
+int _stdcall WinMain( HINSTANCE hinstance, HINSTANCE hprevinstance,LPSTR lpszcmdline, int ncmdshow )
+{
+wndclass.lpfnWndProc=wndcallback;
+wndclass.hInstance=hinstance;
+wndclass.hbrBackground=GetStockObject(WHITE_BRUSH) ;
+wndclass.lpszClassName="wclass";
+RegisterClass(&amp;wndclass);
+hwnd=CreateWindow("wclass","hi",WS_OVERLAPPEDWINDOW,0,0,0,0,0,0,hinstance,0);
+xwidth = 8;
+yheight = 19;
+ShowWindow( hwnd, 3 ) ;
+hdc=GetDC(hwnd);
+
+handle= CreateFile( "COM1", GENERIC_READ | GENERIC_WRITE,1,NULL,	
+	OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL );
+
+dcb.DCBlength = sizeof( DCB ) ;
+GetCommState( handle, &amp;dcb ) ;
+dcb.BaudRate = 14400 ;
+SetCommState( handle, &amp;dcb ) ;
+CreateThread(0,0,(LPTHREAD_START_ROUTINE) commcallback,0,0, &amp;threadid );
+strcpy(writestr,"atdt2659385\r");
+WriteFile(handle,writestr,strlen(writestr),&amp;byteswritten,0) ;
+while (GetMessage( &amp;msg, 0, 0, 0 ))
+   {
+       TranslateMessage( &amp;msg ) ;
+       DispatchMessage( &amp;msg ) ;
+   }
+   return 0 ;
+}
+
+
+long _stdcall wndcallback(HWND wnd,unsigned int umsg,unsigned int wparam,long lparam)
+{
+   if(umsg == WM_CHAR)
+   {
+         ctemp =  wparam;
+         WriteFile(handle,&amp;ctemp,1,&amp;byteswritten,0) ;
+   }
+    if(umsg == WM_DESTROY)
+	{
+		 ReleaseDC(wnd,hdc);
+         PostQuitMessage( 0 ) ;
+	}
+         return( DefWindowProc( wnd, umsg, wparam, lparam ) ) ;
+}  
+
+
+void processpacket()
+{
+	int i;
+	sprintf(writestr,"packetsize=%d",recdpacket.packetsize);
+	abcstr(writestr);
+	for(i=0; i&lt;recdpacket.packetsize;i++)
+		abcchar(recdpacket.data[i]);
+	
+}
+</pre></blockquote>
+<p>
+Writing about this program was one of the simplest task to carry out.  Since on comparing the output  of the earlier program with this program we find that there is hardly  any difference. Remember in the earlier program we told you that one of the best way of arranging  data of the same data type is using arrays.  We weren't wrong.  But what we did not tell you (or rather did not want to tell you then) was that though arrays may be good for same data types, when it comes to dissimilar data types, structures are a class apart.
+</p><p>
+In this program we introduce a structure called <i>packet</i> .This structure has two members, an array of 1000 elements of type char and an integer variable called <i>packetsize</i>.  The rest of the program remains the same.  Here instead of storing the packet size and the array of data as discrete elements, we store them as members of the same structure.  Maybe now you will appreciate our foresight in using  general functions which have retained their flavor in all our programs.
+</p><p>
+Though it is our mission statement to promote the use of the 'z.txt' file, as it provides a clearer understanding of the all the related concepts, we have not provided the contents of the output file in case of this program.  The rationale behind such a move is very simple, there is no difference between the output file of this program and the one obtained with the previous program.  The difference between the two programs lies in the manner in which the data is stored, which is an 'internal matter' and is not reflected in the output file.  So if you have understood the function in one of the programs then you have understood them all. So go over to the next program and we will actually start-off decoding the incoming bytes.
+</p><p>
+<b><u>LCP4.C</u></b>
+</p><p>
+</p><blockquote><pre>#include &lt;windows.h&gt;
+#include &lt;stdio.h&gt;
+
+struct packet
+{
+unsigned char data[1000];
+int packetsize;
+};
+
+void abcstr(char *p)
+{
+	FILE *fp;
+	fp=fopen("c:\\z.txt","a+");
+	fprintf(fp,"%s\n",p);
+	fclose(fp);
+}
+void abcchar(unsigned char c)
+{
+	FILE *fp;
+	fp=fopen("c:\\z.txt","a+");
+	fprintf(fp,"%c..%x..%d\n",c,c,c);
+	fclose(fp);
+}
+void processpacket();
+void unescapepacket(struct packet *,struct packet *);
+
+long _stdcall wndcallback(HWND wnd,unsigned int umsg,unsigned int wparam,long lparam);
+
+HDC  hdc ;
+HANDLE  handle ;
+HWND  hwnd ;
+
+struct packet recdpacket;
+int  column, row, xwidth, yheight ,cnt=0, ctr=0;
+long threadid, bytesrecd,byteswritten;
+DCB dcb;
+WNDCLASS wndclass;
+MSG msg;
+unsigned char writestr[200],ctemp;
+
+long _stdcall commcallback()
+{
+ unsigned char readstr[2] ; 
+ while (1)
+ { 	  
+	ReadFile(handle,readstr,1,&amp;bytesrecd,0);
+	if (readstr[0] == 0x7e )
+	{
+	  if(ctr == 0)
+	  {
+		  cnt=0;	
+		  ctr=1;
+	  }
+	  else if (ctr == 1)
+	  { 
+		  	ctr++;
+			
+	  }
+  	  else if (ctr == 2)
+	  { 
+		  	ctr = 1;
+			recdpacket.data[cnt]=readstr[0];
+			cnt++;
+			recdpacket.packetsize=cnt;
+			cnt=0;
+			processpacket();
+	  }
+    }	 
+	if (ctr ==2 )
+	{	  
+		recdpacket.data[cnt]=readstr[0];
+		cnt++;
+	}
+    if (readstr[0] == 13 )
+		column = 0 ;
+    if (readstr[0] == 10)
+		row++;
+    if (readstr[0] == 0x08)
+	    column -- ;
+	if (readstr[0] != 0x0a &amp;&amp; readstr[0] != 0x0d)
+	{
+		TextOut(hdc,column*xwidth,row*yheight,readstr,1);
+		if (column &lt; 79)
+				column++ ;
+		else
+		{
+			column = 0;
+			row++;
+		}
+	}
+ }
+ return 1 ;
+}
+
+
+int _stdcall WinMain( HINSTANCE hinstance, HINSTANCE hprevinstance,LPSTR lpszcmdline, int ncmdshow )
+{
+wndclass.lpfnWndProc=wndcallback;
+wndclass.hInstance=hinstance;
+wndclass.hbrBackground=GetStockObject(WHITE_BRUSH);
+wndclass.lpszClassName="wclass";
+RegisterClass(&amp;wndclass);
+hwnd=CreateWindow("wclass","hi",WS_OVERLAPPEDWINDOW,0,0,0,0,0,0,hinstance,0);
+xwidth = 8;
+yheight = 19;
+ShowWindow( hwnd, 3 ) ;
+hdc=GetDC(hwnd);
+
+handle= CreateFile( "COM1", GENERIC_READ | GENERIC_WRITE,1,NULL,	
+	OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL );
+
+dcb.DCBlength = sizeof( DCB ) ;
+GetCommState( handle, &amp;dcb ) ;
+dcb.BaudRate = 14400 ;
+SetCommState( handle, &amp;dcb ) ;
+CreateThread(0,0,(LPTHREAD_START_ROUTINE) commcallback,0,0, &amp;threadid );
+strcpy(writestr,"atdt2659385\r");
+WriteFile(handle,writestr,strlen(writestr),&amp;byteswritten,0) ;
+while (GetMessage( &amp;msg, 0, 0, 0 ))
+   {
+       TranslateMessage( &amp;msg ) ;
+       DispatchMessage( &amp;msg ) ;
+   }
+   return 0;
+}
+
+long _stdcall wndcallback(HWND wnd,unsigned int umsg,unsigned int wparam,long lparam)
+{
+   if(umsg == WM_CHAR)
+   {
+         ctemp = wparam;
+         WriteFile(handle,&amp;ctemp,1,&amp;byteswritten,0) ;
+   }
+    if(umsg == WM_DESTROY)
+	{
+		 ReleaseDC(wnd,hdc);
+         PostQuitMessage( 0 ) ;
+	}
+         return( DefWindowProc( wnd, umsg, wparam, lparam ) ) ;
+}  
+
+
+void processpacket()
+{
+	struct packet unescpacket;
+	int i;
+	sprintf(writestr,"Recd Packet packetsize=%d",recdpacket.packetsize);
+	abcstr(writestr);
+	for(i=0; i&lt;recdpacket.packetsize;i++)
+		abcchar(recdpacket.data[i]);
+	unescapepacket(&amp;recdpacket,&amp;unescpacket);
+	sprintf(writestr,"UnEscaped Data ..packetsize=%d",unescpacket.packetsize);
+	abcstr(writestr);
+	for(i=0; i&lt;unescpacket.packetsize;i++)
+		abcchar(unescpacket.data[i]);
+}
+
+
+void unescapepacket(struct packet *r, struct packet *u)
+{	int i,j;
+
+	for(j=0,i=0;i&lt;r-&gt;packetsize;i++,j++)
+	{
+		if (r-&gt;data[i]==0x7d)
+		{
+			i++;
+			u-&gt;data[j]=r-&gt;data[i]^0x20;
+		}
+		else
+		{
+		u-&gt;data[j]=r-&gt;data[i];
+		}
+	}
+	u-&gt;packetsize=j;
+}
+</pre></blockquote>
+<p>
+Now we have to get down to the brasstracks.  Its time we actually start doing something with the data.  The first thing that we have to do is get back all the data that had to be escaped at the transmission end. In case you are still clueless about escape character then its high time you checked out the write up on  escaping characters at the start of the PPP tutorial. Check it or check out now because without knowing about character escaping you will  NOT understand this program.
+</p><p>
+As a carry over from our previous program we will henceforth use structures to store our incoming data. In this program we have not one, but two structures.  In one of the structures <i>recdpacket</i> is used to store the incoming data whereas in the other structure <i>unescpacket</i> as the name suggest is used to store the data which has been obtained by unescaping the data packets.
+</p><p>
+Lets blast off by explaining the newest kid on the block, the function called <i>unescapepacket</i>.  Here we pass the structures, <i>packets</i> and <i>unespacket</i> as the parameters to the function.  The replacements of the words <i>recdpacket</i> and <i>unescpacket</i> by the variables r and u may not go down well with purist. But then using the original names makes  the program difficult to handle and making life complicated is not our forte.  Let's get back to the heart of the function (coronary angiography, anyone!!). The function contains a <i>for</i> loop where the number of iterations equal the packet size.   The <i>if </i> loop is used to detect the presence of the 0x7d which acts as the escape character.  When the presence of a 0x7d is detected, the succeeding data is XORed with 0x20 to get back the original number.  If you still haven't figured out why 0x20 is used it means that you have not taken our advice to check the write up on  escaping characters.  So do it NOW. The array of data items which have been unescaped is stored in another array which is part of the structure <i>unescpacket</i>.  The function <i>unescapepacket</i> returns a void pointer however the changes in the structure variable value is affected by passing the address off the memory  location during the function reference. The efficacy of the function <i>processpacket</i> has also been extended in this program.  The <i>processpacket</i> is the point where the function <i>unescapepacket</i> is referenced.  Writing to the disk is effected in this function. 
+</p><p>
+</p><ul>
+<li><a href="http://www.vijaymukhi.com/vmis/zlcp4.htm">z.txt</a>
+</li></ul>
+<p>
+This program would come as a boon for those who have been sitting on the edge of their seats, and urging us to get on with the act.  The output file presented above is an ample proof of our efforts.  The unescaped bytes have been presented along with their escaped cousins.  As can be seen the unescaped packet is smaller than the escaped packet by 20 bytes. Un-escaping the data, allows us to put the bytes to good use. Now we can assume charge of the data flowing on the system.  This was the first program where we manipulated the data In our next program we would go one step further take  the covers off the data.
+</p><p>	
+<b><u>LCP5.C</u></b>
+</p><p>
+</p><blockquote><pre>#include &lt;windows.h&gt;
+#include &lt;stdio.h&gt;
+struct packet
+{
+unsigned char data[1000];
+int packetsize;
+};
+void abcstr(char *p)
+{
+	FILE *fp;
+	fp=fopen("c:\\z.txt","a+");
+	fprintf(fp,"%s\n",p);
+	fclose(fp);
+}
+void abcchar(unsigned char c)
+{
+	FILE *fp;
+	fp=fopen("c:\\z.txt","a+");
+	fprintf(fp,"%c..%x..%d\n",c,c,c);
+	fclose(fp);
+}
+void processpacket();
+void unescapepacket(struct packet *,struct packet *);
+void removeframe(struct packet *,struct packet *);
+long _stdcall wndcallback(HWND wnd,unsigned int umsg,unsigned int wparam,long lparam);
+
+HDC  hdc ;
+HANDLE  handle ;
+HWND  hwnd ;
+
+struct packet recdpacket;
+
+int  column, row, xwidth, yheight ,cnt=0, ctr=0;
+long threadid, bytesrecd,byteswritten;
+DCB dcb;
+WNDCLASS wndclass;
+MSG msg;
+unsigned char writestr[200],ctemp;
+
+long _stdcall commcallback()
+{
+ unsigned char readstr[2] ; 
+ while (1)
+ { 	  
+	ReadFile(handle,readstr,1,&amp;bytesrecd,0);
+	if (readstr[0] == 0x7e )
+	{
+	  if(ctr == 0)
+	  {
+		  cnt=0;	
+		  ctr=1;
+	  }
+	  else if (ctr == 1)
+	  { 
+		  	ctr++;
+			
+	  }
+  	  else if (ctr == 2)
+	  { 
+		  	ctr = 1;
+			recdpacket.data[cnt]=readstr[0];
+			cnt++;
+			recdpacket.packetsize=cnt;
+			cnt=0;
+			processpacket();
+	  }
+    }	 
+	if (ctr ==2 )
+	{	  
+		recdpacket.data[cnt]=readstr[0];
+		cnt++;
+	}
+    if (readstr[0] == 13 )
+		column = 0 ;
+    if (readstr[0] == 10)
+		row++;
+    if (readstr[0] == 0x08)
+	    column -- ;
+	if (readstr[0] != 0x0a &amp;&amp; readstr[0] != 0x0d)
+	{
+		TextOut(hdc,column*xwidth,row*yheight,readstr,1);
+		if (column &lt; 79)
+				column++ ;
+		else
+		{
+			column = 0;
+			row++;
+		}
+	}
+ }
+ return 1;
+}
+int _stdcall WinMain( HINSTANCE hinstance, HINSTANCE hprevinstance,LPSTR lpszcmdline, int ncmdshow )
+{
+wndclass.lpfnWndProc=wndcallback;
+wndclass.hInstance=hinstance;
+wndclass.hbrBackground=GetStockObject(WHITE_BRUSH);
+wndclass.lpszClassName="wclass";
+RegisterClass(&amp;wndclass);
+hwnd=CreateWindow("wclass","hi",WS_OVERLAPPEDWINDOW,0,0,0,0,0,0,hinstance,0);
+xwidth = 8;
+yheight = 19;
+ShowWindow( hwnd, 3 ) ;
+hdc=GetDC(hwnd);
+
+handle= CreateFile( "COM1", GENERIC_READ | GENERIC_WRITE,1,NULL,	
+	OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL );
+
+dcb.DCBlength = sizeof( DCB ) ;
+GetCommState( handle, &amp;dcb ) ;
+dcb.BaudRate = 14400 ;
+SetCommState( handle, &amp;dcb ) ;
+CreateThread(0,0,(LPTHREAD_START_ROUTINE) commcallback,0,0, &amp;threadid );
+strcpy(writestr,"atdt2659385\r");
+WriteFile(handle,writestr,strlen(writestr),&amp;byteswritten,0) ;
+while (GetMessage( &amp;msg, 0, 0, 0 ))
+   {
+       TranslateMessage( &amp;msg ) ;
+       DispatchMessage( &amp;msg ) ;
+   }
+   return 0 ;
+}
+long _stdcall wndcallback(HWND wnd,unsigned int  umsg,unsigned int  wparam,long lparam)
+{
+   if(umsg == WM_CHAR)
+   {
+         ctemp = wparam;
+         WriteFile(handle,&amp;ctemp,1,&amp;byteswritten,0) ;
+   }
+    if(umsg == WM_DESTROY)
+	{
+		 ReleaseDC(wnd,hdc);
+         PostQuitMessage( 0 ) ;
+	}
+         return( DefWindowProc( wnd, umsg, wparam, lparam ) ) ;
+}  
+void processpacket()
+{
+	struct packet unescpacket,finalpacket;
+	int i;
+	sprintf(writestr,"Recd Packet packetsize=%d",recdpacket.packetsize);
+	abcstr(writestr);
+	for(i=0; i&lt;recdpacket.packetsize;i++)
+		abcchar(recdpacket.data[i]);
+	unescapepacket(&amp;recdpacket,&amp;unescpacket);
+	sprintf(writestr,"UnEscaped Data ..packetsize=%d",unescpacket.packetsize);
+	abcstr(writestr);
+	for(i=0; i&lt;unescpacket.packetsize;i++)
+		abcchar(unescpacket.data[i]);
+	removeframe(&amp;unescpacket,&amp;finalpacket);
+	sprintf(writestr,"Final Data ..packetsize=%d",finalpacket.packetsize);
+	abcstr(writestr);
+	for(i=0; i&lt;finalpacket.packetsize;i++)
+		abcchar(finalpacket.data[i]);
+	
+}
+void unescapepacket(struct packet *r, struct packet *u)
+{	int i,j;
+
+	for(j=0,i=0;i&lt;r-&gt;packetsize;i++,j++)
+	{
+		if (r-&gt;data[i]==0x7d)
+		{
+			i++;
+			u-&gt;data[j]=r-&gt;data[i]^0x20;
+		}
+		else
+		{
+		u-&gt;data[j]=r-&gt;data[i];
+		}
+	}
+	u-&gt;packetsize=j;
+}
+void removeframe(struct packet *u,struct packet *f)
+{
+	int i,j;
+	for(i=0,j=3;j&lt;u-&gt;packetsize-3;i++,j++)
+	{
+	f-&gt;data[i]=u-&gt;data[j];
+	}
+	f-&gt;packetsize=i;
+}
+</pre></blockquote>
+<p>
+The PPP envelope (OOPS !! the PPP encapsulation) has to be removed to get the raw data that we want. The why's and how's of the encapsulation are explained in <a href="http://www.vijaymukhi.com/vmis/ppp.htm">our PPP introduction page</a>. So please refer to them for details. The Encapsulations consist of the following. 
+</p><p>
+</p><ul>
+<li>A 0x7e at the start of the data packet
+</li><li>0xff =&gt; the control bit.
+</li><li>0x03 =&gt; the unescaped address bit.
+</li><li>The two byte checksum towards the end of the data stream.
+</li><li>The second 0x7e at the end of the data packet.
+</li></ul>
+Let us look into how each of the byte are take care of. By the way we forgot to tell you that in case of the first packet we two <i>0x7e</i> at the start of the packet However the first <i>0x7e</i> is ignored and hence does not increased the weight on our already drooping shoulder. The responsibility of removing the PPP encapsulation lies on the shoulder of a function called <i>removeframe</i>. The function is almost self explanatory. However, what needs to be explained is the logic behind the function implementation.
+<p>
+When we see PPP encapsulated data we find that the encapsulation consist of six bytes of which three byte appear at the start and three bytes at the end of the packet. So if we were to simply ignore these bytes then all we will be left with is the data. Simple !, well it is always simple when someone else has figured it out.  The output file is reproduced below to provide a better picture of the proceedings of the show
+</p><p>
+</p><ul>
+<li><a href="http://www.vijaymukhi.com/vmis/zlcp5.htm">z.txt</a>
+</li></ul>
+<p>
+Due to our foresight we could foresee the need for the captions that have been inserted by us in the program.  The received bytes are stored under the heading "Bytes received", the un-escaped bytes can be found under the heading "Unescaped Data" whereas the data packet in all it's glory is presented under the header "Final Data".  As can be seen the final data packet is of almost half the size of the un-escaped data packet.  Now the data is battle-ready and can be easily manipulated. Well then what are you waiting for, on to the next program.
+</p><p> 
+<u><b>LCP6.C</b></u>
+</p><p>
+</p><blockquote><pre>
+#include &lt;windows.h&gt;
+#include &lt;stdio.h&gt;
+
+#define PPPINITFCS16 0xffff
+#define PPPGOODFCS16 0xf0b8
+
+struct packet
+{
+unsigned char data[1000];
+unsigned int packetsize;
+};
+
+void abcstr(char *p)
+{
+	FILE *fp;
+	fp=fopen("c:\\z.txt","a+");
+	fprintf(fp,"%s\n",p);
+	fclose(fp);
+}
+void abcchar(unsigned char c)
+{
+	FILE *fp;
+	fp=fopen("c:\\z.txt","a+");
+	fprintf(fp,"%c..%x..%d\n",c,c,c);
+	fclose(fp);
+}
+
+void processpacket();
+void unescapepacket(struct packet *,struct packet *);
+void removeframe(struct packet *,struct packet *);
+long _stdcall wndcallback(HWND wnd,unsigned int umsg,unsigned int wparam,long lParam);
+void lcppacket(struct packet *);
+void sendconfreq();
+unsigned int calcchksum(unsigned char *,int );
+void escapepacket(struct packet *);
+void addsevene(struct packet *);
+void sendpacket(struct packet *);
+
+HDC  hdc ;
+HANDLE  handle ;
+HWND  hwnd ;
+
+struct packet recdpacket;
+
+int  column, row, xwidth, yheight ,cnt=0, ctr=0;
+long threadid, bytesrecd,byteswritten;
+DCB dcb;
+WNDCLASS wndclass;
+MSG msg;
+unsigned char writestr[200],ctemp;
+
+
+static unsigned short fcstab[256] = {
+    0x0000, 0x1189, 0x2312, 0x329b, 0x4624, 0x57ad, 0x6536, 0x74bf,
+    0x8c48, 0x9dc1, 0xaf5a, 0xbed3, 0xca6c, 0xdbe5, 0xe97e, 0xf8f7,
+    0x1081, 0x0108, 0x3393, 0x221a, 0x56a5, 0x472c, 0x75b7, 0x643e,
+    0x9cc9, 0x8d40, 0xbfdb, 0xae52, 0xdaed, 0xcb64, 0xf9ff, 0xe876,
+    0x2102, 0x308b, 0x0210, 0x1399, 0x6726, 0x76af, 0x4434, 0x55bd,
+    0xad4a, 0xbcc3, 0x8e58, 0x9fd1, 0xeb6e, 0xfae7, 0xc87c, 0xd9f5,
+    0x3183, 0x200a, 0x1291, 0x0318, 0x77a7, 0x662e, 0x54b5, 0x453c,
+    0xbdcb, 0xac42, 0x9ed9, 0x8f50, 0xfbef, 0xea66, 0xd8fd, 0xc974,
+    0x4204, 0x538d, 0x6116, 0x709f, 0x0420, 0x15a9, 0x2732, 0x36bb,
+    0xce4c, 0xdfc5, 0xed5e, 0xfcd7, 0x8868, 0x99e1, 0xab7a, 0xbaf3,
+    0x5285, 0x430c, 0x7197, 0x601e, 0x14a1, 0x0528, 0x37b3, 0x263a,
+    0xdecd, 0xcf44, 0xfddf, 0xec56, 0x98e9, 0x8960, 0xbbfb, 0xaa72,
+    0x6306, 0x728f, 0x4014, 0x519d, 0x2522, 0x34ab, 0x0630, 0x17b9,
+    0xef4e, 0xfec7, 0xcc5c, 0xddd5, 0xa96a, 0xb8e3, 0x8a78, 0x9bf1,
+    0x7387, 0x620e, 0x5095, 0x411c, 0x35a3, 0x242a, 0x16b1, 0x0738,
+    0xffcf, 0xee46, 0xdcdd, 0xcd54, 0xb9eb, 0xa862, 0x9af9, 0x8b70,
+    0x8408, 0x9581, 0xa71a, 0xb693, 0xc22c, 0xd3a5, 0xe13e, 0xf0b7,
+    0x0840, 0x19c9, 0x2b52, 0x3adb, 0x4e64, 0x5fed, 0x6d76, 0x7cff,
+    0x9489, 0x8500, 0xb79b, 0xa612, 0xd2ad, 0xc324, 0xf1bf, 0xe036,
+    0x18c1, 0x0948, 0x3bd3, 0x2a5a, 0x5ee5, 0x4f6c, 0x7df7, 0x6c7e,
+    0xa50a, 0xb483, 0x8618, 0x9791, 0xe32e, 0xf2a7, 0xc03c, 0xd1b5,
+    0x2942, 0x38cb, 0x0a50, 0x1bd9, 0x6f66, 0x7eef, 0x4c74, 0x5dfd,
+    0xb58b, 0xa402, 0x9699, 0x8710, 0xf3af, 0xe226, 0xd0bd, 0xc134,
+    0x39c3, 0x284a, 0x1ad1, 0x0b58, 0x7fe7, 0x6e6e, 0x5cf5, 0x4d7c,
+    0xc60c, 0xd785, 0xe51e, 0xf497, 0x8028, 0x91a1, 0xa33a, 0xb2b3,
+    0x4a44, 0x5bcd, 0x6956, 0x78df, 0x0c60, 0x1de9, 0x2f72, 0x3efb,
+    0xd68d, 0xc704, 0xf59f, 0xe416, 0x90a9, 0x8120, 0xb3bb, 0xa232,
+    0x5ac5, 0x4b4c, 0x79d7, 0x685e, 0x1ce1, 0x0d68, 0x3ff3, 0x2e7a,
+    0xe70e, 0xf687, 0xc41c, 0xd595, 0xa12a, 0xb0a3, 0x8238, 0x93b1,
+    0x6b46, 0x7acf, 0x4854, 0x59dd, 0x2d62, 0x3ceb, 0x0e70, 0x1ff9,
+    0xf78f, 0xe606, 0xd49d, 0xc514, 0xb1ab, 0xa022, 0x92b9, 0x8330,
+    0x7bc7, 0x6a4e, 0x58d5, 0x495c, 0x3de3, 0x2c6a, 0x1ef1, 0x0f78
+};
+
+long _stdcall commcallback()
+{
+ unsigned char readstr[2] ; 
+ while (1)
+ { 	  
+	ReadFile(handle,readstr,1,&amp;bytesrecd,0);
+	if (readstr[0] == 0x7e )
+	{
+	  if(ctr == 0)
+	  {
+		  cnt=0;	
+		  ctr=1;
+	  }
+	  else if (ctr == 1)
+	  { 
+		  	ctr++;
+			
+	  }
+  	  else if (ctr == 2)
+	  { 
+		  	ctr = 1;
+			recdpacket.data[cnt]=readstr[0];
+			cnt++;
+			recdpacket.packetsize=cnt;
+			cnt=0;
+			processpacket();
+	  }
+    }	 
+	if (ctr ==2 )
+	{	  
+		recdpacket.data[cnt]=readstr[0];
+		cnt++;
+	}
+    if (readstr[0] == 13 )
+		column = 0 ;
+    if (readstr[0] == 10)
+		row++;
+    if (readstr[0] == 0x08)
+	    column -- ;
+	if (readstr[0] != 0x0a &amp;&amp; readstr[0] != 0x0d)
+	{
+		TextOut(hdc,column*xwidth,row*yheight,readstr,1);
+		if (column &lt; 79)
+				column++ ;
+		else
+		{
+			column = 0;
+			row++;
+		}
+	}
+ }
+ return 1;
+}
+
+
+int _stdcall WinMain( HINSTANCE hinstance, HINSTANCE hprevinstance,LPSTR lpszcmdline, int ncmdshow )
+{
+wndclass.lpfnWndProc=wndcallback;
+wndclass.hInstance=hinstance;
+wndclass.hbrBackground=GetStockObject(WHITE_BRUSH);
+wndclass.lpszClassName="wclass";
+RegisterClass(&amp;wndclass);
+hwnd=CreateWindow("wclass","hi",WS_OVERLAPPEDWINDOW,0,0,0,0,0,0,hinstance,0);
+xwidth = 8;
+yheight = 19;
+ShowWindow( hwnd, 3 ) ;
+hdc=GetDC(hwnd);
+
+handle= CreateFile( "COM1", GENERIC_READ | GENERIC_WRITE,1,NULL,	
+	OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL );
+
+dcb.DCBlength = sizeof( DCB ) ;
+GetCommState( handle, &amp;dcb ) ;
+dcb.BaudRate = 14400 ;
+SetCommState( handle, &amp;dcb ) ;
+CreateThread(0,0,(LPTHREAD_START_ROUTINE) commcallback,0,0, &amp;threadid );
+strcpy(writestr,"atdt2659385\r");
+WriteFile(handle,writestr,strlen(writestr),&amp;byteswritten,0) ;
+while (GetMessage( &amp;msg, 0, 0, 0 ))
+   {
+       TranslateMessage( &amp;msg ) ;
+       DispatchMessage( &amp;msg ) ;
+   }
+   return 0;
+}
+
+
+long _stdcall wndcallback(HWND wnd,unsigned int umsg,unsigned int wparam,long lparam)
+{
+   if(umsg == WM_CHAR)
+   {
+         ctemp = wparam;
+         WriteFile(handle,&amp;ctemp,1,&amp;byteswritten,0) ;
+   }
+    if(umsg == WM_DESTROY)
+	{
+		 ReleaseDC(wnd,hdc);
+         PostQuitMessage( 0 ) ;
+	}
+         return( DefWindowProc( wnd, umsg, wparam, lparam ) ) ;
+}  
+
+
+void processpacket()
+{
+	struct packet unescpacket,finalpacket;
+	unsigned int i;
+	sprintf(writestr,"Recd Packet packetsize=%d",recdpacket.packetsize);
+	abcstr(writestr);
+	unescapepacket(&amp;recdpacket,&amp;unescpacket);
+	sprintf(writestr,"UnEscaped Data ..packetsize=%d",unescpacket.packetsize);
+	abcstr(writestr);
+	for(i=0; i&lt;unescpacket.packetsize;i++)
+		abcchar(unescpacket.data[i]);
+	removeframe(&amp;unescpacket,&amp;finalpacket);
+	if(finalpacket.data[0] == 0xc0 &amp;&amp; finalpacket.data[1] == 0x21)
+		lcppacket(&amp;finalpacket);
+
+}
+
+
+void unescapepacket(struct packet *r, struct packet *u)
+{	unsigned int i,j;
+
+	for(j=0,i=0;i&lt;r-&gt;packetsize;i++,j++)
+	{
+		if (r-&gt;data[i]==0x7d)
+		{
+			i++;
+			u-&gt;data[j]=r-&gt;data[i]^0x20;
+		}
+		else
+		{
+		u-&gt;data[j]=r-&gt;data[i];
+		}
+	}
+	u-&gt;packetsize=j;
+}
+
+
+void removeframe(struct packet *u,struct packet *f)
+{
+	unsigned int i,j;
+	for(i=0,j=3;j&lt;u-&gt;packetsize-3;i++,j++)
+	{
+	f-&gt;data[i]=u-&gt;data[j];
+	}
+	f-&gt;packetsize=i;
+}
+
+void lcppacket(struct packet *lcp)
+{
+if (lcp-&gt;data[2]== 1)
+{
+	sendconfreq();
+}
+
+}
+void sendconfreq()
+{
+struct packet lcpreq;
+unsigned short i;
+abcstr("in sendconfreq");
+lcpreq.data[0]=0xff;
+lcpreq.data[1]=0x03;
+lcpreq.data[2]=0xc0;
+lcpreq.data[3]=0x21;
+lcpreq.data[4]=0x01;
+lcpreq.data[5]=0x00;
+lcpreq.data[6]=0x00;
+lcpreq.data[7]=0x04;
+lcpreq.packetsize=8;
+lcpreq.packetsize=calcchksum(lcpreq.data,8);
+for(i=0; i&lt; lcpreq.packetsize;i++)
+	abcchar(lcpreq.data[i]);
+
+escapepacket(&amp;lcpreq);
+addsevene(&amp;lcpreq);
+sendpacket(&amp;lcpreq);
+}
+
+unsigned short pppfcs16(register unsigned short fcs,register unsigned char *cp,
+						register int len)
+{
+while ( len -- )
+fcs = ( fcs&gt;&gt;8 ) ^ fcstab[ (fcs^*cp++) &amp; 0xff];
+return fcs;
+}
+
+unsigned int calcchksum(register unsigned char *cp,register int len)
+{
+unsigned short trialfcs;
+trialfcs = pppfcs16(PPPINITFCS16,cp,len);
+trialfcs ^= 0xffff;
+cp[len] = (trialfcs &amp; 0x00ff);
+cp[len+1] = ((trialfcs &gt;&gt; 8 ) &amp; 0x00ff);
+return len+2;
+}
+
+void escapepacket(struct packet * epacket)
+{
+	struct packet dummy;
+	unsigned int i,j;
+
+	for(i=0;i&lt;epacket-&gt;packetsize;i++)
+	{
+		dummy.data[i]=epacket-&gt;data[i];
+	}
+	dummy.packetsize=epacket-&gt;packetsize;
+     
+	for(j=0,i=0;i&lt;dummy.packetsize;i++,j++)
+	{
+		if (dummy.data[i] &lt;= 31 || dummy.data[i] == 0x7e || dummy.data[i]== 0x7d)
+		{
+			epacket-&gt;data[j]=0x7d;
+			j++;
+			epacket-&gt;data[j]=dummy.data[i]^0x20;
+		}
+		else
+			epacket-&gt;data[j]=dummy.data[i];
+	}
+	epacket-&gt;packetsize=j;
+	
+}
+
+void addsevene(struct packet * apacket)
+{
+	struct packet dummy;
+	unsigned int i,j;
+	for(i=0;i&lt;apacket-&gt;packetsize;i++)
+	{
+		dummy.data[i]=apacket-&gt;data[i];
+	}
+	dummy.packetsize=i;
+	apacket-&gt;data[0]=0x7e;
+	for(i=0,j=1;i&lt;dummy.packetsize;i++,j++)
+	{
+		apacket-&gt;data[j]=dummy.data[i];
+	}
+
+	apacket-&gt;data[j]=0x7e;
+	j++;
+	apacket-&gt;packetsize=j;
+}
+
+void sendpacket(struct packet * spacket)
+{
+WriteFile(handle,spacket-&gt;data,spacket-&gt;packetsize,&amp;byteswritten,0) ;
+sprintf(writestr,"Send Packet ...packet size=%d",spacket-&gt;packetsize);
+abcstr(writestr);
+}
+</pre></blockquote>
+<p>
+In all the previous program we were playing the less dominant role and were coyly accepting whatever the host or peer sent us. Its about time we cut loose and actually send him some thing.
+</p><p>
+We believe that you have read the introduction to PPP and hence know what configure requests, ACK's and NAK's are all about. When we connect to our ISP. We get a configure request from him. This is the only packet which has precedence over any other packet, it has to be the very first packet to arrive. When we receive this configure request packet we have an option of either ACKing it or sending our ISP our own configure request. In our case we decided that we had remained docile for a long time and hence wanted to order things around and so we sent him our own configure request.
+</p><p>
+The story so far is that we have received a configure request from our peer. We have unescaped the packet using the function <i>unescapepacket</i>. The packet was later stripped off its encapsulations by the function <i>removeframe</i>. The function <i>processpacket</i> which incidentally forms the heart of the program confirms that the packet is an LCP packet by checking for the presence of <i>0xc0</i> and  <i>0x21</i> and then sends the raw data (totally pure data) to the function called  <i>lcppacket</i>. The <i>lcppacket</i> first confirms that the received packet is a configure request and fires the <i>sendconfrequest</i> function.
+</p><p>
+Common sense suggest that incoming data and outgoing data should be stored using different structure hence we use an array called <i>data</i> which is part of a newly created structure <i>lcprequest</i>. Since we are sending a simple configure request we will use <i>0x01</i> as the fourth byte.  <i>0x00</i> is the ID of the packet whereas <i>0x04</i> denotes the length of the option. The other bytes have the usual meanings. Before sending this data over the following operations have to be carried out <b>strictly</b> in the order given below.
+</p><p>
+<b>1. Checksumming :- </b>
+</p><p>
+All data transfers are carried over bad telephone lines. (The ones at our end can't get any worse). This leads to a certain amount of unreliability in the system. Therefore means have to be incorporated to make sure that the correct data gets across to the peer. This is done by using error detection means like checksum. You may also call it the CRC or FCS but remember a checksum by any other name is still a checksum. The function <i>calcchksum</i> is used to calculate the checksum of the stream. Now checksumming is an intensive mathematical problem. The scope of which is beyond this website (!) If you want to carry out any checksumming we recommend you simply cut and paste our program into the application you desire.
+</p><p>
+One important point of differentiation between the PPP checksum and the other checksum like IP checksum is that in PPP we first calculate the checksum of the raw data ( from <i>0xff </i> to the last byte) then include the checksum value at the end of the data packet and carry out the checksumming the new packet with the previous value of checksum included in it. This ensures higher reliability.
+</p><p>
+<b>2.  Escape packet: -</b>
+</p><p>
+This is carried out by the function <i>escapepacket</i>. The reason behind escaping after checksumming is the simple fact, what if the checksum value is a byte which has to be escaped.
+</p><p>
+This is done to ensure that the checksum value also 'escapes' via the modem and is available to the peer.
+</p><p>
+<b>3. Sealing the packet: - </b>
+</p><p>
+How do you differentiate between a pack of `Tang' and a pack of Horlicks' ? Simple, by the label on it. Similarly all PPP data packets are packed between two <i>0x7e's</i> . The <i>0x7e's</i> act as the label for the data packet. The packet is finally `Shipped' out using the function <i>sendpacket</i>.  This function writes the packet to the modem using the COM port. This data reaching the ISP's modem and we can take the day off with the happy thought that now  we can transmit messages back to the ISP. No more taking things lying down. Long live the revolution!
+</p><p>
+</p><ul>
+<li><a href="http://www.vijaymukhi.com/vmis/zlcp6.htm">z.txt</a>
+</li></ul>
+Bits and bytes never made such interesting reading.  The Received packet is an LCP Configure Request whereas the sent packet is a LCP Configure Request. In this program, as we were just testing the waters and hence we have not indulged in anything kinky,  we instead chose to simply ACK the request packet.  Though there are many Configure Request packets, as can be seen from the output file, there are only two instances of the ACK packet. 
+<p>
+<b><u>LCP7.C</u></b>
+</p><blockquote><pre>#include &lt;windows.h&gt;
+#include &lt;stdio.h&gt;
+struct packet
+{
+unsigned char data[1000];
+unsigned int packetsize;
+};
+
+
+void abcstr(char *p)
+{
+	FILE *fp;
+	fp=fopen("c:\\z.txt","a+");
+	fprintf(fp,"%s\n",p);
+	fclose(fp);
+}
+
+void abcchar(unsigned char c)
+{
+	FILE *fp;
+	fp=fopen("c:\\z.txt","a+");
+	fprintf(fp,"%x.........%d\n",c,c);
+	fclose(fp);
+}
+void processpacket();
+void unescapepacket(struct packet *,struct packet *);
+void removeframe(struct packet *,struct packet *);
+long _stdcall wndcallback(HWND ,unsigned int ,unsigned int ,long );
+void lcppacket(struct packet *);
+unsigned int calcchksum(unsigned char *,int );
+void escapepacket(struct packet *);
+void addsevene(struct packet *);
+void sendpacket(struct packet *);
+void sendconfack(struct packet *);
+unsigned int addffthree(struct packet *);
+void sendconfreq();
+HDC  hdc ;
+HANDLE  handle ;
+HWND  hwnd ;
+
+struct packet recdpacket;
+int  column, row, xwidth, yheight ,cnt=0, ctr=0;
+long threadid, bytesrecd,byteswritten;
+DCB dcb;
+WNDCLASS wndclass;
+MSG msg;
+unsigned char writestr[200],ctemp;
+
+static unsigned short fcstab[256] = {
+    0x0000, 0x1189, 0x2312, 0x329b, 0x4624, 0x57ad, 0x6536, 0x74bf,
+    0x8c48, 0x9dc1, 0xaf5a, 0xbed3, 0xca6c, 0xdbe5, 0xe97e, 0xf8f7,
+    0x1081, 0x0108, 0x3393, 0x221a, 0x56a5, 0x472c, 0x75b7, 0x643e,
+    0x9cc9, 0x8d40, 0xbfdb, 0xae52, 0xdaed, 0xcb64, 0xf9ff, 0xe876,
+    0x2102, 0x308b, 0x0210, 0x1399, 0x6726, 0x76af, 0x4434, 0x55bd,
+    0xad4a, 0xbcc3, 0x8e58, 0x9fd1, 0xeb6e, 0xfae7, 0xc87c, 0xd9f5,
+    0x3183, 0x200a, 0x1291, 0x0318, 0x77a7, 0x662e, 0x54b5, 0x453c,
+    0xbdcb, 0xac42, 0x9ed9, 0x8f50, 0xfbef, 0xea66, 0xd8fd, 0xc974,
+    0x4204, 0x538d, 0x6116, 0x709f, 0x0420, 0x15a9, 0x2732, 0x36bb,
+    0xce4c, 0xdfc5, 0xed5e, 0xfcd7, 0x8868, 0x99e1, 0xab7a, 0xbaf3,
+    0x5285, 0x430c, 0x7197, 0x601e, 0x14a1, 0x0528, 0x37b3, 0x263a,
+    0xdecd, 0xcf44, 0xfddf, 0xec56, 0x98e9, 0x8960, 0xbbfb, 0xaa72,
+    0x6306, 0x728f, 0x4014, 0x519d, 0x2522, 0x34ab, 0x0630, 0x17b9,
+    0xef4e, 0xfec7, 0xcc5c, 0xddd5, 0xa96a, 0xb8e3, 0x8a78, 0x9bf1,
+    0x7387, 0x620e, 0x5095, 0x411c, 0x35a3, 0x242a, 0x16b1, 0x0738,
+    0xffcf, 0xee46, 0xdcdd, 0xcd54, 0xb9eb, 0xa862, 0x9af9, 0x8b70,
+    0x8408, 0x9581, 0xa71a, 0xb693, 0xc22c, 0xd3a5, 0xe13e, 0xf0b7,
+    0x0840, 0x19c9, 0x2b52, 0x3adb, 0x4e64, 0x5fed, 0x6d76, 0x7cff,
+    0x9489, 0x8500, 0xb79b, 0xa612, 0xd2ad, 0xc324, 0xf1bf, 0xe036,
+    0x18c1, 0x0948, 0x3bd3, 0x2a5a, 0x5ee5, 0x4f6c, 0x7df7, 0x6c7e,
+    0xa50a, 0xb483, 0x8618, 0x9791, 0xe32e, 0xf2a7, 0xc03c, 0xd1b5,
+    0x2942, 0x38cb, 0x0a50, 0x1bd9, 0x6f66, 0x7eef, 0x4c74, 0x5dfd,
+    0xb58b, 0xa402, 0x9699, 0x8710, 0xf3af, 0xe226, 0xd0bd, 0xc134,
+    0x39c3, 0x284a, 0x1ad1, 0x0b58, 0x7fe7, 0x6e6e, 0x5cf5, 0x4d7c,
+    0xc60c, 0xd785, 0xe51e, 0xf497, 0x8028, 0x91a1, 0xa33a, 0xb2b3,
+    0x4a44, 0x5bcd, 0x6956, 0x78df, 0x0c60, 0x1de9, 0x2f72, 0x3efb,
+    0xd68d, 0xc704, 0xf59f, 0xe416, 0x90a9, 0x8120, 0xb3bb, 0xa232,
+    0x5ac5, 0x4b4c, 0x79d7, 0x685e, 0x1ce1, 0x0d68, 0x3ff3, 0x2e7a,
+    0xe70e, 0xf687, 0xc41c, 0xd595, 0xa12a, 0xb0a3, 0x8238, 0x93b1,
+    0x6b46, 0x7acf, 0x4854, 0x59dd, 0x2d62, 0x3ceb, 0x0e70, 0x1ff9,
+    0xf78f, 0xe606, 0xd49d, 0xc514, 0xb1ab, 0xa022, 0x92b9, 0x8330,
+    0x7bc7, 0x6a4e, 0x58d5, 0x495c, 0x3de3, 0x2c6a, 0x1ef1, 0x0f78
+};
+#define PPPINITFCS16 0xffff
+#define PPPGOODFCS16 0xf0b8
+
+long _stdcall commcallback()
+{
+ unsigned char readstr[2] ; 
+ while (1)
+ { 	  
+	ReadFile(handle,readstr,1,&amp;bytesrecd,0);
+	if (readstr[0] == 0x7e )
+	{
+	  if(ctr == 0)
+	  {
+		  cnt=0;	
+		  ctr=1;
+	  }
+	  else if (ctr == 1)
+	  { 
+		  	ctr++;
+			
+	  }
+  	  else if (ctr == 2)
+	  { 
+		  	ctr = 1;
+			recdpacket.data[cnt]=readstr[0];
+			cnt++;
+			recdpacket.packetsize=cnt;
+			cnt=0;
+			processpacket();
+	  }
+    }	 
+	if (ctr ==2 )
+	{	  
+		recdpacket.data[cnt]=readstr[0];
+		cnt++;
+	}
+    if (readstr[0] == 13 )
+		column = 0 ;
+    if (readstr[0] == 10)
+		row++;
+    if (readstr[0] == 0x08)
+	    column -- ;
+	if (readstr[0] != 0x0a &amp;&amp; readstr[0] != 0x0d)
+	{
+		TextOut(hdc,column*xwidth,row*yheight,readstr,1);
+		if (column &lt; 79)
+				column++ ;
+		else
+		{
+			column = 0;
+			row++;
+		}
+	}
+ }
+ return 1;
+}
+
+
+int _stdcall WinMain( HINSTANCE hinstance, HINSTANCE hprevinstance,LPSTR lpszcmdline, int ncmdshow )
+{
+wndclass.lpfnWndProc=wndcallback;
+wndclass.hInstance=hinstance;
+wndclass.hbrBackground=GetStockObject(WHITE_BRUSH); ;
+wndclass.lpszClassName="wclass";
+RegisterClass(&amp;wndclass);
+hwnd=CreateWindow("wclass","hi",WS_OVERLAPPEDWINDOW,0,0,0,0,0,0,hinstance,0);
+xwidth = 8;
+yheight = 19;
+ShowWindow( hwnd, 3 ) ;
+hdc=GetDC(hwnd);
+
+handle= CreateFile( "COM1", GENERIC_READ | GENERIC_WRITE,1,NULL,	
+	OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL );
+
+dcb.DCBlength = sizeof( DCB ) ;
+GetCommState( handle, &amp;dcb ) ;
+dcb.BaudRate = 14400 ;
+SetCommState( handle, &amp;dcb ) ;
+CreateThread(0,0,(LPTHREAD_START_ROUTINE) commcallback,0,0, &amp;threadid );
+strcpy(writestr,"atdt2659385\r");
+WriteFile(handle,writestr,strlen(writestr),&amp;byteswritten,0) ;
+while (GetMessage( &amp;msg, 0, 0, 0 ))
+   {
+       TranslateMessage( &amp;msg ) ;
+       DispatchMessage( &amp;msg ) ;
+   }
+   return 0 ;
+}
+
+long _stdcall wndcallback(HWND hWnd,unsigned int uMsg,unsigned int wParam,long lParam)
+{
+   if(uMsg == WM_CHAR)
+   {
+         ctemp = wParam;
+         WriteFile(handle,&amp;ctemp,1,&amp;byteswritten,0) ;
+   }
+    if(uMsg == WM_DESTROY)
+	{
+		 ReleaseDC(hWnd,hdc);
+         PostQuitMessage( 0 ) ;
+	}
+         return( DefWindowProc( hWnd, uMsg, wParam, lParam ) ) ;
+}  
+
+
+void processpacket()
+{
+	struct packet unescpacket,finalpacket;
+	unsigned int i;
+	sprintf(writestr,"Recd Packet packetsize=%d",recdpacket.packetsize);
+	abcstr(writestr);
+	unescapepacket(&amp;recdpacket,&amp;unescpacket);
+        for(i=0; i&lt;unescpacket.packetsize;i++)
+                abcchar(unescpacket.data[i]);
+	removeframe(&amp;unescpacket,&amp;finalpacket);
+	if(finalpacket.data[0] == 0xc0 &amp;&amp; finalpacket.data[1] == 0x21)
+		lcppacket(&amp;finalpacket);
+}
+
+
+void unescapepacket(struct packet *r, struct packet *u)
+{	
+	unsigned int i,j;
+	for(j=0,i=0;i&lt;r-&gt;packetsize;i++,j++)
+	{
+		if (r-&gt;data[i]==0x7d)
+		{
+			i++;
+			u-&gt;data[j]=r-&gt;data[i]^0x20;
+		}
+		else
+		{
+		u-&gt;data[j]=r-&gt;data[i];
+		}
+	}
+	u-&gt;packetsize=j;
+}
+
+void removeframe(struct packet *u,struct packet *f)
+{
+	unsigned int i,j;
+	for(i=0,j=3;j&lt;u-&gt;packetsize-3;i++,j++)
+	{
+	f-&gt;data[i]=u-&gt;data[j];
+	}
+	f-&gt;packetsize=i;
+}
+
+void lcppacket(struct packet *lcp)
+{
+if (lcp-&gt;data[2]== 1)
+{
+	sendconfack(lcp);
+	sendconfreq();
+}
+if (lcp-&gt;data[2]==2)
+{
+        abcstr("Ack Received");
+}
+}
+
+void sendconfreq()
+{
+	
+struct packet lcpreq;
+lcpreq.data[0]=0xc0;
+lcpreq.data[1]=0x21;
+lcpreq.data[2]=0x01;
+lcpreq.data[3]=0x00;
+lcpreq.data[4]=0x00;
+lcpreq.data[5]=0x04;
+lcpreq.packetsize=6;
+lcpreq.packetsize=addffthree(&amp;lcpreq);
+lcpreq.packetsize=calcchksum(lcpreq.data,lcpreq.packetsize);
+escapepacket(&amp;lcpreq);
+addsevene(&amp;lcpreq);
+sendpacket(&amp;lcpreq);
+}
+
+void sendconfack(struct packet *alcp)
+{
+
+alcp-&gt;data[2]=2;
+alcp-&gt;packetsize=addffthree(alcp);
+alcp-&gt;packetsize=calcchksum(alcp-&gt;data,alcp-&gt;packetsize);
+escapepacket(alcp);
+addsevene(alcp);
+sendpacket(alcp);
+}
+
+
+unsigned short pppfcs16(fcs,cp,len)
+register unsigned short fcs;
+register unsigned char *cp;
+register int len;
+{
+while ( len -- )
+fcs = ( fcs&gt;&gt;8 ) ^ fcstab[ (fcs^*cp++) &amp; 0xff];
+return fcs;
+}
+
+unsigned int calcchksum(cp,len)
+register unsigned char *cp;
+register int len;
+{
+unsigned short trialfcs;
+trialfcs = pppfcs16(PPPINITFCS16,cp,len);
+trialfcs ^= 0xffff;
+cp[len] = (trialfcs &amp; 0x00ff);
+cp[len+1] = ((trialfcs &gt;&gt; 8 ) &amp; 0x00ff);
+return len+2;
+}
+
+unsigned int addffthree(struct packet *flcp)
+{
+	struct packet dummy;
+	unsigned int i,j=0;
+	dummy.data[j]=0xff;
+	j++;
+	dummy.data[j]=0x03;
+	j++;
+	for(i=0; i&lt; flcp-&gt;packetsize;i++,j++)
+	{
+		dummy.data[j]=flcp-&gt;data[i];
+	}
+	dummy.packetsize=j;
+	for(i=0;i&lt;dummy.packetsize;i++)
+	{
+		flcp-&gt;data[i]=dummy.data[i];
+	}
+	flcp-&gt;packetsize=dummy.packetsize;
+	return flcp-&gt;packetsize;
+	}
+
+void escapepacket(struct packet * epacket)
+{
+	struct packet dummy;
+	unsigned int i,j;
+        for(i=0; i&lt; epacket-&gt;packetsize;i++)
+        abcchar(epacket-&gt;data[i]);
+
+	for(i=0;i&lt;epacket-&gt;packetsize;i++)
+	{
+		dummy.data[i]=epacket-&gt;data[i];
+	}
+	dummy.packetsize=epacket-&gt;packetsize;
+     
+	for(j=0,i=0;i&lt;dummy.packetsize;i++,j++)
+	{
+		if (dummy.data[i] &lt;= 31 || dummy.data[i] == 0x7e || dummy.data[i]== 0x7d)
+		{
+			epacket-&gt;data[j]=0x7d;
+			j++;
+			epacket-&gt;data[j]=dummy.data[i]^0x20;
+		}
+		else
+			epacket-&gt;data[j]=dummy.data[i];
+	}
+	epacket-&gt;packetsize=j;
+	
+}
+
+void addsevene(struct packet * apacket)
+{
+	struct packet dummy;
+	unsigned int i,j;
+	for(i=0;i&lt;apacket-&gt;packetsize;i++)
+	{
+		dummy.data[i]=apacket-&gt;data[i];
+	}
+	dummy.packetsize=i;
+	apacket-&gt;data[0]=0x7e;
+	for(i=0,j=1;i&lt;dummy.packetsize;i++,j++)
+	{
+		apacket-&gt;data[j]=dummy.data[i];
+	}
+
+	apacket-&gt;data[j]=0x7e;
+	j++;
+	apacket-&gt;packetsize=j;
+}
+
+void sendpacket(struct packet * spacket)
+{
+
+WriteFile(handle,spacket-&gt;data,spacket-&gt;packetsize,&amp;byteswritten,0) ;
+sprintf(writestr,"WriteFile...spacket-&gt;packetsize=%d...byteswritten=%d",
+		spacket-&gt;packetsize,byteswritten);
+abcstr(writestr);
+
+}
+</pre></blockquote>
+<p>
+A discussed previously when we receive a configure request from the peer, we have two options
+</p><ul>
+<li>ACK him or
+</li><li> Send our own configure request
+</li></ul>
+<p>
+In the previous program we devised a way to send him a configure request. Well wouldn't it be a better idea that we write a program which sends him an ACK for his configure request as well as send him our own configure request. Most of the functions in this program are carried over from the previous program and hence will not be explained here (that's what we been doing all along). We pick up the story at the point that the raw data is available to us for processing.
+</p><p>
+The function lcppacket is called by the function processpacket. This function checks the value of the first byte. If it 0x01 (configure request) then we will send both the configure ACK as well as our configure request. They are sent by the functions sendconfack and sendconfreq respectively . The sendconfreq is the same as the one in the previous program (almost ad verbatim). The sendconfack is a function which simply changes the value of 0x01 (configure request) to 0x02  (ACK) and retransmit the packet back to the peer. The functions like addsevene, calccheksum etc. are used so that repetition of work does not take  place and the throughput increases.
+</p><p>
+When the first byte in the packet is 2 (ACK) and not  1 (configure request) the program can be designed to terminates after writing the string `ACK Received' to disk because it implies that if a 0x02 is received, the link has been established. Congratulation! The ACK was the last handshake for the link establishment phase. Let's have a quick glance at the output file
+</p><p>
+</p><ul>
+<li><a href="http://www.vijaymukhi.com/vmis/zlcp7.htm">z.txt</a>
+</li></ul>
+<p>
+The output file has been edited to provide it with some aesthetic appeal.  The file is also an abridged version of the one that was originally received. We have done so because in keeping with the times we have provided only those bytes that hold relevance to the program at hand.  The above bytes represent the Configure Request and it's corresponding -Configure ACK.
+</p><p>
+Now it time for the Internet Protocol Control Protocol (IPCP) replacing the Link Control Protocol. For more about the IPCP check out the next program.
+</p><p>
+<b><u>IPCP1.C</u></b>
+</p><blockquote><pre>#include &lt;windows.h&gt;
+#include &lt;stdio.h&gt;
+
+#define PPPINITFCS16 0xffff
+#define PPPGOODFCS16 0xf0b8
+
+
+struct packet
+{
+unsigned char data[1000];
+unsigned int packetsize;
+};
+
+void abcstr(char *p)
+{
+	FILE *fp;
+	fp=fopen("c:\\z.txt","a+");
+	fprintf(fp,"%s\n",p);
+	fclose(fp);
+}
+void abcchar(unsigned char c)
+{
+	FILE *fp;
+	fp=fopen("c:\\z.txt","a+");
+	fprintf(fp,"%c..%x..%d\n",c,c,c);
+	fclose(fp);
+}
+void processpacket();
+void unescapepacket(struct packet *,struct packet *);
+void removeframe(struct packet *,struct packet *);
+long _stdcall wndcallback(HWND ,unsigned int ,unsigned int ,LPARAM );
+void lcppacket(struct packet *);
+unsigned int calcchksum(unsigned char *,int );
+void escapepacket(struct packet *);
+void addsevene(struct packet *);
+void sendpacket(struct packet *);
+void sendconfack(struct packet *);
+unsigned int addffthree(struct packet *);
+void sendconfreq();
+void ipcppacket(struct packet * );
+void sendipcpack(struct packet *);
+void sendipcpreq();
+
+
+
+HDC  hdc ;
+HANDLE  handle ;
+HWND  hwnd ;
+
+struct packet recdpacket;
+int  column, row, xwidth, yheight ,cnt=0, ctr=0;
+long threadid, bytesrecd,byteswritten;
+DCB dcb;
+WNDCLASS wndclass;
+MSG msg;
+unsigned char writestr[200],ctemp;
+
+static unsigned short fcstab[256] = {
+    0x0000, 0x1189, 0x2312, 0x329b, 0x4624, 0x57ad, 0x6536, 0x74bf,
+    0x8c48, 0x9dc1, 0xaf5a, 0xbed3, 0xca6c, 0xdbe5, 0xe97e, 0xf8f7,
+    0x1081, 0x0108, 0x3393, 0x221a, 0x56a5, 0x472c, 0x75b7, 0x643e,
+    0x9cc9, 0x8d40, 0xbfdb, 0xae52, 0xdaed, 0xcb64, 0xf9ff, 0xe876,
+    0x2102, 0x308b, 0x0210, 0x1399, 0x6726, 0x76af, 0x4434, 0x55bd,
+    0xad4a, 0xbcc3, 0x8e58, 0x9fd1, 0xeb6e, 0xfae7, 0xc87c, 0xd9f5,
+    0x3183, 0x200a, 0x1291, 0x0318, 0x77a7, 0x662e, 0x54b5, 0x453c,
+    0xbdcb, 0xac42, 0x9ed9, 0x8f50, 0xfbef, 0xea66, 0xd8fd, 0xc974,
+    0x4204, 0x538d, 0x6116, 0x709f, 0x0420, 0x15a9, 0x2732, 0x36bb,
+    0xce4c, 0xdfc5, 0xed5e, 0xfcd7, 0x8868, 0x99e1, 0xab7a, 0xbaf3,
+    0x5285, 0x430c, 0x7197, 0x601e, 0x14a1, 0x0528, 0x37b3, 0x263a,
+    0xdecd, 0xcf44, 0xfddf, 0xec56, 0x98e9, 0x8960, 0xbbfb, 0xaa72,
+    0x6306, 0x728f, 0x4014, 0x519d, 0x2522, 0x34ab, 0x0630, 0x17b9,
+    0xef4e, 0xfec7, 0xcc5c, 0xddd5, 0xa96a, 0xb8e3, 0x8a78, 0x9bf1,
+    0x7387, 0x620e, 0x5095, 0x411c, 0x35a3, 0x242a, 0x16b1, 0x0738,
+    0xffcf, 0xee46, 0xdcdd, 0xcd54, 0xb9eb, 0xa862, 0x9af9, 0x8b70,
+    0x8408, 0x9581, 0xa71a, 0xb693, 0xc22c, 0xd3a5, 0xe13e, 0xf0b7,
+    0x0840, 0x19c9, 0x2b52, 0x3adb, 0x4e64, 0x5fed, 0x6d76, 0x7cff,
+    0x9489, 0x8500, 0xb79b, 0xa612, 0xd2ad, 0xc324, 0xf1bf, 0xe036,
+    0x18c1, 0x0948, 0x3bd3, 0x2a5a, 0x5ee5, 0x4f6c, 0x7df7, 0x6c7e,
+    0xa50a, 0xb483, 0x8618, 0x9791, 0xe32e, 0xf2a7, 0xc03c, 0xd1b5,
+    0x2942, 0x38cb, 0x0a50, 0x1bd9, 0x6f66, 0x7eef, 0x4c74, 0x5dfd,
+    0xb58b, 0xa402, 0x9699, 0x8710, 0xf3af, 0xe226, 0xd0bd, 0xc134,
+    0x39c3, 0x284a, 0x1ad1, 0x0b58, 0x7fe7, 0x6e6e, 0x5cf5, 0x4d7c,
+    0xc60c, 0xd785, 0xe51e, 0xf497, 0x8028, 0x91a1, 0xa33a, 0xb2b3,
+    0x4a44, 0x5bcd, 0x6956, 0x78df, 0x0c60, 0x1de9, 0x2f72, 0x3efb,
+    0xd68d, 0xc704, 0xf59f, 0xe416, 0x90a9, 0x8120, 0xb3bb, 0xa232,
+    0x5ac5, 0x4b4c, 0x79d7, 0x685e, 0x1ce1, 0x0d68, 0x3ff3, 0x2e7a,
+    0xe70e, 0xf687, 0xc41c, 0xd595, 0xa12a, 0xb0a3, 0x8238, 0x93b1,
+    0x6b46, 0x7acf, 0x4854, 0x59dd, 0x2d62, 0x3ceb, 0x0e70, 0x1ff9,
+    0xf78f, 0xe606, 0xd49d, 0xc514, 0xb1ab, 0xa022, 0x92b9, 0x8330,
+    0x7bc7, 0x6a4e, 0x58d5, 0x495c, 0x3de3, 0x2c6a, 0x1ef1, 0x0f78
+};
+long _stdcall commcallback()
+{
+ unsigned char  readstr[2] ; 
+ while (1)
+ { 	  
+	ReadFile(handle,readstr,1,&amp;bytesrecd,0);
+	if (readstr[0] == 0x7e )
+	{
+	  if(ctr == 0)
+	  {
+		  cnt=0;	
+		  ctr=1;
+	  }
+	  else if (ctr == 1)
+	  { 
+		  	ctr++;
+			
+	  }
+  	  else if (ctr == 2)
+	  { 
+		  	ctr = 1;
+			recdpacket.data[cnt]=readstr[0];
+			cnt++;
+			recdpacket.packetsize=cnt;
+			cnt=0;
+			processpacket();
+	  }
+    }	 
+	if (ctr ==2 )
+	{	  
+		recdpacket.data[cnt]=readstr[0];
+		cnt++;
+	}
+    if (readstr[0] == 13 )
+		column = 0 ;
+    if (readstr[0] == 10)
+		row++;
+    if (readstr[0] == 0x08)
+	    column -- ;
+	if (readstr[0] != 0x0a &amp;&amp; readstr[0] != 0x0d)
+	{
+		TextOut(hdc,column*xwidth,row*yheight,readstr,1);
+		if (column &lt; 79)
+				column++ ;
+		else
+		{
+			column = 0;
+			row++;
+		}
+	}
+ }
+ return 1 ;
+}
+
+
+int _stdcall WinMain( HINSTANCE hinstance, HINSTANCE hprevinstance,LPSTR lpszcmdline, int ncmdshow )
+{
+wndclass.lpfnWndProc=wndcallback;
+wndclass.hInstance=hinstance;
+wndclass.hbrBackground=GetStockObject(WHITE_BRUSH) ;
+wndclass.lpszClassName="wclass";
+RegisterClass(&amp;wndclass);
+hwnd=CreateWindow("wclass","hi",WS_OVERLAPPEDWINDOW,0,0,0,0,0,0,hinstance,0);
+xwidth = 8;
+yheight = 19;
+ShowWindow( hwnd, 3 ) ;
+hdc=GetDC(hwnd);
+
+handle= CreateFile( "COM1", GENERIC_READ | GENERIC_WRITE,1,NULL,	
+	OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL );
+
+dcb.DCBlength = sizeof( DCB ) ;
+GetCommState( handle, &amp;dcb ) ;
+dcb.BaudRate = 14400 ;
+SetCommState( handle, &amp;dcb ) ;
+CreateThread(0,0,(LPTHREAD_START_ROUTINE) commcallback,0,0, &amp;threadid );
+strcpy(writestr,"atdt2659385\r");
+WriteFile(handle,writestr,strlen(writestr),&amp;byteswritten,0) ;
+while (GetMessage( &amp;msg, 0, 0, 0 ))
+   {
+       TranslateMessage( &amp;msg ) ;
+       DispatchMessage( &amp;msg ) ;
+   }
+   return 0;
+}
+
+
+long _stdcall wndcallback(HWND hWnd,unsigned int uMsg,unsigned int wParam,LPARAM lParam)
+{
+   if(uMsg == WM_CHAR)
+   {
+         ctemp = wParam;
+         WriteFile(handle,&amp;ctemp,1,&amp;byteswritten,0) ;
+   }
+    if(uMsg == WM_DESTROY)
+	{
+		 ReleaseDC(hWnd,hdc);
+         PostQuitMessage( 0 ) ;
+	}
+         return( DefWindowProc( hWnd, uMsg, wParam, lParam ) ) ;
+}  
+
+
+void processpacket()
+{
+	struct packet unescpacket,finalpacket;
+	unsigned int i;
+       
+	sprintf(writestr,"Recd Packet packetsize=%d",recdpacket.packetsize);
+	abcstr(writestr);
+	unescapepacket(&amp;recdpacket,&amp;unescpacket);
+	sprintf(writestr,"UnEscaped Data ..packetsize=%d",unescpacket.packetsize);
+	abcstr(writestr);
+	for(i=0; i&lt;unescpacket.packetsize;i++)
+		abcchar(unescpacket.data[i]);
+
+	removeframe(&amp;unescpacket,&amp;finalpacket);
+	if(finalpacket.data[0] == 0xc0 &amp;&amp; finalpacket.data[1] == 0x21)
+		lcppacket(&amp;finalpacket);
+	if(finalpacket.data[0] == 0x80 &amp;&amp; finalpacket.data[1] == 0x21)
+		ipcppacket(&amp;finalpacket);
+}
+void ipcppacket(struct packet * f)
+{
+if (f-&gt;data[2]== 1)
+{
+	sendipcpack(f);
+	sendipcpreq();
+	abcstr("ipcp Req Sent");
+}
+
+if (f-&gt;data[2]== 2)
+{
+	abcstr("ipcp Ack received");
+}
+
+if (f-&gt;data[2]== 3)
+{
+	abcstr("ipcp NAck received");
+}
+
+if (f-&gt;data[2]== 4)
+{
+	abcstr("ipcp Reject received");
+}
+
+}
+
+void sendipcpack(struct packet *aipcp)
+{
+aipcp-&gt;data[2]=2;
+aipcp-&gt;packetsize=addffthree(aipcp);
+aipcp-&gt;packetsize=calcchksum(aipcp-&gt;data,aipcp-&gt;packetsize);
+escapepacket(aipcp);
+addsevene(aipcp);
+sendpacket(aipcp);
+
+}
+
+
+void sendipcpreq()
+{
+struct packet ipcpreq;
+ipcpreq.data[0]=0x80;
+ipcpreq.data[1]=0x21;
+ipcpreq.data[2]=0x01;
+ipcpreq.data[3]=0x1;
+ipcpreq.data[4]=0x00;
+ipcpreq.data[5]=0xa;
+ipcpreq.data[6]=0x3;
+ipcpreq.data[7]=0x6;
+ipcpreq.data[8]=0x0;
+ipcpreq.data[9]=0x0;
+ipcpreq.data[10]=0x0;
+ipcpreq.data[11]=0x0;
+ipcpreq.packetsize=12;
+ipcpreq.packetsize=addffthree(&amp;ipcpreq);
+ipcpreq.packetsize=calcchksum(ipcpreq.data,ipcpreq.packetsize);
+escapepacket(&amp;ipcpreq);
+addsevene(&amp;ipcpreq);
+sendpacket(&amp;ipcpreq);
+}
+
+
+
+void unescapepacket(struct packet *r, struct packet *u)
+{	
+	unsigned int i,j;
+	for(j=0,i=0;i&lt;r-&gt;packetsize;i++,j++)
+	{
+		if (r-&gt;data[i]==0x7d)
+		{
+			i++;
+			u-&gt;data[j]=r-&gt;data[i]^0x20;
+		}
+		else
+		{
+		u-&gt;data[j]=r-&gt;data[i];
+		}
+	}
+	u-&gt;packetsize=j;
+}
+
+
+
+void removeframe(struct packet *u,struct packet *f)
+{
+	unsigned int i,j;
+	for(i=0,j=3;j&lt;u-&gt;packetsize-3;i++,j++)
+	{
+	f-&gt;data[i]=u-&gt;data[j];
+	}
+	f-&gt;packetsize=i;
+}
+
+void lcppacket(struct packet *lcp)
+{
+if (lcp-&gt;data[2]== 1)
+{
+	sendconfack(lcp);
+	sendconfreq();
+	abcstr("Sent Configure Ack and Req");
+}
+if (lcp-&gt;data[2]== 2)
+{
+	abcstr("Configure Ack Received");
+}
+}
+
+void sendconfreq()
+{
+	
+struct packet lcpreq;
+lcpreq.data[0]=0xc0;
+lcpreq.data[1]=0x21;
+lcpreq.data[2]=0x01;
+lcpreq.data[3]=0;
+lcpreq.data[4]=0x00;
+lcpreq.data[5]=0x04;
+lcpreq.packetsize=6;
+lcpreq.packetsize=addffthree(&amp;lcpreq);
+lcpreq.packetsize=calcchksum(lcpreq.data,lcpreq.packetsize);
+escapepacket(&amp;lcpreq);
+addsevene(&amp;lcpreq);
+sendpacket(&amp;lcpreq);
+
+
+}
+
+
+
+void sendconfack(struct packet *alcp)
+{
+
+alcp-&gt;data[2]=2;
+alcp-&gt;packetsize=addffthree(alcp);
+alcp-&gt;packetsize=calcchksum(alcp-&gt;data,alcp-&gt;packetsize);
+escapepacket(alcp);
+addsevene(alcp);
+sendpacket(alcp);
+
+}
+
+
+unsigned short pppfcs16(register unsigned short fcs,
+						register unsigned char *cp,
+						register int len)
+{
+while ( len -- )
+fcs = ( fcs&gt;&gt;8 ) ^ fcstab[ (fcs^*cp++) &amp; 0xff];
+return fcs;
+}
+
+unsigned int calcchksum(register unsigned char *cp,register int len)
+{
+unsigned short trialfcs;
+trialfcs = pppfcs16(PPPINITFCS16,cp,len);
+trialfcs ^= 0xffff;
+cp[len] = (trialfcs &amp; 0x00ff);
+cp[len+1] = ((trialfcs &gt;&gt; 8 ) &amp; 0x00ff);
+return len+2;
+}
+
+unsigned int addffthree(struct packet *flcp)
+{
+	struct packet dummy;
+	unsigned int i,j=0;
+	dummy.data[j]=0xff;
+	j++;
+	dummy.data[j]=0x03;
+	j++;
+	for(i=0; i&lt; flcp-&gt;packetsize;i++,j++)
+	{
+		dummy.data[j]=flcp-&gt;data[i];
+	}
+	dummy.packetsize=j;
+	for(i=0;i&lt;dummy.packetsize;i++)
+	{
+		flcp-&gt;data[i]=dummy.data[i];
+	}
+	flcp-&gt;packetsize=dummy.packetsize;
+	
+	
+	return flcp-&gt;packetsize;
+	}
+
+
+void escapepacket(struct packet * epacket)
+{
+	struct packet dummy;
+	unsigned int i,j;
+	for(i=0; i&lt; epacket-&gt;packetsize;i++)
+	abcchar(epacket-&gt;data[i]);
+
+	for(i=0;i&lt;epacket-&gt;packetsize;i++)
+	{
+		dummy.data[i]=epacket-&gt;data[i];
+	}
+	dummy.packetsize=epacket-&gt;packetsize;
+     
+	for(j=0,i=0;i&lt;dummy.packetsize;i++,j++)
+	{
+		if (dummy.data[i] &lt;= 31 || dummy.data[i] == 0x7e || dummy.data[i]== 0x7d)
+		{
+			epacket-&gt;data[j]=0x7d;
+			j++;
+			epacket-&gt;data[j]=dummy.data[i]^0x20;
+		}
+		else
+			epacket-&gt;data[j]=dummy.data[i];
+	}
+	epacket-&gt;packetsize=j;
+	
+}
+
+void addsevene(struct packet * apacket)
+{
+	struct packet dummy;
+	unsigned int i,j;
+	for(i=0;i&lt;apacket-&gt;packetsize;i++)
+	{
+		dummy.data[i]=apacket-&gt;data[i];
+	}
+	dummy.packetsize=i;
+	apacket-&gt;data[0]=0x7e;
+	for(i=0,j=1;i&lt;dummy.packetsize;i++,j++)
+	{
+		apacket-&gt;data[j]=dummy.data[i];
+	}
+
+	apacket-&gt;data[j]=0x7e;
+	j++;
+	apacket-&gt;packetsize=j;
+}
+
+void sendpacket(struct packet * spacket)
+{
+
+WriteFile(handle,spacket-&gt;data,spacket-&gt;packetsize,&amp;byteswritten,0) ;
+sprintf(writestr,"WriteFile...spacket-&gt;packetsize=%d...byteswritten=%d",
+		spacket-&gt;packetsize,byteswritten);
+abcstr(writestr);
+
+}
+</pre></blockquote>
+<p>
+Welcome to the first program using the Internet Protocol Control Protocol (IPCP) as a part of the program.  Since LCP and IPCP cannot exist without each other LCP forms the other half of the program. When the raw data is available to us we differentiate between  them by checking the first two bytes. If the first two bytes are 0xc0, 0x21 then the packet is an LCP packet whereas if it is 0x80, 0x21 then the packet is an IPCP packet. The other options i.e., ACK, NAK, configure request etc. remain the same.
+</p><p>
+Assuming that we have received an IPCP configure request from the peer. We will then do exactly what we did in case of the last program i.e. send it an ACK as well as a configure request. In case the option is something other than a configure request we simply write the bytes and option to the disk and terminate program. The process of sending an IPCP ACK is similar to the process of sending a LCP ACK in fact you can change some variables and it will be the same as sending an LCP packet !!
+</p><p>
+Lets consider an IPCP request but before that lets refresh what happens in an IPCP handshake.
+</p><p>
+</p><ul>
+<li>Peer sends us his IP address
+</li><li> We ACK it
+</li><li> We request for an IP address (with 0.0.0.0 in the address field)
+</li><li> The peer NAK's its by providing alternate IP address 
+</li><li> We request the alternate IP address.
+</li><li> He acks it and sends the final address.
+</li></ul>
+<p>
+The number of packets exchanged increase if we NACK the IP address offered to us by him. Out here we normally don't do it for a very simple reason. Getting connected to our ISP is an event by itself so why keep NAKing and waste time. So simply get down to business. The data we send as part of a configure request is stored in the array data which is part of the structure ipcpreq.
+</p><p>
+All the other functions in the program remain the same. Normally this marks the beginning of our actual `surfing the Net' business. The only other thing the ISP does is the link maintenance work, but that is part of the next program.  So before you start the party please take time off to check the output file.
+</p><p>
+</p><ul>
+<li><a href="http://www.vijaymukhi.com/vmis/zipcp1.htm">z.txt</a>
+</li></ul>
+<p>
+In the above program, it can be observed that VSNL first offers it's own IP address to us i.e. 202.54.1.38.  This is ACKed by us.  The next request is made from our end.  This is in the form of the IP address 0.0.0.0 which for obvious reasons is NACKed by VSNL.  He in-turn provides us with an IP address 202.54.3.138, which we offer in due course after we have shown some initial resistance. 
+</p><p>
+<b><u>IPCP2.C</u></b>
+</p><blockquote><pre>#include &lt;windows.h&gt;
+#include &lt;stdio.h&gt;
+struct packet
+{
+unsigned char data[1000];
+unsigned int packetsize;
+};
+
+
+void abcstr(char *p)
+{
+	FILE *fp;
+	fp=fopen("c:\\z.txt","a+");
+	fprintf(fp,"%s\n",p);
+	fclose(fp);
+}
+void abcchar(unsigned char c)
+{
+	FILE *fp;
+	fp=fopen("c:\\z.txt","a+");
+	fprintf(fp,"%c..%x..%d\n",c,c,c);
+	fclose(fp);
+}
+void processpacket();
+void uescapepacket(struct packet *,struct packet *);
+void removeframe(struct packet *,struct packet *);
+long _stdcall zzz(HWND ,unsigned int ,unsigned int ,long );
+void lcppacket(struct packet *);
+unsigned int calcchksum(unsigned char *,int );
+void escapepacket(struct packet *);
+void addsevene(struct packet *);
+void sendpacket(struct packet *);
+void sendconfack(struct packet *);
+unsigned int addffthree(struct packet *);
+void sendconfreq();
+void ipcppacket(struct packet * );
+void sendipcpack(struct packet *);
+void sendipcpreq();
+void sendechoreply(struct packet *);
+
+unsigned char ipaddress[4]={0,0,0,0};
+
+HDC  hdc ;
+HANDLE  handle ;
+HWND  hwnd ;
+
+struct packet recdpacket;
+int  column, row, xwidth, yheight ,cnt=0, ctr=0;
+unsigned long threadid, bytesrecd,byteswritten;
+DCB dcb;
+WNDCLASS wndclass;
+MSG msg;
+unsigned char writestr[200],ctemp;
+
+
+static unsigned short fcstab[256] = {
+    0x0000, 0x1189, 0x2312, 0x329b, 0x4624, 0x57ad, 0x6536, 0x74bf,
+    0x8c48, 0x9dc1, 0xaf5a, 0xbed3, 0xca6c, 0xdbe5, 0xe97e, 0xf8f7,
+    0x1081, 0x0108, 0x3393, 0x221a, 0x56a5, 0x472c, 0x75b7, 0x643e,
+    0x9cc9, 0x8d40, 0xbfdb, 0xae52, 0xdaed, 0xcb64, 0xf9ff, 0xe876,
+    0x2102, 0x308b, 0x0210, 0x1399, 0x6726, 0x76af, 0x4434, 0x55bd,
+    0xad4a, 0xbcc3, 0x8e58, 0x9fd1, 0xeb6e, 0xfae7, 0xc87c, 0xd9f5,
+    0x3183, 0x200a, 0x1291, 0x0318, 0x77a7, 0x662e, 0x54b5, 0x453c,
+    0xbdcb, 0xac42, 0x9ed9, 0x8f50, 0xfbef, 0xea66, 0xd8fd, 0xc974,
+    0x4204, 0x538d, 0x6116, 0x709f, 0x0420, 0x15a9, 0x2732, 0x36bb,
+    0xce4c, 0xdfc5, 0xed5e, 0xfcd7, 0x8868, 0x99e1, 0xab7a, 0xbaf3,
+    0x5285, 0x430c, 0x7197, 0x601e, 0x14a1, 0x0528, 0x37b3, 0x263a,
+    0xdecd, 0xcf44, 0xfddf, 0xec56, 0x98e9, 0x8960, 0xbbfb, 0xaa72,
+    0x6306, 0x728f, 0x4014, 0x519d, 0x2522, 0x34ab, 0x0630, 0x17b9,
+    0xef4e, 0xfec7, 0xcc5c, 0xddd5, 0xa96a, 0xb8e3, 0x8a78, 0x9bf1,
+    0x7387, 0x620e, 0x5095, 0x411c, 0x35a3, 0x242a, 0x16b1, 0x0738,
+    0xffcf, 0xee46, 0xdcdd, 0xcd54, 0xb9eb, 0xa862, 0x9af9, 0x8b70,
+    0x8408, 0x9581, 0xa71a, 0xb693, 0xc22c, 0xd3a5, 0xe13e, 0xf0b7,
+    0x0840, 0x19c9, 0x2b52, 0x3adb, 0x4e64, 0x5fed, 0x6d76, 0x7cff,
+    0x9489, 0x8500, 0xb79b, 0xa612, 0xd2ad, 0xc324, 0xf1bf, 0xe036,
+    0x18c1, 0x0948, 0x3bd3, 0x2a5a, 0x5ee5, 0x4f6c, 0x7df7, 0x6c7e,
+    0xa50a, 0xb483, 0x8618, 0x9791, 0xe32e, 0xf2a7, 0xc03c, 0xd1b5,
+    0x2942, 0x38cb, 0x0a50, 0x1bd9, 0x6f66, 0x7eef, 0x4c74, 0x5dfd,
+    0xb58b, 0xa402, 0x9699, 0x8710, 0xf3af, 0xe226, 0xd0bd, 0xc134,
+    0x39c3, 0x284a, 0x1ad1, 0x0b58, 0x7fe7, 0x6e6e, 0x5cf5, 0x4d7c,
+    0xc60c, 0xd785, 0xe51e, 0xf497, 0x8028, 0x91a1, 0xa33a, 0xb2b3,
+    0x4a44, 0x5bcd, 0x6956, 0x78df, 0x0c60, 0x1de9, 0x2f72, 0x3efb,
+    0xd68d, 0xc704, 0xf59f, 0xe416, 0x90a9, 0x8120, 0xb3bb, 0xa232,
+    0x5ac5, 0x4b4c, 0x79d7, 0x685e, 0x1ce1, 0x0d68, 0x3ff3, 0x2e7a,
+    0xe70e, 0xf687, 0xc41c, 0xd595, 0xa12a, 0xb0a3, 0x8238, 0x93b1,
+    0x6b46, 0x7acf, 0x4854, 0x59dd, 0x2d62, 0x3ceb, 0x0e70, 0x1ff9,
+    0xf78f, 0xe606, 0xd49d, 0xc514, 0xb1ab, 0xa022, 0x92b9, 0x8330,
+    0x7bc7, 0x6a4e, 0x58d5, 0x495c, 0x3de3, 0x2c6a, 0x1ef1, 0x0f78
+};
+#define PPPINITFCS16 0xffff
+#define PPPGOODFCS16 0xf0b8
+
+unsigned long _stdcall  commcallback()
+{
+ unsigned char readstr[2] ; 
+ while (1)
+ { 	  
+	ReadFile(handle,readstr,1,&amp;bytesrecd,0);
+	if (readstr[0] == 0x7e )
+	{
+	  if(ctr == 0)
+	  {
+		  cnt=0;	
+		  ctr=1;
+	  }
+	  else if (ctr == 1)
+	  { 
+		  	ctr++;
+			
+	  }
+  	  else if (ctr == 2)
+	  { 
+		  	ctr = 1;
+			recdpacket.data[cnt]=readstr[0];
+			cnt++;
+			recdpacket.packetsize=cnt;
+			cnt=0;
+			processpacket();
+	  }
+    }	 
+	if (ctr ==2 )
+	{	  
+		recdpacket.data[cnt]=readstr[0];
+		cnt++;
+	}
+    if (readstr[0] == 13 )
+		column = 0 ;
+    if (readstr[0] == 10)
+		row++;
+    if (readstr[0] == 0x08)
+	    column -- ;
+	if (readstr[0] != 0x0a &amp;&amp; readstr[0] != 0x0d)
+	{
+		TextOut(hdc,column*xwidth,row*yheight,readstr,1);
+		if (column &lt; 79)
+				column++ ;
+		else
+		{
+			column = 0;
+			row++;
+		}
+	}
+ }
+ return 1 ;
+}
+
+
+int _stdcall WinMain( HINSTANCE hinstance, HINSTANCE hprevinstance,LPSTR lpszcmdline, int ncmdshow )
+{
+wndclass.lpfnWndProc=zzz;
+wndclass.hInstance=hinstance;
+wndclass.hbrBackground=GetStockObject(WHITE_BRUSH) ;
+wndclass.lpszClassName="wclass";
+RegisterClass(&amp;wndclass);
+hwnd=CreateWindow("wclass","hi",WS_OVERLAPPEDWINDOW,0,0,0,0,0,0,hinstance,0);
+xwidth = 8;
+yheight = 19;
+ShowWindow( hwnd, 3 ) ;
+hdc=GetDC(hwnd);
+
+handle= CreateFile( "COM1", GENERIC_READ | GENERIC_WRITE,1,NULL,	
+	OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL );
+
+dcb.DCBlength = sizeof( DCB ) ;
+GetCommState( handle, &amp;dcb ) ;
+dcb.BaudRate = 14400 ;
+SetCommState( handle, &amp;dcb ) ;
+CreateThread(0,0,(LPTHREAD_START_ROUTINE) commcallback,0,0, &amp;threadid );
+strcpy(writestr,"atdt2659385\r");
+WriteFile(handle,writestr,strlen(writestr),&amp;byteswritten,0) ;
+while (GetMessage( &amp;msg, 0, 0, 0 ))
+   {
+       TranslateMessage( &amp;msg ) ;
+       DispatchMessage( &amp;msg ) ;
+   }
+   return 0 ;
+}
+
+
+long _stdcall zzz(HWND wnd,unsigned int umsg,unsigned int wparam,long lparam)
+{
+   if(umsg == WM_CHAR)
+   {
+         ctemp = wparam;
+         WriteFile(handle,&amp;ctemp,1,&amp;byteswritten,0) ;
+   }
+    if(umsg == WM_DESTROY)
+	{
+		 ReleaseDC(wnd,hdc);
+         PostQuitMessage( 0 ) ;
+	}
+         return( DefWindowProc( wnd, umsg, wparam, lparam ) ) ;
+}  
+
+
+void processpacket()
+{
+	struct packet unescpacket,finalpacket;
+	unsigned int i;
+       
+	sprintf(writestr,"Recd Packet packetsize=%d",recdpacket.packetsize);
+	abcstr(writestr);
+	uescapepacket(&amp;recdpacket,&amp;unescpacket);
+	for(i=0; i&lt;unescpacket.packetsize;i++)
+		abcchar(unescpacket.data[i]);
+	
+	removeframe(&amp;unescpacket,&amp;finalpacket);
+	
+	if(finalpacket.data[0] == 0xc0 &amp;&amp; finalpacket.data[1] == 0x21)
+		lcppacket(&amp;finalpacket);
+	if(finalpacket.data[0] == 0x80 &amp;&amp; finalpacket.data[1] == 0x21)
+		ipcppacket(&amp;finalpacket);
+}
+void ipcppacket(struct packet * f)
+{
+if (f-&gt;data[2]== 1)
+{
+	abcstr("ipcpReq Sent....");
+	sendipcpack(f);
+	sendipcpreq(ipaddress);
+	
+}
+
+if (f-&gt;data[2]== 2)
+{
+	abcstr("IPCP Ack Received");
+	MessageBox(0,"IPCP Ack Received","IPCP Ack Received",0);
+}
+
+if (f-&gt;data[2]== 3)
+{
+	abcstr("ipcp NAck received");
+	ipaddress[0]=f-&gt;data[8];
+	ipaddress[1]=f-&gt;data[9];
+	ipaddress[2]=f-&gt;data[10];
+	ipaddress[3]=f-&gt;data[11];
+	sendipcpreq(ipaddress);
+}
+
+if (f-&gt;data[2]== 4)
+{
+	abcstr("IPCP Reject received");
+}
+
+}
+
+void sendipcpack(struct packet *aipcp)
+{
+aipcp-&gt;data[2]=2;
+aipcp-&gt;packetsize=addffthree(aipcp);
+aipcp-&gt;packetsize=calcchksum(aipcp-&gt;data,aipcp-&gt;packetsize);
+escapepacket(aipcp);
+addsevene(aipcp);
+sendpacket(aipcp);
+
+}
+
+
+void sendipcpreq(char ipadd[])
+{
+struct packet ipcpreq;
+ipcpreq.data[0]=0x80;
+ipcpreq.data[1]=0x21;
+ipcpreq.data[2]=0x01;
+ipcpreq.data[3]=0x1;
+ipcpreq.data[4]=0x00;
+ipcpreq.data[5]=0xa;
+ipcpreq.data[6]=0x3;
+ipcpreq.data[7]=0x6;
+ipcpreq.data[8]=ipadd[0];
+ipcpreq.data[9]=ipadd[1];
+ipcpreq.data[10]=ipadd[2];
+ipcpreq.data[11]=ipadd[3];
+ipcpreq.packetsize=12;
+ipcpreq.packetsize=addffthree(&amp;ipcpreq);
+ipcpreq.packetsize=calcchksum(ipcpreq.data,ipcpreq.packetsize);
+escapepacket(&amp;ipcpreq);
+addsevene(&amp;ipcpreq);
+sendpacket(&amp;ipcpreq);
+}
+
+
+
+void uescapepacket(struct packet *r, struct packet *u)
+{	
+	unsigned int i,j;
+	for(j=0,i=0;i&lt;r-&gt;packetsize;i++,j++)
+	{
+		if (r-&gt;data[i]==0x7d)
+		{
+			i++;
+			u-&gt;data[j]=r-&gt;data[i]^0x20;
+		}
+		else
+		{
+		u-&gt;data[j]=r-&gt;data[i];
+		}
+	}
+	u-&gt;packetsize=j;
+}
+
+
+
+void removeframe(struct packet *u,struct packet *f)
+{
+	unsigned int i,j;
+	for(i=0,j=3;j&lt;u-&gt;packetsize-3;i++,j++)
+	{
+	f-&gt;data[i]=u-&gt;data[j];
+	}
+	f-&gt;packetsize=i;
+}
+
+void lcppacket(struct packet *lcp)
+{
+if (lcp-&gt;data[2]== 1)
+{
+	sendconfack(lcp);
+	sendconfreq();
+	abcstr("Configure Ack and Req");
+}
+if (lcp-&gt;data[2]== 2)
+{
+	abcstr("Configure Ack Received");
+}
+if (lcp-&gt;data[2]== 9)
+{
+	sendechoreply(lcp);
+	abcstr("Sent Echo Reply ");
+}
+
+}
+
+void sendechoreply(struct packet * alcp)
+{
+alcp-&gt;data[2]=10;
+alcp-&gt;packetsize=addffthree(alcp);
+alcp-&gt;packetsize=calcchksum(alcp-&gt;data,alcp-&gt;packetsize);
+escapepacket(alcp);
+addsevene(alcp);
+sendpacket(alcp);
+
+}
+
+
+void sendconfreq()
+{
+	
+struct packet lcpreq;
+lcpreq.data[0]=0xc0;
+lcpreq.data[1]=0x21;
+lcpreq.data[2]=0x01;
+lcpreq.data[3]=1;
+lcpreq.data[4]=0x00;
+lcpreq.data[5]=0x04;
+lcpreq.packetsize=6;
+lcpreq.packetsize=addffthree(&amp;lcpreq);
+lcpreq.packetsize=calcchksum(lcpreq.data,lcpreq.packetsize);
+escapepacket(&amp;lcpreq);
+addsevene(&amp;lcpreq);
+sendpacket(&amp;lcpreq);
+
+
+}
+
+
+
+void sendconfack(struct packet *alcp)
+{
+
+alcp-&gt;data[2]=2;
+alcp-&gt;packetsize=addffthree(alcp);
+alcp-&gt;packetsize=calcchksum(alcp-&gt;data,alcp-&gt;packetsize);
+escapepacket(alcp);
+addsevene(alcp);
+sendpacket(alcp);
+
+}
+
+
+unsigned short pppfcs16(fcs,cp,len)
+register unsigned short fcs;
+register unsigned char *cp;
+register int len;
+{
+while ( len -- )
+fcs = ( fcs&gt;&gt;8 ) ^ fcstab[ (fcs^*cp++) &amp; 0xff];
+return fcs;
+}
+
+unsigned int calcchksum(cp,len)
+register unsigned char *cp;
+register int len;
+{
+unsigned short trialfcs;
+trialfcs = pppfcs16(PPPINITFCS16,cp,len);
+trialfcs ^= 0xffff;
+cp[len] = (trialfcs &amp; 0x00ff);
+cp[len+1] = ((trialfcs &gt;&gt; 8 ) &amp; 0x00ff);
+return len+2;
+}
+
+unsigned int addffthree(struct packet *flcp)
+{
+	struct packet dummy;
+	unsigned int i,j=0;
+	dummy.data[j]=0xff;
+	j++;
+	dummy.data[j]=0x03;
+	j++;
+	for(i=0; i&lt; flcp-&gt;packetsize;i++,j++)
+	{
+		dummy.data[j]=flcp-&gt;data[i];
+	}
+	dummy.packetsize=j;
+	for(i=0;i&lt;dummy.packetsize;i++)
+	{
+		flcp-&gt;data[i]=dummy.data[i];
+	}
+	flcp-&gt;packetsize=dummy.packetsize;
+	
+	
+	return flcp-&gt;packetsize;
+	}
+
+
+void escapepacket(struct packet * epacket)
+{
+	struct packet dummy;
+	unsigned int i,j;
+	for(i=0; i&lt; epacket-&gt;packetsize;i++)
+	abcchar(epacket-&gt;data[i]);
+
+	for(i=0;i&lt;epacket-&gt;packetsize;i++)
+	{
+		dummy.data[i]=epacket-&gt;data[i];
+	}
+	dummy.packetsize=epacket-&gt;packetsize;
+     
+	for(j=0,i=0;i&lt;dummy.packetsize;i++,j++)
+	{
+		if (dummy.data[i] &lt;= 31 || dummy.data[i] == 0x7e || dummy.data[i]== 0x7d)
+		{
+			epacket-&gt;data[j]=0x7d;
+			j++;
+			epacket-&gt;data[j]=dummy.data[i]^0x20;
+		}
+		else
+			epacket-&gt;data[j]=dummy.data[i];
+	}
+	epacket-&gt;packetsize=j;
+	
+}
+
+void addsevene(struct packet * apacket)
+{
+	struct packet dummy;
+	unsigned int i,j;
+	for(i=0;i&lt;apacket-&gt;packetsize;i++)
+	{
+		dummy.data[i]=apacket-&gt;data[i];
+	}
+	dummy.packetsize=i;
+	apacket-&gt;data[0]=0x7e;
+	for(i=0,j=1;i&lt;dummy.packetsize;i++,j++)
+	{
+		apacket-&gt;data[j]=dummy.data[i];
+	}
+
+	apacket-&gt;data[j]=0x7e;
+	j++;
+	apacket-&gt;packetsize=j;
+}
+
+void sendpacket(struct packet * spacket)
+{
+
+WriteFile(handle,spacket-&gt;data,spacket-&gt;packetsize,&amp;byteswritten,0) ;
+sprintf(writestr,"WriteFile...spacket-&gt;packetsize=%d...byteswritten=%d",
+		spacket-&gt;packetsize,byteswritten);
+abcstr(writestr);
+
+}
+</pre></blockquote>
+<p>
+We have reached the grand finale, this is the last program. In this program we will try to assimilate all the qualities of IPCP.  In the earlier program all we did was send a configure request, we did not consider conditions where, what happens if he NAK's our request. Here we do just that.
+</p><p>
+In this program we have stored the address as part of an array called ipaddress. This enables easier manipulation of address. To begin with we will initialized this array to 0.0.0.0. This is used to send a request for IP address. The request is sent out using the normal means i.e. by using the function  ipcppacket.  As IP address 0.0.0.0 is possibly reserved for the inhabitants on the other side of our galaxy  the peer NAKs this request. Since our peer cannot inform us about this limitation, it offers us an alternate IP address. Here we have an option of either ACK him  or NAKing him. If we NACK him we have to provide him with an alternate set of IP address, which he may or may not accept. This process may go into an infinite loop and we may never get on-line. The moral of the story - Be wise and ACK his response (while ACKing the address assigned to us, all we do is copy the address and the ID number of reply and send it back to him. Good deeds beget others, so our friendly peer ACKs our ACK. This enables us to start our meandering on the vast oceans of the Internet. Now it's time to check the happenings in the output file.  This will be the last time you will have to refer to it.
+</p><p>
+<u><b>z.txt</b></u></p><pre>RecdPacketpacketsize=45
+~..7e..126
+ÿ..ff..255
+..3..3
+À..c0..192
+!..21..33
+..1..1
+..1d..29
+..0..0
+..14..20
+..2..2
+..6..6
+..0..0
+
+..a..10
+..0..0
+..0..0
+..5..5
+..6..6
+½..bd..189
+...2e..46
+‚..82..130
+Ç..c7..199
+..7..7
+..2..2
+..8..8
+..2..2
+T..54..84
+£..a3..163
+/*SentPacket(ConfigureAck)
+~..7e..126
+ÿ..ff..255
+..3..3
+À..c0..192
+!..21..33
+..2..2
+..1d..29
+..0..0
+..14..20
+..2..2
+..6..6
+..0..0
+
+..a..10
+..0..0
+..0..0
+..5..5
+..6..6
+½..bd..189
+...2e..46
+‚..82..130
+Ç..c7..199
+..7..7
+..2..2
+..8..8
+..2..2
+¿..bf..191
+Ê..ca..202
+WriteFile...spacket-&gt;packetsize=45...dwBytesWritten=45
+ÿ..ff..255
+..3..3
+À..c0..192
+!..21..33
+..1..1
+..0..0
+..0..0
+..4..4
+..d..13
+ï..ef..239
+WriteFile...spacket-&gt;packetsize=18...dwBytesWritten=18
+ConfigureAckandReq
+RecdPacketpacketsize=17
+~..7e..126
+ÿ..ff..255
+..3..3
+À..c0..192
+!..21..33
+..2..2
+..0..0
+..0..0
+..4..4
+À..c0..192
+Ê..ca..202
+~..7e..126
+ConfigureAckReceived
+RecdPacketpacketsize=26
+~..7e..126
+ÿ..ff..255
+..3..3
+..80..128
+!..21..33
+..1..1
+[..5b..91
+..0..0
+
+..a..10
+..3..3
+..6..6
+Ê..ca..202
+6..36..54
+..1..1
+..1b..27
+^..5e..94
+Õ..d5..213
+~..7e..126
+ipcpReqSent....
+ÿ..ff..255
+..3..3
+..80..128
+!..21..33
+..2..2
+[..5b..91
+..0..0
+
+..a..10
+..3..3
+..6..6
+Ê..ca..202
+6..36..54
+..1..1
+..1b..27
+7..37..55
+¡..a1..161
+WriteFile...spacket-&gt;packetsize=26...dwBytesWritten=26
+ÿ..ff..255
+..3..3
+..80..128
+!..21..33
+..1..1
+..1..1
+..0..0
+
+..a..10
+..3..3
+..6..6
+..0..0
+..0..0
+..0..0
+..0..0
+..13..19
+(..28..40
+WriteFile...spacket-&gt;packetsize=30...dwBytesWritten=30
+RecdPacketpacketsize=26
+~..7e..126
+ÿ..ff..255
+..3..3
+..80..128
+!..21..33
+..3..3
+..1..1
+..0..0
+
+..a..10
+..3..3
+..6..6
+Ê..ca..202
+6..36..54
+..3..3
+A..41..65
+¸..b8..184
+¾..be..190
+~..7e..126
+ipcpNAckreceived
+ÿ..ff..255
+..3..3
+..80..128
+!..21..33
+..1..1
+..1..1
+..0..0
+
+..a..10
+..3..3
+..6..6
+Ê..ca..202
+6..36..54
+..3..3
+A..41..65
+ö..f6..246
+æ..e6..230
+WriteFile...spacket-&gt;packetsize=26...dwBytesWritten=26
+RecdPacketpacketsize=26
+~..7e..126
+ÿ..ff..255
+..3..3
+..80..128
+!..21..33
+..2..2
+..1..1
+..0..0
+
+..a..10
+..3..3
+..6..6
+Ê..ca..202
+6..36..54
+..3..3
+A..41..65
+Ÿ..9f..159
+'..92..146
+~..7e..126
+IPCPAckReceived
+RecdPacketpacketsize=25
+~..7e..126
+ÿ..ff..255
+..3..3
+À..c0..192
+!..21..33
+	..9..9
+..1..1
+..0..0
+..c..12
+½..bd..189
+...2e..46
+‚..82..130
+Ç..c7..199
+s..73..115
+w..77..119
+o..6f..111
+r..72..114
+b..62..98
+è..e8..232
+~..7e..126
+ÿ..ff..255
+..3..3
+À..c0..192
+!..21..33
+
+..a..10
+..1..1
+..0..0
+..c..12
+½..bd..189
+...2e..46
+‚..82..130
+Ç..c7..199
+s..73..115
+w..77..119
+o..6f..111
+r..72..114
+Œ..8c..140
+o..6f..111
+WriteFile...spacket-&gt;packetsize=25...dwBytesWritten=25
+SentEchoReply
+RecdPacketpacketsize=45
+~..7e..126
+ÿ..ff..255
+..3..3
+À..c0..192
+!..21..33
+..1..1
+²..b2..178
+..0..0
+..14..20
+..2..2
+..6..6
+..0..0
+
+..a..10
+..0..0
+..0..0
+..5..5
+..6..6
+-..2d..45
+Z..5a..90
+..b..11
+..8e..142
+..7..7
+..2..2
+..8..8
+..2..2
+Ê..ca..202
+§..a7..167
+~..7e..126
+ÿ..ff..255
+..3..3
+À..c0..192
+!..21..33
+..2..2
+²..b2..178
+..0..0
+..14..20
+..2..2
+..6..6
+..0..0
+
+..a..10
+..0..0
+..0..0
+..5..5
+..6..6
+-..2d..45
+Z..5a..90
+..b..11
+..8e..142
+..7..7
+..2..2
+..8..8
+..2..2
+!..21..33
+Î..ce..206
+WriteFile...spacket-&gt;packetsize=45...byteswritten=45
+ÿ..ff..255
+..3..3
+À..c0..192
+!..21..33
+..1..1
+..0..0
+..0..0
+..4..4
+..d..13
+ï..ef..239
+WriteFile...spacket-&gt;packetsize=18...byteswritten=18
+ConfigureAckandReq
+RecdPacketpacketsize=17
+~..7e..126
+ÿ..ff..255
+..3..3
+À..c0..192
+!..21..33
+..2..2
+..0..0
+..0..0
+..4..4
+À..c0..192
+Ê..ca..202
+~..7e..126
+ConfigureAckReceived
+RecdPacketpacketsize=27
+~..7e..126
+ÿ..ff..255
+..3..3
+..80..128
+!..21..33
+..1..1
+..15..21
+..0..0
+
+..a..10
+..3..3
+..6..6
+Ê..ca..202
+6..36..54
+..1..1
+..18..24
+s..73..115
+Ú..da..218
+~..7e..126
+ipcpReqSent....
+ÿ..ff..255
+..3..3
+..80..128
+!..21..33
+..2..2
+..15..21
+..0..0
+
+..a..10
+..3..3
+..6..6
+Ê..ca..202
+6..36..54
+..1..1
+..18..24
+..1a..26
+®..ae..174
+WriteFile...spacket-&gt;packetsize=28...byteswritten=28
+ÿ..ff..255
+..3..3
+..80..128
+!..21..33
+..1..1
+..1..1
+..0..0
+
+..a..10
+..3..3
+..6..6
+..0..0
+..0..0
+..0..0
+..0..0
+..13..19
+(..28..40
+WriteFile...spacket-&gt;packetsize=30...byteswritten=30
+RecdPacketpacketsize=27
+~..7e..126
+ÿ..ff..255
+..3..3
+..80..128
+!..21..33
+..3..3
+..1..1
+..0..0
+
+..a..10
+..3..3
+..6..6
+Ê..ca..202
+6..36..54
+..3..3
+5..35..53
+..1b..27
+‹..8b..139
+~..7e..126
+ipcpNAckreceived
+ÿ..ff..255
+..3..3
+..80..128
+!..21..33
+..1..1
+..1..1
+..0..0
+
+..a..10
+..3..3
+..6..6
+Ê..ca..202
+6..36..54
+..3..3
+5..35..53
+U..55..85
+Ó..d3..211
+WriteFile...spacket-&gt;packetsize=26...byteswritten=26
+RecdPacketpacketsize=26
+~..7e..126
+ÿ..ff..255
+..3..3
+..80..128
+!..21..33
+..2..2
+..1..1
+..0..0
+
+..a..10
+..3..3
+..6..6
+Ê..ca..202
+6..36..54
+..3..3
+5..35..53
+&lt;..3c..60
+§..a7..167
+~..7e..126
+IPCPAckReceived
+RecdPacketpacketsize=30
+~..7e..126
+ÿ..ff..255
+..3..3
+À..c0..192
+!..21..33
+	..9..9
+..1..1
+..0..0
+..c..12
+-..2d..45
+Z..5a..90
+..b..11
+..8e..142
+..0..0
+..0..0
+..5..5
+..6..6
+†..86..134
+h..68..104
+~..7e..126
+ÿ..ff..255
+..3..3
+À..c0..192
+!..21..33
+
+..a..10
+..1..1
+..0..0
+..c..12
+-..2d..45
+Z..5a..90
+..b..11
+..8e..142
+..0..0
+..0..0
+..5..5
+..6..6
+h..68..104
+ï..ef..239
+WriteFile...spacket-&gt;packetsize=30...byteswritten=30
+SentEchoReply
+
+</pre>
+<p>
+For those who are wondering as to whether the end of the world is near, we have no answer.  But we can definitely tell them that this is the last program and hence we are approaching the end of the tutorial.  The output for the above program are amongst the cleanest we have in our stables.  The cross-fires can be transcribed as follows " VSNL offers us his IP address as 202.54.1.27, we meekly accept (ACK) this.  We then inform him of our desire of possessing  IP address 0.0.0.0, a request that is refused.  VSNL provides us with an alternate IP address i.e. 202.54.3.65.  Since we are in no mood to compete with our lord and master we accept this address.  Finally we are assigned the IP address 202.54.3.65 and we are ready to surf.  As a parting gesture, we indulge in a set of 'Echo Request - Echo Reply'.  
+</p><p>
+This may sound a bit cheesy, but please don your surfboards and check the direction of the wind. We are already sailing...
+ </p><p>
+</p><p>
+</p><hr>
+The above tutorial is a joint effort of<p>
+<b>
+Mr. Vijay Mukhi<br>
+Ms. Sonal Kotecha<br>
+Mr. Arsalan Zaidi<br>
+Mr. Vinesh Kurup<br>
+</b>
+</p><p>
+</p><hr>
+<a href="http://www.vijaymukhi.com/"><b>Back to the main page</b></a><p>
+</p><hr size="2" color="black">
+<p align="center"><font size="3"><b><i>Vijay Mukhi's Computer
+Institute<br>
+VMCI, B-13, Everest Building, Tardeo, Mumbai 400 034, India<br>
+Tel : 91-22-496 4335 /6/7/8/9 &nbsp;&nbsp;&nbsp;
+Fax : 91-22-307 28 59 <br>
+e-mail : <a href="mailto:vmukhi@giasbm01.vsnl.net.in">vmukhi@giasbm01.vsnl.net.in</a><br>
+<a href="http://www.vijaymukhi.com/">http://www.vijaymukhi.com</a><br>
+<br>
+</i></b></font></p>
+
+
+
+
+</body></html>

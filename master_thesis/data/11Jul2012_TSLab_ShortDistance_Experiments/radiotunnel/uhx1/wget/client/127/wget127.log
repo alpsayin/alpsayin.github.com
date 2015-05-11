@@ -1,0 +1,430 @@
+--2012-07-12 13:53:51--  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 0 [text/plain]
+Saving to: `text127.txt.1'
+
+     0K                                                        0.00 =0s
+
+2012-07-12 13:54:58 (0.00 B/s) - `text127.txt.1' saved [0/0]
+
+
+command=wget http://10.0.0.1/text127.txt -v -a wget127.log
+elapsed 1:06.84
+exit status 0
+
+--2012-07-12 13:55:08--  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... No data received.
+Retrying.
+
+--2012-07-12 13:55:32--  (try: 2)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 0 [text/plain]
+Saving to: `text127.txt.2'
+
+     0K                                                        0.00 =0s
+
+2012-07-12 13:57:19 (0.00 B/s) - `text127.txt.2' saved [0/0]
+
+
+command=wget http://10.0.0.1/text127.txt -v -a wget127.log
+elapsed 2:10.31
+exit status 0
+
+--2012-07-12 13:57:29--  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... Read error (Connection reset by peer) in headers.
+Retrying.
+
+--2012-07-12 13:58:05--  (try: 2)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 0 [text/plain]
+Saving to: `text127.txt.3'
+
+     0K                                                        0.00 =0s
+
+2012-07-12 13:59:48 (0.00 B/s) - `text127.txt.3' saved [0/0]
+
+
+command=wget http://10.0.0.1/text127.txt -v -a wget127.log
+elapsed 2:19.32
+exit status 0
+
+--2012-07-12 13:59:58--  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... No data received.
+Retrying.
+
+--2012-07-12 14:00:28--  (try: 2)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... No data received.
+Retrying.
+
+--2012-07-12 14:00:56--  (try: 3)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... No data received.
+Retrying.
+
+--2012-07-12 14:01:25--  (try: 4)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... No data received.
+Retrying.
+
+--2012-07-12 14:01:54--  (try: 5)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 0 [text/plain]
+Saving to: `text127.txt.4'
+
+     0K                                                        0.00 =0s
+
+2012-07-12 14:03:42 (0.00 B/s) - `text127.txt.4' saved [0/0]
+
+
+command=wget http://10.0.0.1/text127.txt -v -a wget127.log
+elapsed 3:44.31
+exit status 0
+
+--2012-07-12 14:03:52--  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 0 [text/plain]
+Saving to: `text127.txt.5'
+
+     0K                                                        0.00 =0s
+
+2012-07-12 14:05:40 (0.00 B/s) - `text127.txt.5' saved [0/0]
+
+
+command=wget http://10.0.0.1/text127.txt -v -a wget127.log
+elapsed 1:47.94
+exit status 0
+
+--2012-07-12 14:05:50--  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... Read error (Connection reset by peer) in headers.
+Retrying.
+
+--2012-07-12 14:06:26--  (try: 2)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... No data received.
+Retrying.
+
+--2012-07-12 14:06:55--  (try: 3)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... No data received.
+Retrying.
+
+--2012-07-12 14:07:24--  (try: 4)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... No data received.
+Retrying.
+
+--2012-07-12 14:07:55--  (try: 5)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... Read error (Connection reset by peer) in headers.
+Retrying.
+
+--2012-07-12 14:08:35--  (try: 6)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... No data received.
+Retrying.
+
+--2012-07-12 14:09:04--  (try: 7)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 0 [text/plain]
+Saving to: `text127.txt.6'
+
+     0K                                                        0.00 =0s
+
+2012-07-12 14:10:16 (0.00 B/s) - `text127.txt.6' saved [0/0]
+
+
+command=wget http://10.0.0.1/text127.txt -v -a wget127.log
+elapsed 4:25.73
+exit status 0
+
+--2012-07-12 14:10:26--  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 0 [text/plain]
+Saving to: `text127.txt.7'
+
+     0K                                                        0.00 =0s
+
+2012-07-12 14:11:30 (0.00 B/s) - `text127.txt.7' saved [0/0]
+
+
+command=wget http://10.0.0.1/text127.txt -v -a wget127.log
+elapsed 1:04.23
+exit status 0
+
+--2012-07-12 14:11:40--  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 0 [text/plain]
+Saving to: `text127.txt.8'
+
+     0K                                                        0.00 =0s
+
+2012-07-12 14:12:44 (0.00 B/s) - `text127.txt.8' saved [0/0]
+
+
+command=wget http://10.0.0.1/text127.txt -v -a wget127.log
+elapsed 1:04.23
+exit status 0
+
+--2012-07-12 14:12:54--  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... No data received.
+Retrying.
+
+--2012-07-12 14:13:31--  (try: 2)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... No data received.
+Retrying.
+
+--2012-07-12 14:13:59--  (try: 3)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... No data received.
+Retrying.
+
+--2012-07-12 14:14:29--  (try: 4)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... No data received.
+Retrying.
+
+--2012-07-12 14:14:59--  (try: 5)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 0 [text/plain]
+Saving to: `text127.txt.9'
+
+     0K                                                        0.00 =0s
+
+2012-07-12 14:16:36 (0.00 B/s) - `text127.txt.9' saved [0/0]
+
+
+command=wget http://10.0.0.1/text127.txt -v -a wget127.log
+elapsed 3:41.13
+exit status 0
+
+--2012-07-12 14:16:46--  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... No data received.
+Retrying.
+
+--2012-07-12 14:17:40--  (try: 2)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 0 [text/plain]
+Saving to: `text127.txt.10'
+
+     0K                                                        0.00 =0s
+
+2012-07-12 14:19:30 (0.00 B/s) - `text127.txt.10' saved [0/0]
+
+
+command=wget http://10.0.0.1/text127.txt -v -a wget127.log
+elapsed 2:44.70
+exit status 0
+
+--2012-07-12 14:19:40--  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... No data received.
+Retrying.
+
+--2012-07-12 14:20:10--  (try: 2)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... No data received.
+Retrying.
+
+--2012-07-12 14:20:44--  (try: 3)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... No data received.
+Retrying.
+
+--2012-07-12 14:21:13--  (try: 4)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... No data received.
+Retrying.
+
+--2012-07-12 14:21:43--  (try: 5)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... No data received.
+Retrying.
+
+--2012-07-12 14:22:15--  (try: 6)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... No data received.
+Retrying.
+
+--2012-07-12 14:22:44--  (try: 7)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... No data received.
+Retrying.
+
+--2012-07-12 14:23:14--  (try: 8)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 0 [text/plain]
+Saving to: `text127.txt.11'
+
+     0K                                                        0.00 =0s
+
+2012-07-12 14:25:00 (0.00 B/s) - `text127.txt.11' saved [0/0]
+
+
+command=wget http://10.0.0.1/text127.txt -v -a wget127.log
+elapsed 5:19.83
+exit status 0
+
+--2012-07-12 14:25:10--  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... Read error (Connection reset by peer) in headers.
+Retrying.
+
+--2012-07-12 14:25:46--  (try: 2)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... No data received.
+Retrying.
+
+--2012-07-12 14:26:14--  (try: 3)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... No data received.
+Retrying.
+
+--2012-07-12 14:26:43--  (try: 4)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... No data received.
+Retrying.
+
+--2012-07-12 14:27:14--  (try: 5)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 0 [text/plain]
+Saving to: `text127.txt.12'
+
+     0K                                                        0.00 =0s
+
+2012-07-12 14:29:04 (0.00 B/s) - `text127.txt.12' saved [0/0]
+
+
+command=wget http://10.0.0.1/text127.txt -v -a wget127.log
+elapsed 3:54.41
+exit status 0
+
+--2012-07-12 14:29:15--  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... No data received.
+Retrying.
+
+--2012-07-12 14:29:45--  (try: 2)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... No data received.
+Retrying.
+
+--2012-07-12 14:30:13--  (try: 3)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 0 [text/plain]
+Saving to: `text127.txt.13'
+
+     0K                                                        0.00 =0s
+
+2012-07-12 14:32:42 (0.00 B/s) - `text127.txt.13' saved [0/0]
+
+
+command=wget http://10.0.0.1/text127.txt -v -a wget127.log
+elapsed 3:27.28
+exit status 0
+
+--2012-07-12 14:32:52--  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... Read error (Connection reset by peer) in headers.
+Retrying.
+
+--2012-07-12 14:33:28--  (try: 2)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... No data received.
+Retrying.
+
+--2012-07-12 14:33:56--  (try: 3)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... No data received.
+Retrying.
+
+--2012-07-12 14:34:25--  (try: 4)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 0 [text/plain]
+Saving to: `text127.txt.14'
+
+     0K                                                        0.00 =0s
+
+2012-07-12 14:36:30 (0.00 B/s) - `text127.txt.14' saved [0/0]
+
+
+command=wget http://10.0.0.1/text127.txt -v -a wget127.log
+elapsed 3:38.11
+exit status 0
+
+--2012-07-12 14:36:40--  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... Read error (Connection reset by peer) in headers.
+Retrying.
+
+--2012-07-12 14:37:16--  (try: 2)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 0 [text/plain]
+Saving to: `text127.txt.15'
+
+     0K                                                        0.00 =0s
+
+2012-07-12 14:39:18 (0.00 B/s) - `text127.txt.15' saved [0/0]
+
+
+command=wget http://10.0.0.1/text127.txt -v -a wget127.log
+elapsed 2:37.67
+exit status 0
+
+--2012-07-12 14:39:28--  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... No data received.
+Retrying.
+
+--2012-07-12 14:39:58--  (try: 2)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... No data received.
+Retrying.
+
+--2012-07-12 14:40:26--  (try: 3)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... No data received.
+Retrying.
+
+--2012-07-12 14:40:54--  (try: 4)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... No data received.
+Retrying.
+
+--2012-07-12 14:41:25--  (try: 5)  http://10.0.0.1/text127.txt
+Connecting to 10.0.0.1:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 0 [text/plain]
+Saving to: `text127.txt.16'
+
+     0K                                                        0.00 =0s
+
+2012-07-12 14:43:18 (0.00 B/s) - `text127.txt.16' saved [0/0]
+
+
+command=wget http://10.0.0.1/text127.txt -v -a wget127.log
+elapsed 3:50.42
+exit status 0
+
