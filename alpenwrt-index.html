@@ -2,13 +2,22 @@
 <!-- saved from url=(0019)http://192.168.1.1/ -->
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<!--
 	<meta http-equiv="refresh" content="0; URL=/cgi-bin/luci" />
 -->
+<title>AlpenWrt Router</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+
 <style type="text/css">
 body {
-	width: vmax;
+	/*width: vmax;*/
 	font-family: monospace;
 	background-color: #d9d9d9;
 }
@@ -24,11 +33,13 @@ a {
 	transition: background-color 500ms, padding 500ms, line-height 500ms;
 }
 a:hover {
+	color: white;
 	background-color: #248574;
 	padding: 10px 20px 10px 20px;
 	line-height: 3;
 }
 a:active {
+	color: white;
 	background-color: #BD2B2B;	
 	transition: background-color 0ms;	
 }
@@ -36,7 +47,7 @@ a:active {
 	padding-bottom: 20px;
 }
 #whoishome {
-	width: vmax;
+	/*width: vmax;*/
 	height: 480px;
 }
 #whoishomeframe {
@@ -52,33 +63,42 @@ a:active {
 </style>
 </head>
 <body>
-	<h1>
-		AlpenWRT Router
-	</h1>
+	<div class="container-fluid">
+		<div class="row">
+			<h1>
+				AlpenWRT Router
+			</h1>
 
-	<div id="links">
+			<div id="links">
 
-		<a style="text-decoration: none" href="./cgi-bin/luci">
-			LuCI - Lua Configuration Interface
-		</a>
-		<br>
-		<a style="text-decoration: none" href="./noip.log">
-			No-Ip Update Log
-		</a>
-		<br>
-		<a style="text-decoration: none" href="./traffic.log">
-			Data Traffic Measurement Log
-		</a>
-		<br />
-		<br />
-		<a style="text-decoration: none" href="http://alpsayin.com">
-			Personal Web Page
-		</a>
+				<a style="text-decoration: none" href="./cgi-bin/luci">
+					LuCI - Lua Configuration Interface
+				</a>
+				<br>
+				<a style="text-decoration: none" href="./noip.log">
+					No-Ip Update Log
+				</a>
+				<br>
+				<a style="text-decoration: none" href="./traffic.log">
+					Data Traffic Measurement Log
+				</a>
+				<br />
+				<br />
+				<a style="text-decoration: none" href="http://alpsayin.com">
+					Personal Web Page
+				</a>
 
-	</div>
+			</div>
 
-	<div id="whoishome">
-		<iframe id="whoishomeframe" src="./whoIsHome.txt"></iframe>
+			<div id="whoishome">
+				<iframe id="whoishomeframe" src="./whoIsHome.txt"></iframe>
+			</div>
+
+			<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+			<!-- Include all compiled plugins (below), or include individual files as needed -->
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		</div>
 	</div>
 </body>
 </html>
