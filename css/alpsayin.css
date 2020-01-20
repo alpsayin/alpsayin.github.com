@@ -1,4 +1,9 @@
 
+html {
+  scroll-behavior: smooth;
+}
+
+
   /* make sidebar nav vertical */ 
   @media (min-width: 768px) {
     .sidebar-nav .navbar .navbar-collapse {
