@@ -1,0 +1,34 @@
+Abstract
+
+The  purpose of this thesis is to compare alternative wireless links for transfer of data from sink motes of remote wireless sensor networks to a central repository.  We discuss a few different protocol stacks to be implemented in the WSN uplink gateway and a few implementation environments based on open source software and low-power hardware. To facilitate measurements and experimental validation, some of the alternatives have been implemented.  Experiments have been made using radio amateur frequencies, the 144 MHz band (VHF) and the 434 MHz band (UHF). The parameters studied include throughput, range, power-requirements, portability and compatibility with standards.
+
+1. Background
+
+The WSN mote used in this thesis project [], is based on the Atmel ATMega128RF-chip, which integrates an IEEE 802.15.4 compliant 2.4 GHz radio transceiver, an MCU and an AD converter facilitating the connection of analog sensors. Motes broadcast packets with sensor data. 
+The mote software is based on the Contiki operating system (www.contiki-os.org). 
+
+A mote automatically becomes a sink mote when connected via a TTL/USB converter to a USB port of a WSN gateway, The gateway stores the data from received packets in a file. 
+
+The following sections discuss different aspects of the uplink from the WSN gateway and the experiments conducted to facilitate comparisons.
+
+Section 2 discusses uplink protocol stacks. Section 3 discusses the implementation environments for the WSN uplink gateway, includjng boith hardware and software aspects. In section 4, the experiments are presented and in section 5 the conclusions and proposals for further work are .
+
+2. Communication protocols
+
+
+3. Implementation environments fo
+
+3.1 Hardware
+
+The WSN motes
+Gateway
+
+
+3.2 Software
+
+
+4. Experiments
+
+5. Conclusions 
+
+6. Proposals for furter works

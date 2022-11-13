@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.0"><Document>
+<Folder>
+<Placemark>
+<name>2</name>
+<Point>
+<coordinates>18.051831,59.321213,0</coordinates>
+</Point>
+</Placemark>
+</Folder></Document></kml>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lm:lmx xmlns:lm="http://www.nokia.com/schemas/location/landmarks/1/0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.nokia.com/schemas/location/landmarks/1/0 lmx.xsd">
+<lm:landmarkCollection>
+<lm:landmark>
+<lm:name>6</lm:name>
+<lm:coordinates>
+<lm:latitude>59.3238074</lm:latitude>
+<lm:longitude>18.0279928</lm:longitude>
+</lm:coordinates>
+<lm:addressInfo>
+<lm:country>Sweden</lm:country>
+<lm:city>Stockholm</lm:city>
+<lm:postalCode>117 33</lm:postalCode>
+<lm:street>Västerbron </lm:street>
+</lm:addressInfo>
+</lm:landmark>
+</lm:landmarkCollection>
+</lm:lmx>

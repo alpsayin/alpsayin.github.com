@@ -1,0 +1,155 @@
+8m, 38400, 512b
+real	0m22.127s
+real	0m30.508s
+real	0m1.741s
+real	0m1.745s
+real	0m1.741s
+real	0m1.745s
+real	0m1.745s
+8m, 38400, 8k
+real	0m12.901s
+real	0m12.898s
+real	0m12.905s
+real	0m12.896s
+real	0m12.900s
+real	0m12.896s
+8m, 19200, 512b
+real	0m3.422s
+real	0m3.427s
+real	0m3.422s
+real	0m3.418s
+real	0m3.586s
+8m, 19200, 8k
+real	0m25.484s
+real	0m25.493s
+real	0m25.484s
+real	0m34.617s
+real	0m25.483s
+real	0m25.481s
+inf, 19200, 512b
+real	0m3.422s
+real	0m7.548s
+real	0m8.549s
+real	0m3.422s
+real	0m3.420s
+real	0m10.677s
+real	0m14.806s
+real	0m13.678s
+real	0m42.250s canceled
+real	0m42.250s canceled
+real	0m54.507s canceled
+real	0m50.379s canceled
+real	0m12.676s
+real	0m3.418s
+real	0m3.422s
+real	0m7.546s
+real	0m6.549s
+real	0m3.425s
+real	0m3.422s
+real	0m3.415s
+real	0m3.423s
+real	0m3.419s
+real	0m9.674s
+real	0m3.447s
+real	0m3.421s
+real	0m3.449s
+real	0m11.676s
+real	0m3.447s
+real	0m51.719s canceled
+real	0m51.719s canceled
+real	0m38.248s canceled
+real	0m7.581s
+inf, 19200, 8k
+real	0m57.790s canceled
+real	0m53.630s canceled
+real	0m41.290s canceled
+real	1m28.399s canceled
+real	0m50.504s canceled
+real	0m40.242s canceled
+real	3m20.679s canceled
+real	0m42.287s canceled
+inf, 38400, 512b
+real	0m54.034s canceled
+real	0m56.164s canceled
+real	0m1.738s
+real	0m41.895s canceled
+real	0m22.379s
+real	0m32.764s
+real	0m10.996s
+real	0m1.739s
+real	0m1.741s
+real	0m6.868s
+real	0m1.741s
+real	0m4.868s
+real	0m7.869s
+real	0m16.254s
+real	0m7.869s
+real	0m9.994s
+real	0m1.734s
+real	0m1.738s
+real	0m5.866s
+real	0m11.994s
+inf, 38400, 8k
+real	3m40.556s canceled
+real	0m43.290s canceled
+real	1m49.758s canceled
+real	0m45.779s canceled
+real	0m44.290s canceled
+real	0m17.030s
+real	1m42.218s canceled
+real	0m42.290s canceled
+real	0m46.290s canceled
+real	0m46.291s canceled
+3rd base, 38400, 512b
+real	0m2.250s
+real	0m1.746s
+real	0m1.746s
+real	0m1.739s
+real	0m38.777s canceled
+real	0m1.739s
+real	0m1.743s
+real	0m1.740s
+real	0m1.740s
+real	0m1.744s
+real	0m1.743s
+real	0m1.744s
+real	0m1.745s
+real	0m1.739s
+real	0m1.746s
+real	0m1.739s
+real	0m1.743s
+real	0m1.739s 
+real	0m1.739s
+real	0m1.760s
+real	0m1.742s
+3rd base, 38400, 8K
+real	0m12.922s
+real	0m18.898s
+real	0m12.898s
+real	0m16.027s
+real	0m12.927s
+real	0m12.899s
+real	0m12.899s
+real	0m12.901s
+real	0m12.897s
+real	0m18.900s
+real	0m12.900s
+real	0m12.898s
+real	0m12.897s
+real	0m12.901s
+3rd base, 19200, 512b
+real	0m3.423s
+real	0m3.427s
+real	0m3.419s
+real	0m3.418s
+real	0m3.419s
+real	0m3.419s
+real	0m3.422s
+real	0m3.412s
+3rd base, 19200, 8k
+real	0m25.436s
+real	0m25.440s
+real	0m25.446s
+real	0m25.442s
+real	0m31.438s
+

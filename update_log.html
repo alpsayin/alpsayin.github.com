@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html style="background-image: none; background: repeat repeat 0% 0%" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+		Captain's Log (Kaptan'in Seyir Defteri)</title>
+<style type="text/css"></style>
+<style type="text/css"></style>
+</head>
+<body>
+<h3><font face="wp_bogus_font">Update Log</font></h3>
+<p><strong># Feb 12, 2020</strong><br />
+-Noticed some links are broken such as the one from Feb 17, 2013. Updated the blog link <a target="_blank" title="" href="https://alpsayin.com/blog">here</a>.</p>
+<p><strong># Apr 8, 2013</strong><br />
+-Slowly moving the website to a wordpress based web page. Reach and follow the new updates from <a target="_blank" title="" href="https://alpsayin.com/blog">here</a>.</p>
+<p><strong># Feb 17, 2013</strong><br />
+-Second revision of second version of final report is out. Document can be downloaded as <a href="master_thesis/docs/alpsayin_finalReport_v2_rev2.docx">DOCX</a> and <a href="master_thesis/docs/alpsayin_finalReport_v2_rev2.pdf" target="main">PDF</a>.</p>
+<p><strong># Feb 8, 2013</strong><br />
+-Finalized the new version of Final Report. Document can be downloaded as <a href="master_thesis/docs/alpsayin_finalReport_v2_rev1.docx">DOCX</a> and <a href="master_thesis/docs/alpsayin_finalReport_v2_rev1.pdf">PDF</a>.</p>
+<p><strong># Nov 28, 2012</strong><br />
+-Fixed minor problems in Final Report. Progress can be found <a href="master_thesis/docs/alpsayin_finalReport_v1_rev3.docx">here.</a><br />
+</p>
+<p><strong># Nov 23, 2012</strong><br />
+-Made changes in Final Report according to Bjorn Pehrson's feedback. Progress can be found <a href="master_thesis/docs/alpsayin_finalReport_v1_rev2.docx">here.</a><br />
+</p>
+<p><strong># Nov 20, 2012</strong><br />
+-Finished the Geda PCB design for Uhx1 soundmodem/uart board. Progress can be found <a href="https://github.com/alpsayin/uhx1_uart_pcb" target="_blank">here.</a><br />
+</p>
+<p><strong># Oct 15, 2012</strong><br />
+-Added the Future Work &amp; CoAP to background. Progress can be found <a href="master_thesis/docs/alpsayin_finalReport_v1_rev1.docx">here.</a><br />
+</p>
+<p><strong># Oct 1, 2012</strong><br />
+-Added the data &amp; conclusions part. Progress can be found <a href="master_thesis/docs/alpsayin_finalReport_v1_rev1.docx">here.</a><br />
+</p>
+<p><strong># Sep 29, 2012</strong><br />
+-Added the data outputs of radiotftp experiments to the appendix C. Progress can be found <a href="master_thesis/docs/alpsayin_finalReport_v1_rev1.docx">here.</a><br />
+</p>
+<p><strong># Sep 17, 2012</strong><br />
+-Wrote the Experiments part. Progress can be found <a href="master_thesis/docs/alpsayin_finalReport_v1_rev1.docx">here.</a><br />
+</p>
+<p><strong># Sep 3, 2012</strong><br />
+-Wrote the APRS solution implementation part. Progress can be found <a href="master_thesis/docs/alpsayin_finalReport_v1_rev1.docx">here.</a><br />
+</p>
+<p><strong># Aug 29, 2012</strong><br />
+-Wrote the radiotunnel implementation part. Progress can be found <a href="master_thesis/docs/alpsayin_finalReport_v1_rev1.docx">here.</a><br />
+</p>
+<p><strong># Aug 28, 2012</strong><br />
+-Wrote the soundmodem implementation part. Progress can be found <a href="master_thesis/docs/alpsayin_finalReport_v1_rev1.docx">here.</a><br />
+</p>
+<p><strong># Aug 24, 2012</strong><br />
+-Wrote the radiotftp_process implementation part. Progress can be found <a href="master_thesis/docs/alpsayin_finalReport_v1_rev1.docx">here.</a><br />
+</p>
+<p><strong># Aug 21, 2012</strong><br />
+-Wrote the radiotftp implementation part. Progress can be found <a href="master_thesis/docs/alpsayin_finalReport_v1_rev1.docx">here.</a><br />
+</p>
+<p><strong># Aug 13, 2012</strong><br />
+-Started writing the final report. Seems like there will be some delay.</p>
+<p><strong># Aug 6, 2012</strong><br />
+-Designed the PCB layout for UHX1 soundmodem/uart interface board. The design files can be found <a href="master_thesis/schematics/proteus_uhx1/">here.</a><br />
+</p>
+<p><strong># Jul 26, 2012</strong><br />
+-Designed the PCB layout for Bim2A soundmodem/uart interface board. The design files can be found <a href="master_thesis/schematics/proteus_bim2a/">here.</a><br />
+</p>
+<p><strong># July 15, 2012</strong><br />
+-Returned to Turkey today, I will be working from home until I get back.<br />
+-Updates will be published here as usual.</p>
+<p><strong># July 13, 2012</strong><br />
+-Found a kernel bug with voyage linux regarding usb hubs. The devices requiring usb 2.0 shouldn't be connected to usb hubs.<br />
+-Also fixed the rc.local file in voyage linux. remountrw command is not understood by the rc.local, therefore the absolute path should be used to invoke remountrw.</p>
+<p><strong># July 12, 2012</strong><br />
+-Conducted the radiotunnel tests with 2400 baud with Uhx1 hardware. Average time of delivery for 127 bytes with 2400 baud with Uhx1 hardware is about 3 minutes, and there is no average time of delivery for 2kbytes of data. Both wget and wput softwares gave timeouts eventually and canceled the transaction completely (16 times).<br />
+-Also noticed today that, probably due to connection of the coaxial cables, the wire antennas doesn't work well as it used to be. Actually they don't work at all. From now on an antenna connection is a must for Uhx1 hardware. Although I didn't have any trouble with Bim2A hardware, I would recommend the same.</p>
+<p><strong># July 11, 2012</strong><br />
+-Wrote a simple program to create APRS telemetry messages. The codes can be found in the code repository under the folder telemetrit.<br />
+-Conducted the lab tests for soundmodem with wput software. Average time of delivery for 127 bytes of data is 2 minutes. And average time of delivery for 2 kbytes is 3 minutes. <br />
+-Conducted the lab tests for radiotunnel. Average time of delivery for 127 bytes with 19200 baud with Bim2A hardware is about 2.5 minutes, average time of delivery for 2kbytes is about the same. </p>
+<p><strong># July 10, 2012</strong><br />
+-Uploaded the weekly report for <a href="master_thesis/weekly_reports/weekly_report-08072012.html" target="main">1-8 July 2012</a>.</p>
+<p><strong># July 9, 2012</strong><br />
+-Conducted the second set of experiments in Gamla Stan with 433 Mhz band today. Maximum distance that we could reach was 400 meters. These experiments clearly show that for longer range 144 Mhz is the ultimate choice.<br />
+-The collected raw data can be found <a href="master_thesis/data/">here</a>.</p>
+<p><strong># July 8, 2012</strong><br />
+-Uploaded the -rather late- weekly report for <a href="master_thesis/weekly_reports/weekly_report-01072012.html" target="main">24 June-1 July 2012</a>.</p>
+<p><strong># July 7, 2012</strong><br />
+-Conducted the first set of actual experiments in Gamla Stan with 144 Mhz band today. I can say that the experiments were successful. I've reached a maximum of 2.1 km with a relatively good signal (almost no re-transmissions). Photos of the day can be found at <a target="_blank" href="https://www.facebook.com/media/set/?set=a.10151262433529278.563489.563609277&amp;type=3&amp;l=392e5cbc5d">here</a> or <a href="master_thesis/photos/7Jul2012_GamlaStan_144MhzExperiments/">here</a>.<br />
+-The data collection points are <a href="master_thesis/data/waypoints/7Jul2012_GamlaStan_144MhzExperiments"></a>here.<br />
+-The collected raw data can be found <a href="master_thesis/data/">here</a>.</p>
+<p><strong># July 6, 2012</strong><br />
+-Created a minimal program to ease the programming of uhx1. The software can be found in the code repository under the folder `uhx1_program`.</p>
+<p><strong># July 5, 2012</strong><br />
+-Built a backpack antenna carrier to use in experiments, photos of the day can be found at <a target="_blank" href="https://www.facebook.com/media/set/?set=a.10151255566349278.562802.563609277&amp;type=1&amp;l=c0a4efcb9d">here</a> or <a href="master_thesis/photos/5Jul2012_BackbackAntenna">here</a>.<br />
+-Checked out the designated test field in Gamla Stan today. Also took some photos. The photos can be found <a href="https://www.facebook.com/media/set/?set=a.10151256224494278.562877.563609277&amp;type=1&amp;l=06bcf49c56" target="_blank">here.</a><br />
+</p>
+<p><strong># July 4, 2012</strong><br />
+-Decided on a new experiment area in Gamla Stan. This time for greater line of sight experiments will be conducted over sea. We hope to reach a maximum experiment distance of 2 km. And the minimum distance will be about 400 meters.<br />
+-The base station will be set up <a href="https://maps.google.com/maps?q=gamla+stan&amp;hl=sv&amp;ll=59.324849,18.061684&amp;spn=0.00289,0.009645&amp;sll=59.416691,17.913315&amp;sspn=0.005764,0.01929&amp;t=h&amp;hnear=Gamla+stan,+Sverige&amp;z=17" target="_blank">here</a>, and the experiments will be conducted from <a href="https://maps.google.com/maps?q=gamla+stan&amp;hl=sv&amp;ll=59.321247,18.061287&amp;spn=0.00289,0.009645&amp;sll=59.416691,17.913315&amp;sspn=0.005764,0.01929&amp;t=h&amp;hnear=Gamla+stan,+Sverige&amp;z=17" target="_blank">here</a> to <a href="https://maps.google.com/maps?q=gamla+stan&amp;hl=sv&amp;ll=59.320557,18.042083&amp;spn=0.00289,0.009645&amp;sll=59.416691,17.913315&amp;sspn=0.005764,0.01929&amp;t=h&amp;hnear=Gamla+stan,+Sverige&amp;z=17" target="_blank">here</a>. And to reach 2 km. Final experiments will be conducted from <a href="https://maps.google.com/maps?q=gamla+stan&amp;hl=sv&amp;ll=59.324181,18.027878&amp;spn=0.00578,0.01929&amp;sll=59.416691,17.913315&amp;sspn=0.005764,0.01929&amp;t=h&amp;hnear=Gamla+stan,+Sverige&amp;z=16" target="_blank">here.</a></p>
+<p><strong># July 3, 2012</strong><br />
+-Conducted a second set of experiments with UHX1 in the 144 Mhz Vhf band in Kista. Although experiments were too detailed, we got some good results. With a clear line of sight, a perfect link was established at at least 600 meters. After that due to the landscape, we lost the clear line of sight and RSSI fell down at a degree of 200 mV(?!). <br />
+-Photos of the day can be found at <a target="_blank" href="https://www.facebook.com/media/set/?set=a.10151250876934278.562264.563609277&amp;type=1&amp;l=72b351ef03">here</a> or <a href="master_thesis/photos/3Jul2012_Kista_FieldTest/">here</a>.</p>
+<p><strong># July 2, 2012</strong><br />
+-The antenna is tuned fine for 144 Mhz Band. But since the SWR meter is only 144 Mhz band capable, I cannot verify if it is tuned for 434 Mhz band.<br />
+-Uploaded the second revision of the experiments plan. Document can be found in <a href="master_thesis/docs/experiments_v2_rev1.pdf">PDF</a> and <a href="master_thesis/docs/experiments_v2_rev1.docx">DOCX</a> formats.</p>
+<p><strong># July 1, 2012</strong><br />
+-Unfortunately, I was unable to conduct any experiments today. But I found out that my loss problem could be caused by a matching problem. Tomorrow, I will try to tune the antennas and see what happens.</p>
+<p><strong># June 30, 2012</strong><br />
+-Conducted the first set of experiments in the field next to Tekniska Museet. These sets only include radiotftp tests with Bim2A with 19200 and 38400 baud rates at 4 points. The experiments are really slow, I have to downsize the number of experiments to make experimentation feasible. First set of results show that I have a range about 80 meters with Bim2A. Hopefully, I will have a better range with UHX1s.<br />
+-Photos of the day can be found at <a target="_blank" href="https://www.facebook.com/media/set/?set=a.10151245794499278.561667.563609277&amp;type=3&amp;l=6c0cf76621">here</a> or <a href="master_thesis/photos/30Jun2012_TekniskaMuseet_FieldTest/">here</a>.</p>
+<p><strong># June 29, 2012</strong><br />
+-Tested and adjusted the timings for radiotftp and radiotunnel for both UHX1 and BIM2A boards for [4800, 2400] and [38400, 19200] bauds respectively.<br />
+-Radiotunnel still needs data logging codes<br />
+-Radiotunnel works great with 38400 baud, I saw a download speed of about 240 bytes/sec. But it works pretty bad with lower baud rates due to high collision rates.<br />
+-Radiotftp also works great with 38400, I saw a download speed of about 500 bytes/sec. Radiotftp seems like it loses its speed linearly wrt baud, unlike radiotunnel which seem to lose its speed wrt baud exponentially (again due to the characteristics of TCP and high collision rates).<br />
+-In the end, radiotftp and radiotunnel is ready for experiments.</p>
+<p><strong># June 28, 2012</strong><br />
+-Prepared another soundmodem-yaesu interface card.<br />
+-Soldered the UHF connectors to Bim2A boards, we are almost ready for tests. Only the second soundmodem-handheld interface card is missing.</p>
+<p><strong># June 27, 2012</strong><br />
+-Uploaded the weekly report for <a href="master_thesis/weekly_reports/weekly_report-24062012.html" target="main">17-24 June 2012</a>.<br />
+-Got the antennas and the handhelds for testing.<br />
+-Connected the UHF connectors to UHX1 boards and tested them.</p>
+<p><strong># June 26, 2012</strong><br />
+-Patched the radiotftp software with a data logger option.<br />
+-Uploaded the detailed explanation of the experiments to be performed. Document can be found in <a href="master_thesis/docs/experiments_v1_rev1.pdf">PDF</a> and <a href="master_thesis/docs/experiments_v1_rev1.docx">DOCX</a> formats.</p>
+<p><strong># June 25, 2012</strong><br />
+-Finally got a response from Radiometrix, they claim that it will work without inverting the rs232 and at 2400 baud. We'll see.<br />
+-Radiometrix response had nothing to do with the datasheet, but I got the programming ports working, and set the power output to 10 dBm.<br />
+-We are ready for tests.<br />
+-Updated the project plan. Project plan version 2 revision 4 can be found as <a href="master_thesis/docs/kth-format-thesis_proposal_v2_rev4.pdf">PDF</a> and as <a href="master_thesis/docs/kth-format-thesis_proposal_v2_rev4.docx">DocX</a><br />
+</p>
+<p><strong># June 22, 2012</strong><br />
+-Second Uhx1 board is complete, but it seems that Uhx1s are even programmed for different channels. So in my opinion, unless I can get the programming port working, there is no way of collecting data with Uhx1s.<br />
+-My only hope is Radiometrix tech support will get back to me soon, or I may have to buy a simple transceiver like Bim1.<br />
+-I've got the UHX1s in basic parallel mode, radiotftp application works just fine with UHX1s. Only a simple timing tuning was required and that is all. Although, I still don't know what power level I am transmitting at. Which is a problem for data collection.<br />
+-Tomorrow, I will search the timings for 38400 baudrate in code repository and prepare the radiotftp headers accordingly for each transmitter and baud rate.</p>
+<p><strong># June 21, 2012</strong><br />
+-Uhx1 programming port is NOT responding in any way. Until I get a feedback from Radiometrix, there is nothing more I can do.<br />
+-Started preparing the second Uhx1 board, I will use the parallel freqency select pins to select a channel and hope that the offset is internally set to zero. And to see with how much power I am transmitting I will conduct a little power measurement test.</p>
+<p><strong># June 20, 2012</strong><br />
+-Uhx1 is not responding through the programming port.<br />
+-Found a bug in the schematics, Tx/Rx were connected in the wrong way. Fixed it, but Uhx1 is still not responding from the programming port<br />
+-Also fixed the same segment skipping bug in radiotftp_process</p>
+<p><strong># June 19, 2012</strong><br />
+-One of the UHX1 boards is completed, but it's not correct. RTS line inversion was not necessary unlike Bim2A.<br />
+-Fixed the inversion problem, we are now able to switch Rx/Tx</p>
+<p><strong># June 18, 2012</strong><br />
+-For some weird reason audio transmission(with Bim2A) is working, when it's not supposed to. I'll look into the problem.<br />
+-Started preparing the boards for Uhx1<br />
+-Uploaded the weekly report for <a href="master_thesis/weekly_reports/weekly_report-17062012.html" target="main">10-17 June 2012</a>. </p>
+<p><strong># June 17, 2012</strong><br />
+-Found and fixed a bug related to radiotftp put function. Read acknowledgements were not saved. So, whenever a recurring ack was to be sent, an empty packet was sent instead.<br />
+-Found another bug while dealing with the previous one, apparently sender is set to seek forward no matter if the intended segment is sent or not. Now, the sender seeks the appropriate file position according to the ack number.</p>
+<p><strong># June 16, 2012</strong><br />
+-Drawn the schematics for Uhx1 and Bim2 boards, PCB drawings are also on the way<br />
+-Schematics will be tested on breadboard this week.</p>
+<p><strong># June 15, 2012</strong><br />
+-Set up an Rx-Only Igate to Kista</p>
+<p><strong># June 14, 2012</strong><br />
+-Started studying aprx, seems like a very simple program to operate</p>
+<p><strong># June 13, 2012</strong><br />
+-Radio_tunnel solution is working, but it requires further timing optimizations.<br />
+-Seems like in the case of early transmissions, actually discarding packets instead of delaying is a better idea<br />
+-Radio_tunnel solution is complete, the link is not so reliable and very slow, but this is the best we can do. Reasons will be explained in <a href="master_thesis/weekly_reports/weekly_report-17062012.html" target="main">this week's weekly report.</a><br />
+</p>
+<p><strong># June 12, 2012</strong><br />
+-Radio_tunnel solution is ready for initial tests.</p>
+<p><strong># June 11, 2012</strong><br />
+-Changed the default callsigns to SA0BXI-10 for radiotftp and SA0BXI-15 for radiotftp_process.<br />
+-Started writing the weekly report for 03-10 Jun 2012.<br />
+-Uploaded the weekly report for <a href="master_thesis/weekly_reports/weekly_report-10062012.html" target="main">03-10 Jun 2012</a><br />
+-Extracted the serial port codes from radiotftp to tuntap project.<br />
+-Implemented the from-kernel-to-radio part of radio_tunnel, but hasn't tested yet</p>
+<p><strong># June 10, 2012</strong><br />
+-Finished updating the project plan. Project plan version 2 revision 3 can be found as <a href="master_thesis/docs/kth-format-thesis_proposal_v2_rev3.pdf">PDF</a> and as <a href="master_thesis/docs/kth-format-thesis_proposal_v2_rev3.docx">DocX</a><br />
+-Updated project plan has also been moved to the main page.</p>
+<p><strong># June 9, 2012</strong><br />
+-Working on updating the project plan</p>
+<p><strong># June 8, 2012</strong><br />
+-Radiotftp just had a memory fault (double free or a memory leak). Will look at the problem<br />
+-Same error occurred again, it is now confirmed chronic and needs to be solved. First guess is that somewhere in the program there is an uncontrolled loop trying to make illegal reads.<br />
+-The frequency of memory leaks just increased a lot, this problem certainly needs looking into.<br />
+-Fixed the memory leak problem. The reason was a double fclose() on the same file pointer. Radiotftp client cancels the previous connection if the same ip sends a request. And while canceling the previous connection it also closes the file. But sometimes that file might be already closed, or might not have been opened yet. In these cases glibc crashes.</p>
+<p><strong># June 7, 2012</strong><br />
+-Solved the RTS switching problem. Apparently RTS was being pulled down to early.<br />
+-Reception is also working.<br />
+-Fixed a problem related with not ending the transaction when an error is received.<br />
+-Normal TFTP protocol implementation is finished.<br />
+-Solution 3 is almost complete, awaiting tests.<br />
+-Continuing on the radio_tunnel solution<br />
+-Tested aprx with Alix/Voyage, works fine</p>
+<p><strong># June 6, 2012</strong><br />
+-Had to have an unfortunate break, continuing working now<br />
+-Writing the weekly report<br />
+-Adjusting the radiotftp for 4800 baud<br />
+-Uploaded the weekly report for <a href="master_thesis/weekly_reports/weekly_report-03062012.html" target="main">27 May-03 Jun 2012</a><br />
+-Radiotftp process is working with beacon mode, this is enough for now. RTS(RX/TX switch) signaling is not working for some reason. Half duplex communication for radiotftp_process solution is delayed until there is time.<br />
+-Note: Bim2A is working with 3.3 Volts supply, but this may also the cause for not being able to switch RTS</p>
+<p><strong># June 5, 2012</strong><br />
+-Paused working on schematics for a UHX1 board due to feedback on project plan<br />
+-Working on project plan</p>
+<p><strong># June 2, 2012</strong><br />
+-Started working on the schematics for UHX1 board</p>
+<p><strong># June 1, 2012</strong><br />
+-Both serial ports are working now that the pins are connected correctly. Radiotftp_process implementation will be started over today.<br />
+-We can now send and receive messages at 4800 baud (max baud rate for UHX1).<br />
+-Updated the manchester encoding/decoding routines to use predefined tables<br />
+-There is a problem with sending data with radiotftp software to radiotftp_process via FTDI serial cable. I will continue testing with Bim2A boards</p>
+<p><strong># May 31, 2012</strong><br />
+-Uploaded project plan version 2 revision 2<br />
+-Put the project plan to main page<br />
+-Extended the TFTP protocol for a beacon mode<br />
+-Found the problem with Atmega128Rfa1s, apparently the connections were wrong. The squared pins are not grounds, but their opposite is.<br />
+-Due to this new foundation, I am returning back to the old track. Which is porting radiotftp to Atmega128 w/Contiki with full client functionality instead of just beacon functionality</p>
+<p><strong># May 30, 2012</strong><br />
+-Facing problems with USART0<br />
+-Facing problems posting processes from Timer and UART callback functions<br />
+-Process posting problem solved<br />
+-UART0 is hardwired to some switch or ground on the board, further developing with this board is not possible, solution will be implemented using sinle serial port<br />
+-Seems like Atmega128 w/Contiki is not capable of serious UART processing, solution reduced to a beacon version (details will be in this week's <a href="master_thesis/weekly_reports/weekly_report-03062012.html" target="main">weekly report</a>).</p>
+<p><strong># May 29, 2012</strong><br />
+-Radiotftp port for Atmega128Rfa1 w/Contiki has been stripped from its server functions<br />
+-radiotftp_process optimization is needed, currently consuming too much stack<br />
+-Contiki Manchester encoding modules might be used for optimization<br />
+-Created the <a href="master_thesis/weekly_reports" target="main">weekly_reports</a> folder under the <a href="master_thesis" target="main">Master Thesis Directory</a><br />
+-Uploaded the weekly report for <a href="mainaster_thesis/weekly_reports/weekly_report-27052012.html" target="main">21-27 May 2012</a><br />
+</p>
+<p><strong># May 28, 2012</strong><br />
+-Started porting radiotftp into radiotftp_process<br />
+    -First errorless build, starting tests<br />
+    -Initial tests show that port works, further testing required</p>
+<p><strong># May 27, 2012</strong><br />
+-Website setup<br />
+-Project Plan version 2 revision 1 uploaded</p>
+<p><strong># Feb 19, 2012</strong><br />
+-Project Start</p>
+</body>
+</html>

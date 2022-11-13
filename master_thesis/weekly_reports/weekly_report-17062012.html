@@ -1,0 +1,53 @@
+<html>
+<head>
+	<title>
+		Update Report
+	</title>
+</head>
+
+<body>
+
+<p><h1>Weekly Report 10/06/2012-17/06/2012</h1></p>
+
+<p>
+<b>Tasks:</b><br>
++Finish radio_tunnel solution and start tests.<br>
++Start UHX1 schematic design.<br>
++Start studying aprx<br>
+</p>
+
+<p>
+<b>Completed:</b><br>
++Radio_tunnel solution is prepared and tested successfully, see notes for details.<br>
++A schematic for both Uhx1 and Bim2A boards has been prepared, PCB designs are on the way<br>
+</p>
+
+<p>
+<b>Continuing:</b><br>
++Studying of aprx is still ongoing, see notes for details.<br>
+</p>
+
+<p>
+<b>Delayed:</b><br>
++none<br>
+</p>
+
+<p>
+<b>Canceled:</b><br>
++none<br>
+</p>
+
+<p>
+<b>Next Week:</b><br>
++Preparation of Uhx1 boards<br>
++Pcb designs for Uhx1 and Bim2A boards<br>
++Testing of soundmodem with Bim2A and Uhx1 boards<br>
+</p>
+
+<p>
+<b>Notes:</b><br>
+aprx has a beacon option which enables users to beacon an APRS message in a file periodically. This file will be modified periodically with a bash script and aprx will take care of sending it periodically. There was one problem with this solution which was the automatic telemetry messages sent by aprx itself. These automated telemetry messages were going to override our data and label if not disabled. Unfortunately, there was no disable option in the config file, and as the aprx mail-group says "aprs-is telemetry is ALWAYS enabled". To overcome this problem I've modified the source code of aprx and disabled automated telemetry manually (Another reason to love open-source :)). <br>
+Radio_tunnel was prepared using virtual network kernel interfaces called tun/tap devices. Unfortunately there is no way to set these device as half-duplex. Therefore kernel acts and sends packets as if the underlying hardware is full-duplex, which causes a lot of packets to be discarded, and so causes the communication to be extremely slow. It works, but it's slow, It could be slower than the soundmodem solution even with the 4x baudrate. Further work on this solution can be to write an actual kernel interface module.<br>
+</p>
+</body>
+</html>

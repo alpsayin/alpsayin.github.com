@@ -1,0 +1,493 @@
+--19:42:27-- `text127.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.1:21/measurements/soundmodem/text127.txt
+Connecting to 10.0.0.1:21... failed!
+Waiting 10 seconds... --19:43:02-- `text127.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.1:21/measurements/soundmodem/text127.txt
+Connecting to 10.0.0.1:21... Connecting to 10.0.0.1:21... --19:43:21-- `text127.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.1:21/measurements/soundmodem/text127.txt
+Connecting to 10.0.0.1:21... failed!
+Waiting 10 seconds... failed!
+Waiting 10 seconds... Connecting to 10.0.0.1:21... Connecting to 10.0.0.1:21... failed!
+Waiting 10 seconds... Connecting to 10.0.0.1:21... failed!
+Waiting 10 seconds... failed!
+Waiting 10 seconds... Connecting to 10.0.0.1:21... Connecting to 10.0.0.1:21... failed!
+Waiting 10 seconds... Connecting to 10.0.0.1:21... failed!
+Waiting 10 seconds... failed!
+Waiting 10 seconds... Connecting to 10.0.0.1:21... Connecting to 10.0.0.1:21... failed!
+Waiting 10 seconds... Connecting to 10.0.0.1:21... failed!
+Waiting 10 seconds... failed!
+Waiting 10 seconds... Connecting to 10.0.0.1:21... Connecting to 10.0.0.1:21... failed!
+Waiting 10 seconds... --19:50:37-- `text127.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.1:21/measurements/soundmodem/text127.txt
+Connecting to 10.0.0.1:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodem
+==> TYPE A ... done.
+==> SIZE text127.txt ... done (142 bytes)
+==> PASV ... Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+Waiting 10 seconds... Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+Connecting to 10.0.0.1:21... failed!
+Waiting 10 seconds... Connecting to 10.0.0.1:21... failed!
+Waiting 10 seconds... Connecting to 10.0.0.1:21... failed!
+Waiting 10 seconds... Connecting to 10.0.0.1:21... connectedReceive-Error: read() failed. Read '' so far. (errno: Network is unreachable (101))
+Receive-Error: Connection broke down.
+Waiting 10 seconds... Connecting to 10.0.0.1:21... connectedReceive-Error: read() failed. Read '' so far. (errno: Network is unreachable (101))
+Receive-Error: Connection broke down.
+Waiting 10 seconds... Connecting to 10.0.0.1:21... failed!
+Waiting 10 seconds... Connecting to 10.0.0.1:21... failed!
+Waiting 10 seconds... Connecting to 10.0.0.1:21... failed!
+Waiting 10 seconds... Connecting to 10.0.0.1:21... connectedReceive-Error: read() failed. Read '' so far. (errno: Network is unreachable (101))
+Receive-Error: Connection broke down.
+Waiting 10 seconds... Connecting to 10.0.0.1:21... connectedReceive-Error: read() failed. Read '' so far. (errno: Network is unreachable (101))
+Receive-Error: Connection broke down.
+Waiting 10 seconds... Connecting to 10.0.0.1:21... connectedReceive-Error: read() failed. Read '' so far. (errno: Network is unreachable (101))
+Receive-Error: Connection broke down.
+Waiting 10 seconds... Connecting to 10.0.0.1:21... connectedReceive-Error: read() failed. Read '' so far. (errno: Network is unreachable (101))
+Receive-Error: Connection broke down.
+Waiting 10 seconds... Connecting to 10.0.0.1:21... connectedReceive-Error: read() failed. Read '' so far. (errno: Network is unreachable (101))
+Receive-Error: Connection broke down.
+Waiting 10 seconds... Connecting to 10.0.0.1:21... connectedReceive-Error: read() failed. Read '' so far. (errno: Network is unreachable (101))
+Receive-Error: Connection broke down.
+Waiting 10 seconds... Connecting to 10.0.0.1:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/soundmodem
+==> TYPE A ... done.
+==> SIZE text127.txt ... done (142 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text127.txt ... Command terminated by signal 15
+
+command=wput text127.txt ftp://alpsayin:noseArt_628@10.0.0.1/measurements/soundmodem/text127.txt -v -a wput127.log
+elapsed 8:29.64
+exit status 0
+
+--20:01:17-- `text127.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.1:21/measurements/radiotunnel/text127.txt
+Connecting to 10.0.0.1:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/radiotunnel
+==> TYPE A ... done.
+==> SIZE text127.txt ... failed.
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text127.txt ... done.
+Length: 127
+    0K 
+20:02:31 (text127.txt) - ` 9.57B/s' [127]
+
+# You have transferred 127 bytes in 1 files.
+# Total traffic for this session was 699 bytes in 1 transfers.
+# Thank you for using the FTP service on sayin-macbookpro.
+FINISHED --20:02:34--
+Transfered 142 bytes in 1 file at  1.86B/s
+
+command=wput text127.txt ftp://alpsayin:noseArt_628@10.0.0.1/measurements/radiotunnel/text127.txt -v -a wput127.log
+elapsed 1:16.47
+exit status 0
+
+--20:02:44-- `text127.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.1:21/measurements/radiotunnel/text127.txt
+Connecting to 10.0.0.1:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/radiotunnel
+==> TYPE A ... done.
+==> SIZE text127.txt ... done (142 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text127.txt ... done.
+Length: 127
+    0K 
+20:04:58 (text127.txt) - ` 7.29B/s' [127]
+
+# You have transferred 127 bytes in 1 files.
+# Total traffic for this session was 663 bytes in 1 transfers.
+# Thank you for using the FTP service on sayin-macbookpro.
+FINISHED --20:05:11--
+Transfered 142 bytes in 1 file at  0.96B/s
+
+command=wput text127.txt ftp://alpsayin:noseArt_628@10.0.0.1/measurements/radiotunnel/text127.txt -v -a wput127.log
+elapsed 2:27.48
+exit status 0
+
+--20:05:21-- `text127.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.1:21/measurements/radiotunnel/text127.txt
+Connecting to 10.0.0.1:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/radiotunnel
+==> TYPE A ... done.
+==> SIZE text127.txt ... done (142 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text127.txt ... done.
+Length: 127
+    0K 
+20:06:50 (text127.txt) - ` 6.98B/s' [127]
+
+# You have transferred 127 bytes in 1 files.
+# Total traffic for this session was 663 bytes in 1 transfers.
+# Thank you for using the FTP service on sayin-macbookpro.
+FINISHED --20:07:01--
+Transfered 142 bytes in 1 file at  1.43B/s
+
+command=wput text127.txt ftp://alpsayin:noseArt_628@10.0.0.1/measurements/radiotunnel/text127.txt -v -a wput127.log
+elapsed 1:39.58
+exit status 0
+
+--20:07:11-- `text127.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.1:21/measurements/radiotunnel/text127.txt
+Connecting to 10.0.0.1:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/radiotunnel
+==> TYPE A ... done.
+==> SIZE text127.txt ... done (142 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text127.txt ... done.
+Length: 127
+    0K 
+20:08:40 (text127.txt) - ` 6.81B/s' [127]
+
+# You have transferred 127 bytes in 1 files.
+# Total traffic for this session was 661 bytes in 1 transfers.
+# Thank you for using the FTP service on sayin-macbookpro.
+FINISHED --20:08:51--
+Transfered 142 bytes in 1 file at  1.42B/s
+
+command=wput text127.txt ftp://alpsayin:noseArt_628@10.0.0.1/measurements/radiotunnel/text127.txt -v -a wput127.log
+elapsed 1:39.71
+exit status 0
+
+--20:09:01-- `text127.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.1:21/measurements/radiotunnel/text127.txt
+Connecting to 10.0.0.1:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/radiotunnel
+==> TYPE A ... done.
+==> SIZE text127.txt ... done (142 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text127.txt ... done.
+Length: 127
+    0K 
+20:10:40 (text127.txt) - ` 8.16B/s' [127]
+
+# You have transferred 127 bytes in 1 files.
+# Total traffic for this session was 662 bytes in 1 transfers.
+# Thank you for using the FTP service on sayin-macbookpro.
+FINISHED --20:10:53--
+Transfered 142 bytes in 1 file at  1.27B/s
+
+command=wput text127.txt ftp://alpsayin:noseArt_628@10.0.0.1/measurements/radiotunnel/text127.txt -v -a wput127.log
+elapsed 1:51.93
+exit status 0
+
+--20:11:03-- `text127.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.1:21/measurements/radiotunnel/text127.txt
+Connecting to 10.0.0.1:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/radiotunnel
+==> TYPE A ... done.
+==> SIZE text127.txt ... done (142 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text127.txt ... done.
+Length: 127
+    0K 
+20:12:27 (text127.txt) - ` 7.85B/s' [127]
+
+# You have transferred 127 bytes in 1 files.
+# Total traffic for this session was 661 bytes in 1 transfers.
+# Thank you for using the FTP service on sayin-macbookpro.
+FINISHED --20:12:37--
+Transfered 142 bytes in 1 file at  1.51B/s
+
+command=wput text127.txt ftp://alpsayin:noseArt_628@10.0.0.1/measurements/radiotunnel/text127.txt -v -a wput127.log
+elapsed 1:34.30
+exit status 0
+
+--20:12:47-- `text127.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.1:21/measurements/radiotunnel/text127.txt
+Connecting to 10.0.0.1:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/radiotunnel
+==> TYPE A ... done.
+==> SIZE text127.txt ... done (142 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text127.txt ... done.
+Length: 127
+    0K 
+20:14:14 (text127.txt) - ` 8.12B/s' [127]
+
+# You have transferred 127 bytes in 1 files.
+# Total traffic for this session was 662 bytes in 1 transfers.
+# Thank you for using the FTP service on sayin-macbookpro.
+FINISHED --20:14:25--
+Transfered 142 bytes in 1 file at  1.45B/s
+
+command=wput text127.txt ftp://alpsayin:noseArt_628@10.0.0.1/measurements/radiotunnel/text127.txt -v -a wput127.log
+elapsed 1:37.95
+exit status 0
+
+--20:14:35-- `text127.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.1:21/measurements/radiotunnel/text127.txt
+Connecting to 10.0.0.1:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/radiotunnel
+==> TYPE A ... done.
+==> SIZE text127.txt ... done (142 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text127.txt ... done.
+Length: 127
+    0K 
+20:16:31 (text127.txt) - ` 5.29B/s' [127]
+
+# You have transferred 127 bytes in 1 files.
+# Total traffic for this session was 662 bytes in 1 transfers.
+# Thank you for using the FTP service on sayin-macbookpro.
+FINISHED --20:16:53--
+Transfered 142 bytes in 1 file at  1.03B/s
+
+command=wput text127.txt ftp://alpsayin:noseArt_628@10.0.0.1/measurements/radiotunnel/text127.txt -v -a wput127.log
+elapsed 2:17.60
+exit status 0
+
+--20:17:03-- `text127.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.1:21/measurements/radiotunnel/text127.txt
+Connecting to 10.0.0.1:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/radiotunnel
+==> TYPE A ... done.
+==> SIZE text127.txt ... done (142 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text127.txt ... done.
+Length: 127
+    0K 
+20:18:21 (text127.txt) - ` 9.09B/s' [127]
+
+# You have transferred 127 bytes in 1 files.
+# Total traffic for this session was 660 bytes in 1 transfers.
+# Thank you for using the FTP service on sayin-macbookpro.
+FINISHED --20:18:32--
+Transfered 142 bytes in 1 file at  1.58B/s
+
+command=wput text127.txt ftp://alpsayin:noseArt_628@10.0.0.1/measurements/radiotunnel/text127.txt -v -a wput127.log
+elapsed 1:29.92
+exit status 0
+
+--20:18:42-- `text127.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.1:21/measurements/radiotunnel/text127.txt
+Connecting to 10.0.0.1:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/radiotunnel
+==> TYPE A ... done.
+==> SIZE text127.txt ... done (142 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text127.txt ... done.
+Length: 127
+    0K 
+20:20:24 (text127.txt) - ` 9.25B/s' [127]
+
+# You have transferred 127 bytes in 1 files.
+# Total traffic for this session was 663 bytes in 1 transfers.
+# Thank you for using the FTP service on sayin-macbookpro.
+FINISHED --20:20:34--
+Transfered 142 bytes in 1 file at  1.28B/s
+
+command=wput text127.txt ftp://alpsayin:noseArt_628@10.0.0.1/measurements/radiotunnel/text127.txt -v -a wput127.log
+elapsed 1:51.30
+exit status 0
+
+--20:20:44-- `text127.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.1:21/measurements/radiotunnel/text127.txt
+Connecting to 10.0.0.1:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/radiotunnel
+==> TYPE A ... done.
+==> SIZE text127.txt ... done (142 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text127.txt ... done.
+Length: 127
+    0K 
+20:22:08 (text127.txt) - ` 6.56B/s' [127]
+
+# You have transferred 127 bytes in 1 files.
+# Total traffic for this session was 661 bytes in 1 transfers.
+# Thank you for using the FTP service on sayin-macbookpro.
+FINISHED --20:22:23--
+Transfered 142 bytes in 1 file at  1.43B/s
+
+command=wput text127.txt ftp://alpsayin:noseArt_628@10.0.0.1/measurements/radiotunnel/text127.txt -v -a wput127.log
+elapsed 1:39.47
+exit status 0
+
+--20:22:33-- `text127.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.1:21/measurements/radiotunnel/text127.txt
+Connecting to 10.0.0.1:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/radiotunnel
+==> TYPE A ... done.
+==> SIZE text127.txt ... done (142 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text127.txt ... done.
+Length: 127
+    0K 
+20:24:11 (text127.txt) - ` 7.01B/s' [127]
+
+# You have transferred 127 bytes in 1 files.
+# Total traffic for this session was 663 bytes in 1 transfers.
+# Thank you for using the FTP service on sayin-macbookpro.
+FINISHED --20:24:21--
+Transfered 142 bytes in 1 file at  1.32B/s
+
+command=wput text127.txt ftp://alpsayin:noseArt_628@10.0.0.1/measurements/radiotunnel/text127.txt -v -a wput127.log
+elapsed 1:47.46
+exit status 0
+
+--20:24:31-- `text127.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.1:21/measurements/radiotunnel/text127.txt
+Connecting to 10.0.0.1:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/radiotunnel
+==> TYPE A ... done.
+==> SIZE text127.txt ... done (142 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text127.txt ... done.
+Length: 127
+    0K 
+20:26:31 (text127.txt) - ` 9.25B/s' [127]
+
+# You have transferred 127 bytes in 1 files.
+# Total traffic for this session was 661 bytes in 1 transfers.
+# Thank you for using the FTP service on sayin-macbookpro.
+FINISHED --20:26:43--
+Transfered 142 bytes in 1 file at  1.07B/s
+
+command=wput text127.txt ftp://alpsayin:noseArt_628@10.0.0.1/measurements/radiotunnel/text127.txt -v -a wput127.log
+elapsed 2:12.41
+exit status 0
+
+--20:26:53-- `text127.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.1:21/measurements/radiotunnel/text127.txt
+Connecting to 10.0.0.1:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/radiotunnel
+==> TYPE A ... done.
+==> SIZE text127.txt ... done (142 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text127.txt ... done.
+Length: 127
+    0K 
+20:28:54 (text127.txt) - ` 9.66B/s' [127]
+
+# You have transferred 127 bytes in 1 files.
+# Total traffic for this session was 662 bytes in 1 transfers.
+# Thank you for using the FTP service on sayin-macbookpro.
+FINISHED --20:29:05--
+Transfered 142 bytes in 1 file at  1.08B/s
+
+command=wput text127.txt ftp://alpsayin:noseArt_628@10.0.0.1/measurements/radiotunnel/text127.txt -v -a wput127.log
+elapsed 2:11.85
+exit status 0
+
+--20:29:15-- `text127.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.1:21/measurements/radiotunnel/text127.txt
+Connecting to 10.0.0.1:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/radiotunnel
+==> TYPE A ... done.
+==> SIZE text127.txt ... done (142 bytes)
+==> PASV ... Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+Waiting 10 seconds... Connecting to 10.0.0.1:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/radiotunnel
+==> TYPE A ... done.
+==> SIZE text127.txt ... done (142 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text127.txt ... done.
+Length: 127
+    0K 
+20:33:06 (text127.txt) - ` 7.54B/s' [127]
+
+# You have transferred 127 bytes in 1 files.
+# Total traffic for this session was 661 bytes in 1 transfers.
+# Thank you for using the FTP service on sayin-macbookpro.
+FINISHED --20:33:21--
+Transfered 142 bytes in 1 file at  0.58B/s
+
+command=wput text127.txt ftp://alpsayin:noseArt_628@10.0.0.1/measurements/radiotunnel/text127.txt -v -a wput127.log
+elapsed 4:05.72
+exit status 0
+
+--20:33:31-- `text127.txt'
+    => ftp://alpsayin:xxxxx@10.0.0.1:21/measurements/radiotunnel/text127.txt
+Connecting to 10.0.0.1:21... connected! 
+==> AUTH TLS ... failed (Please login with USER and PASS.).
+
+Logging in as alpsayin ... Logged in!
+==> CWD measurements/radiotunnel
+==> TYPE A ... done.
+==> SIZE text127.txt ... done (142 bytes)
+==> PASV ... done.
+Disabling resuming due to ascii-mode transfer
+==> STOR text127.txt ... done.
+Length: 127
+    0K 
+20:35:20 (text127.txt) - ` 6.76B/s' [127]
+
+Error: recv() timed out. No data received
+Receive-Warning: read() timed out. Read '' so far.
+FINISHED --20:35:50--
+Transfered 142 bytes in 1 file at  1.02B/s
+
+command=wput text127.txt ftp://alpsayin:noseArt_628@10.0.0.1/measurements/radiotunnel/text127.txt -v -a wput127.log
+elapsed 2:18.77
+exit status 0
+
