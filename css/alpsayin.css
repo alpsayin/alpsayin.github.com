@@ -109,3 +109,7 @@ code {
 a.no-blue {
     color: inherit;
 }
+
+.semibold {
+  font-weight: 300 !important;
+}
