@@ -110,6 +110,10 @@ a.no-blue {
     color: inherit;
 }
 
+a.no-blue:hover {
+    text-decoration: none;
+}
+
 .semibold {
   font-weight: 300 !important;
 }
